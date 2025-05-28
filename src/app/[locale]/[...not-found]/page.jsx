@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Page404 = () => {
+const NotFound = () => {
   return (
     <>
       <section className="error_section bg-white position-relative">
@@ -56,4 +56,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default NotFound;
