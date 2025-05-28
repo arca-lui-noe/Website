@@ -1,0 +1,191 @@
+/* 2.7 - Typography Style - Start
+================================================== */
+.single_btn_wrap {
+	padding-top: 45px;
+}
+
+.btn {
+	z-index: 1;
+	color: #ffffff;
+	line-height: 1;
+	font-size: 20px;
+	font-weight: 800;
+	position: relative;
+	border-radius: $border_radius;
+	padding: 24px 27px;
+	transition: $transition;
+	font-family: $font_heading;
+	border: 1px solid transparent;
+	&:hover {
+		color: #ffffff;
+		transform: translateY(-3px);
+	}
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+	i {
+		margin-right: 8px;
+		transition: $transition;
+	}
+
+	&.btn_primary {
+		background-color: $color_primary;
+		i {
+			color: $color_warning;
+		}
+		&:hover {
+			box-shadow: 0 10px 30px 0 rgba(124, 88, 211, 0.3);
+		}
+	}
+
+	&.border_primary {
+		color: $color_body;
+		border-color: $color_primary;
+		i {
+			color: $color_primary;
+		}
+		&:hover {
+			color: #ffffff;
+			background-color: $color_primary;
+			box-shadow: 0 10px 30px 0 rgba(124, 88, 211, 0.3);
+			i {
+				color: $color_warning;
+			}
+		}
+	}
+
+	&.btn_warning {
+		color: $color_dark;
+		background-color: $color_warning;
+		i {
+			color: $color_dark;
+		}
+		&:hover {
+			box-shadow: 0 10px 30px 0 rgba(255, 218, 71, 0.3);
+		}
+	}
+}
+
+.btn_unfill {
+	line-height: 1;
+	font-size: 20px;
+	font-weight: 800;
+	position: relative;
+	color: $color_dark;
+	padding-bottom: 4px;
+	font-family: $font_heading;
+	&:before {
+		left: 0;
+		width: 0;
+		height: 1px;
+		content: '';
+		bottom: -1px;
+		position: absolute;
+		background: $color_primary;
+		transition: width .4s cubic-bezier(.34,1.56,.64,1);
+	}
+	i {
+		margin-left: 5px;
+		transform: translateY(2px);
+		transition: .4s cubic-bezier(.25,1,.5,1);
+	}
+
+	&:hover {
+		color: $color_primary;
+		i {
+			transform: translate(5px, 2px);
+		}
+		&:before {
+			width: 100%;
+		}
+	}
+}
+
+.cart_btns_group {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	>li {
+		float: left;
+		list-style: none;
+		display: inline-block;
+		&:not(:last-child) {
+			margin-right: 5px;
+		}
+		>a {
+			padding: 5px;
+			height: 36px;
+			line-height: 1;
+			min-width: 36px;
+			font-size: 14px;
+			border-radius: 4px;
+			align-items: center;
+			display: inline-flex;
+			color: $color_muted;
+			justify-content: center;
+			background-color: #ffffff;
+			border: 1px solid $color_border;
+			&:hover {
+				color: $color_dark;
+				border-color: $color_warning;
+				background-color: $color_warning;
+			}
+		}
+		&:first-child {
+			>a {
+				color: #ffffff;
+				font-weight: 700;
+				padding: 5px 13px;
+				border-color: $color_primary;
+				background-color: $color_primary;
+				&:hover {
+					color: #ffffff;
+					border-color: $color_danger;
+					background-color: $color_danger;
+				}
+			}
+		}
+	}
+}
+
+.badge_group {
+	&.unorder_list,
+	&.unorder_list_right {
+		>li {
+			&:not(:last-child) {
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+.badge {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 19px;
+	border-radius: $border_radius;
+	text-transform: uppercase;
+	padding: 6px 10px 5px 10px;
+	font-family: $font_heading;
+	&:hover {
+		color: #ffffff;
+	}
+}
+.badge_new {
+	background-color: $color_primary;
+}
+.badge_hot {
+	background-color: $color_danger;
+}
+.badge_sale {
+	color: $color_body;
+	background-color: $color_warning;
+	&:hover {
+		color: $color_body;
+	}
+}
+/* 2.7 - Typography Style - End
+================================================== */

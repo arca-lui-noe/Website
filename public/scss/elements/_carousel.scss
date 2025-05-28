@@ -1,0 +1,82 @@
+/* 2.8 - Carousel Reset & Settings - Start
+================================================== */
+
+// Carousel Slick Dots - Start
+.slick-dots {
+	margin: 0;
+	display: flex;
+	position: static;
+	padding-top: 40px;
+	align-items: center;
+	justify-content: center;
+	li {
+		width: auto;
+		height: auto;
+		margin: 0 5px;
+		display: inline-block;
+		&:not(:last-child) {
+		}
+		button {
+			margin: 0;
+			padding: 0;
+			opacity: .3;
+			width: 10px;
+			height: 10px;
+			display: block;
+			border-radius: 100%;
+			background-color: $color_primary;
+			transition: $transition;
+			&:before {
+				display: none;
+			}
+		}
+		&:hover,
+		&.slick-active {
+			button {
+				opacity: 1;
+			}
+		}
+	}
+}
+.swiper-pagination{
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+.swiper-pagination .swiper-pagination-bullet{
+	margin: 0;
+	padding: 0;
+	opacity: .3;
+	width: 10px;
+	height: 10px;
+	display: block;
+	border-radius: 100%;
+	background-color: $color_primary;
+	transition: $transition;
+	&.swiper-pagination-bullet-active{
+		opacity: 1;		
+	}
+}
+// Carousel Slick Dots - End
+
+// Carousel Arrow - Start
+.carousel_arrow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	button {
+		color: #CDCCCE;
+		font-size: 24px;
+		&:hover {
+			color: $color_primary;
+		}
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+}
+// Carousel Arrow - End
+
+/* 2.8 - Carousel Reset & Settings - End
+================================================== */

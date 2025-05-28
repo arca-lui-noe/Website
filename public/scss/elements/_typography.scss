@@ -1,0 +1,21 @@
+/* 2.7 - Typography Style - Start
+================================================== */
+.section_title {
+	margin-bottom: 25px;
+	
+	.title_text {
+		font-size: 46px;
+		margin-bottom: 6px;
+	}
+
+	.sub_title {
+		display: block;
+		line-height: 1;
+		font-size: 16px;
+		margin-bottom: 16px;
+		color: $color_primary;
+		text-transform: uppercase;
+	}
+}
+/* 2.7 - Typography Style - End
+================================================== */

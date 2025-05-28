@@ -1,0 +1,219 @@
+/* 3.6 - Banner Section - Start
+================================================== */
+
+// Banner Default Style - Start
+.banner_section {
+	.banner_title {
+		font-size: 68px;
+		line-height: 71px;
+	}
+	.banner_sub_title {
+		display: block;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 19px;
+		margin-bottom: 19px;
+		color: $color_primary;
+		text-transform: uppercase;
+	}
+	.section_overlay {
+		@include bg_image_property;
+		background-size: auto;
+	}
+}
+// Banner Default Style - End
+
+// Banner Style 1 - Start
+.banner_style_1 {
+	padding: 237px 0px 296px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center top;
+
+	.banner_content {
+		z-index: 2;
+		margin: auto;
+		max-width: 858px;
+		position: relative;
+		text-align: center;
+	}
+
+	h1 {
+		margin-bottom: 12px;
+	}
+
+	.banner_description {
+		font-size: 20px;
+		padding: 0 60px;
+		margin-bottom: 32px;
+	}
+
+	.shape_1 {
+		top: 348px;
+		right: 136px;
+	}
+	.shape_2 {
+		left: 107px;
+		bottom: 312px;
+	}
+	.chat_img_1 {
+		z-index: 1;
+		top: 281px;
+		right: 67px;
+	}
+	.chat_img_2 {
+		z-index: 1;
+		left: 140px;
+		bottom: 220px;
+	}
+}
+
+.banner_services_wrap {
+	padding-top: 80px;
+	>.col {
+		flex: 0 0 33.333%;
+	}
+}
+// Banner Style 1 - End
+
+// Banner Style 2 - Start
+.banner_style_2 {
+	padding: 195px 0 47px;
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position: right top;
+	.banner_description {
+		padding-right: 103px;
+	}
+	.banner_title {
+		margin-bottom: 20px;
+	}
+	.banner_description {
+		font-size: 18px;
+		margin-bottom: 50px;
+	}
+	.banner_image {
+		transform: translateY(65px);
+	}
+}
+
+.banner_policy_items {
+	&.row {
+		margin: -10px;
+		>.col {
+			padding: 10px;
+			flex: 0 0 50%;
+		}
+	}
+	.iconbox_item.iconbox_lefticon {
+		align-items: center;
+
+		.item_icon {
+			width: 60px;
+			height: 60px;
+			display: flex;
+			flex: 0 0 60px;
+			font-size: 26px;
+			border-radius: $border_radius;
+			margin-right: 15px;
+			align-items: center;
+			justify-content: center;
+			transition: $transition;
+			background-color: $color_light;
+			border: 2px solid $color_border;
+		}
+		.item_title {
+			font-size: 22px;
+		}
+
+		&:hover {
+			.item_icon {
+				color: #ffffff;
+				border-color: $color_primary;
+				background-color: $color_primary;
+			}
+		}
+	}
+}
+// Banner Style 2 - End
+
+// Offer Banner - Start
+.offer_banner_item {
+	display: flex;
+	padding: 30px;
+	overflow: hidden;
+	min-height: 234px;
+	border-radius: $border_radius;
+	align-items: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	justify-content: space-between;
+	background-color: $color_warning;
+	background-position: right center;
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	.item_content {
+		z-index: 1;
+		position: relative;
+	}
+
+	.item_image {
+		order: 6;
+		width: 180px;
+		height: 300px;
+		flex: 0 0 180px;
+		display: inline-flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		margin: -96px -30px -30px;
+	}
+	.item_title {
+		font-size: 28px;
+		line-height: 36px;
+		margin-bottom: 10px;
+	}
+	.btn_unfill {
+		font-size: 18px;
+		color: $color_primary;
+	}
+
+	.badge {
+		font-size: 24px;
+		font-weight: 800;
+		line-height: 30px;
+		border-radius: $border_radius;
+		padding: 20px 30px;
+		font-family: $font_heading;
+		background-color: $color_primary;
+	}
+}
+
+.offer_banner_item.banner_big {
+	padding: 50px;
+	min-height: 500px;
+
+	.badge_wrap {
+		margin-bottom: 30px;
+	}
+
+	.item_content {
+		max-width: 300px;
+	}
+
+	.item_title {
+		font-size: 46px;
+		line-height: 46px;
+		margin-bottom: 15px;
+	}
+	p {
+		font-size: 18px;
+		line-height: 26px;
+		margin-bottom: 20px;
+	}
+}
+// Offer Banner - End
+
+/* 3.6 - Banner Section - End
+================================================== */

@@ -1,0 +1,78 @@
+/* ==== FAQs Sectiom ===== */
+.faq-box-style1 .accordion-box {
+  position: relative;
+}
+.faq-box-style1 .accordion-box .block {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #E0E4E8;
+  padding: 5px 0;
+  position: relative;
+}
+.faq-box-style1 .accordion-box .block .acc-btn {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: #0e081e;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  padding: 24px 0 23px;
+  position: relative;
+
+}
+@media only screen and (max-width: 575px){
+  .faq-box-style1 .accordion-box .block .acc-btn{
+    font-size: 18px;
+  }
+  .office_hour_list .area_title{
+    font-size: 28px;
+  }
+}
+.faq-box-style1 .accordion-box .block .acc-btn .icon {
+  align-items: center;
+  background-color: #084466;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-size: 24px;
+  height: 40px;
+  justify-content: center;
+  line-height: 2;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 500ms ease;
+  width: 40px;
+}
+.faq-box-style1 .accordion-box .block .acc-btn.active {
+  color: #084466;
+}
+.faq-box-style1 .accordion-box .block .acc-btn.active .icon {
+  color: #fff;
+}
+.faq-box-style1 .accordion-box .block .acc-btn.active .icon:before {
+  content: "\f106";
+}
+.faq-box-style1 .accordion-box .block .acc-content {
+  position: relative;
+  display: none;
+  transition: all 300ms ease;
+}
+.faq-box-style1 .accordion-box .block .acc-content .content {
+  position: relative;
+  padding: 0 0 25px;
+  transition: all 300ms ease;
+}
+.faq-box-style1 .accordion-box .block .acc-content .content .text {
+  display: block;
+  font-size: 17px;
+  line-height: 23px;
+  color: #1c103b;
+  margin-bottom: 0;
+}
+.faq-box-style1 .accordion-box .block .acc-content.current {
+  display: block;
+}

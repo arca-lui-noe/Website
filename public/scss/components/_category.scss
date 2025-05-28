@@ -1,0 +1,81 @@
+/* 3.8 - Category Section - Start
+================================================== */
+.category_item {
+	display: flex;
+	padding: 30px;
+	border-radius: $border_radius;
+	align-items: center;
+	background-size: auto;
+	border: 2px solid #e3f3fd;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+
+	.item_image {
+		z-index: 1;
+		width: 250px;
+		height: 220px;
+		flex: 0 0 250px;
+		position: relative;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		margin: -34px -15px -36px -72px;
+		img {
+			max-width: 220px;
+		}
+	}
+	.item_content {
+		flex: 1;
+		z-index: 2;
+		position: relative;
+	}
+	.item_title {
+		line-height: 1;
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+	.page_list {
+		margin: -10px;
+		display: flex;
+		ul {
+			width: 50%;
+			padding: 10px;
+		}
+		li {
+			line-height: 1;
+			font-size: 16px;
+			&:not(:last-child) {
+				margin-bottom: 12px;
+			}
+		}
+	}
+}
+
+.category_items_wrap {
+	>.col {
+		&:nth-child(2),
+		&:nth-child(4) {
+			.category_item {
+				border-color: #FFBBDD;
+				.page_list {
+					i {
+						color: $color_danger;
+					}
+				}
+			}
+		}
+		&:nth-child(3),
+		&:nth-child(5) {
+			.category_item {
+				border-color: #FFEEAA;
+				.page_list {
+					i {
+						color: $color_warning;
+					}
+				}
+			}
+		}
+	}
+}
+/* 3.8 - Category Section - End
+================================================== */

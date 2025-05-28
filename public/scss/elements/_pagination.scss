@@ -1,0 +1,36 @@
+/* 2.13 - Pagination Style - start
+================================================== */
+.pagination_wrap {
+  padding-top: 50px;
+}
+.pagination_nav {
+  margin: -10px;
+  li {
+    padding: 10px;
+  }
+  a {
+    height: 50px;
+    display: flex;
+    line-height: 1;
+    min-width: 50px;
+    font-size: 18px;
+    color: $color_dark;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: $border_radius;
+    border: 2px solid $color_border;
+  }
+  li {
+    &:hover,
+    &.active {
+      a {
+        color: #ffffff;
+        border-color: $color_primary;
+        background-color: $color_primary;
+      }
+    }
+  }
+}
+/* 2.13 - Pagination Style - end
+================================================== */

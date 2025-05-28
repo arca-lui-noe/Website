@@ -1,0 +1,64 @@
+/* 2.18 - Price Range Slide - Start
+================================================== */
+.price-range-area {
+  padding-top: 7px;
+}
+.price-range-area .slider-range {
+  height: 4px;
+  border: none;
+  border-radius: 2px;
+  background-color: #EFEFEF;
+}
+.price-range-area .ui-slider-range {
+  border: none;
+  border-radius: 2px;
+  background-color: $color_primary;
+}
+.price-range-area .ui-state-default {
+  top: -7px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100%;
+  border: 6px solid #ffffff;
+  background-color: $color_primary;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.price-range-area .price-text {
+  font-size: 18px;
+  font-weight: 400;
+}
+.price-range-area .price-text span {
+  color: $color_muted;
+}
+.price-range-area .price-text input {
+  width: auto;
+  border: none;
+  padding: 0 20px;
+  font-weight: 700;
+  color: $color_dark;
+  display: inline-block;
+  font-family: $font_heading;
+  background-color: transparent;
+}
+.price-range-area .price_filter_btn {
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: $color_body;
+  font-family: $font_body;
+  padding: 15px 30px 16px;
+  border-radius: $border_radius;
+  border: 2px solid $color_border;
+  &:hover {
+    color: #ffffff;
+    border-color: $color_primary;
+    background-color: $color_primary;
+  }
+}
+/* 2.18 - Price Range Slide - End
+================================================== */

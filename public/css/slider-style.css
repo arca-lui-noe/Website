@@ -1,0 +1,31 @@
+/* ==== Slider Style 1  ==== */
+.decoration_wrapper{
+  overflow: hidden;
+}
+.testimonial_section,
+.certificate_section{
+  position: relative;
+  .swiper-wrapper{
+    padding: 0 15px 40px;
+  }
+  .swiper-pagination{
+    text-align: center;
+  }
+  .swiper-pagination-bullet{
+    background-color: #E0E4E8;
+    border-radius: 3px;
+    display: inline-block;
+    height: 4px;
+    margin: 0 3px;
+    opacity: 1;
+    padding: 0;
+    width: 30px;
+  }
+  .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background-color: var(--bs-secondary);
+    width: 90px;
+  }
+  .testimonial_item{
+    margin: 10px 20px;
+  }
+}

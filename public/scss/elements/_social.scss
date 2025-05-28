@@ -1,0 +1,19 @@
+/* 2.12 - Social Media Style - Start
+================================================== */
+.social_links {
+	margin: -10px;
+	>li {
+		padding: 10px;
+	}
+	a {
+		display: block;
+		line-height: 1;
+		font-size: 20px;
+		color: $color_body;
+		&:hover {
+			color: $color_primary;
+		}
+	}
+}
+/* 2.12 - Social Media Style - End
+================================================== */

@@ -1,0 +1,38 @@
+/* 2.19 - Countdown Style - Start
+================================================== */
+.countdown_timer {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	.counter-column {
+		height: 67px;
+		display: flex;
+		line-height: 1;
+		min-width: 67px;
+		list-style: none;
+		padding: 5px 10px;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		border-radius: $border_radius;
+		border: 1px solid $color_primary;
+		&:not(:last-child) {
+			margin: 0 8px 0 0;
+		}
+	}
+	.count {
+		font-size: 24px;
+		font-weight: 800;
+		color: $color_primary;
+		font-family: $font_heading;
+	}
+	span {
+		color: #A7A7A7;
+		font-size: 14px;
+		font-weight: 700;
+	}
+}
+/* 2.19 - Countdown Style - End
+================================================== */

@@ -1,0 +1,135 @@
+/* 3.20 - Blog Post - Start
+================================================== */
+.blog_section {
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position: center top 85px;
+}
+
+.blogs_wrapper {
+	padding-right: 25px;
+}
+
+.blog_item {
+	.badge_group {
+		z-index: 1;
+		padding: 0 15px;
+		position: relative;
+		margin-bottom: 15px;
+	}
+	.item_image {
+		display: block;
+		overflow: hidden;
+		border-radius: $border_radius;
+		margin: -30px 0 20px;
+		img {
+			width: 100%;
+			display: block;
+			transition: $transition;
+		}
+	}
+
+	.item_title {
+		font-size: 24px;
+		line-height: 33px;
+		margin-bottom: 5px;
+		>a {
+			color: $color_body;
+		}
+	}
+
+	p {
+		line-height: 26px;
+	}
+
+	.details_btn {
+		margin: 18px 0 0;
+		padding: 15px 0 0;
+		border-top: 1px solid $color_border;
+	}
+	.btn_unfill {
+		color: $color_primary;
+	}
+
+	&:hover {
+		.item_image {
+			img {
+				transform: scale(1.08);
+			}
+		}
+
+		.item_title {
+			>a {
+				color: $color_primary;
+			}
+		}
+	}
+}
+
+.small_post_wrap {
+	>li {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid $color_border;
+		}
+	}
+}
+
+.small_blog_item {
+	display: flex;
+	align-items: center;
+	.item_image {
+		width: 79px;
+		height: 79px;
+		flex: 0 0 79px;
+		overflow: hidden;
+		margin-right: 20px;
+		border-radius: $border_radius;
+		img {
+			transition: $transition;
+		}
+	}
+
+	.item_title {
+		font-size: 16px;
+		font-weight: 700;
+		margin-bottom: 0;
+		line-height: 19px;
+		a {
+			color: $color_dark;
+			&:hover {
+				color: $color_primary;
+			}
+		}
+	}
+
+	.item_admin {
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 19px;
+		color: $color_body;
+		&:hover {
+			color: $color_danger;
+		}
+		i {
+			margin-right: 5px;
+			color: $color_primary;
+		}
+	}
+
+	&:hover {
+		.item_image {
+			img {
+				transform: scale(1.08);
+			}
+		}
+		.item_title {
+			a {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+/* 3.20 - Blog Post - End
+================================================== */

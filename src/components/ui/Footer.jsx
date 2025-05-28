@@ -1,0 +1,37 @@
+import Link from 'next/link';
+
+export default function Footer({ locale, dict }) {
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <footer className="py-8" style={{ borderTop: '1px solid var(--border)' }}>
+      <div className="container">
+        <div className="flex flex-col items-center text-center gap-4">
+          <nav className="flex gap-4">
+            <Link href={`/${locale}/terms`} className="nav-link">
+              {dict.footer.links.privacy}
+            </Link>
+            <Link href={`/${locale}/terms`} className="nav-link">
+              {dict.footer.links.terms}
+            </Link>
+            <Link href={`/${locale}/contact`} className="nav-link">
+              {dict.footer.links.contact}
+            </Link>
+          </nav>
+          
+          <div>
+            {dict.footer.copyright.replace('2025', currentYear)}
+          </div>
+          
+          {/* Strukturált adat a jobb SEO-ért */}
+          <div className="sr-only" aria-hidden="true">
+            <address itemScope itemType="https://schema.org/Organization">
+              <span itemProp="name">NextJS Sample</span>
+              <link itemProp="url" href={`https://yourdomain.com/${locale}`} />
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,83 @@
+/* 3.7 - Pricing Section - Start
+================================================== */
+.pricing_section {
+	.shape_dot_1 {
+		top: 62px;
+		right: 85px;
+	}
+	.shape_dot_2 {
+		left: 74px;
+		bottom: 95px;
+	}
+}
+
+.pricing_table_item {
+	padding: 40px;
+	border-radius: $border_radius;
+	border: 2px solid #e3f3fd;
+	background-color: #FFFFFF;
+	.pricing_heading {
+		font-size: 24px;
+		line-height: 30px;
+		color: $color_body;
+		margin-bottom: 20px;
+	}
+	.pricing_value {
+		width: 260px;
+		padding: 12px 30px;
+		text-align: center;
+		border-radius: $border_radius;
+		margin: 0 0 30px -57px;
+		background-color: $color_warning;
+	}
+	.value_text {
+		font-size: 32px;
+		font-weight: 800;
+		line-height: 36px;
+		color: $color_dark;
+		display: inline-block;
+		font-family: $font_heading;
+	}
+	.pricing_info_list {
+		margin-bottom: 30px;
+		li {
+			font-size: 18px;
+			line-height: 26px;
+			&:not(:last-child) {
+				margin-bottom: 12px;
+			}
+		}
+		i {
+			font-size: 18px;
+			margin-right: 10px;
+			color: $color_primary;
+		}
+
+		del {
+			text-decoration: none;
+			i {
+				opacity: 0.5;
+			}
+		}
+	}
+	.btn {
+		width: 100%;
+		display: block;
+	}
+}
+
+.pricing_table_item.active {
+	color: #FFFFFF;
+	border: 2px solid $color_primary;
+	background-color: $color_primary;
+	.pricing_heading {
+		color: #FFFFFF;
+	}
+	.pricing_info_list {
+		i {
+			color: #FFFFFF;
+		}
+	}
+}
+/* 3.7 - Pricing Section - End
+================================================== */

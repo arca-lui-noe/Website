@@ -1,0 +1,265 @@
+/* Template Header - Start
+================================================== */
+
+// Header Section - Start
+.header_section {
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	&.sticky {
+		position: fixed;
+	}
+
+	.btn {
+		font-size: 16px;
+		padding: 15px 16px;
+	}
+
+	.icon_list {
+		>li {
+			line-height: 1;
+			font-size: 16px;
+			font-weight: 700;
+			font-family: $font_heading;
+		}
+		i {
+			margin-right: 8px;
+		}
+		>li {
+			&:not(:last-child) {
+				margin-right: 40px;
+			}
+		}
+	}
+
+	.social_links {
+		a {
+			line-height: 1;
+			font-size: 16px;
+		}
+	}
+}
+// Header Section - End
+
+// Main Menu - Start
+.main_menu {
+	padding: 0;
+}
+
+.main_menu_list {
+	>li {
+		&:not(:last-child) {
+			margin-right: 60px;
+		}
+		a {
+			padding: 0;
+			line-height: 1;
+			font-size: 18px;
+			font-weight: 700;
+			color: $color_body;
+			position: relative;
+		}
+		&:hover,
+		&.active {
+			>a {
+				color: $color_primary;
+			}
+		}
+	}
+
+	.dropdown {
+		>a {
+			position: relative;
+			&:after {
+				float: right;
+				line-height: 1;
+				font-size: 15px;
+				font-weight: 600;
+				content: '\f107';
+				font-weight: 400;
+				margin: 2px 0 0 5px;
+				font-family: 'Font Awesome 5 Pro';
+			}
+		}
+	}
+
+	.dropdown-menu {
+		top: 100%;
+		min-width: 220px;
+		padding: 15px 30px;
+		>li {
+			&:not(:last-child) {
+				border-bottom: 1px solid $color_border;
+			}
+			>a {
+				display: block;
+				line-height: 1;
+				font-size: 16px;
+				margin: 0 -30px;
+				padding: 15px 30px;
+				position: relative;
+				white-space: nowrap;
+				transition: $transition;
+				&:before {
+					width: 5px;
+					height: 5px;
+					content: '';
+					float: left;
+					border-radius: 100%;
+					margin: 5px 10px 0 0;
+					display: inline-block;
+					transition: $transition;
+					background-color: $color_border;
+				}
+			}
+			&:hover,
+			&.active {
+				>a {
+					color: $color_primary;
+					&:before {
+						background-color: $color_primary;
+					}
+				}
+			}
+		}
+		.dropdown {
+			>a {
+				&:after {
+					content: '\f105';
+				}
+			}
+		}
+		.dropdown-menu {
+			top: -21px;
+			left: 100%;
+			margin-left: 30px;
+			border-top-left-radius: 0;
+		}
+	}
+}
+// Main Menu - End
+
+// Header Btns Group - Start
+.header_btns_group {
+	>li {
+		&:first-child {
+			display: none;
+		}
+		&:not(:last-child) {
+			margin-right: 30px;
+		}
+	}
+}
+// Header Btns Group - End
+
+// Header Boxed - Start
+.header_boxed {
+	position: absolute;
+
+	.box_wrap {
+		padding: 20px 30px;
+		border-bottom: 2px solid $color_border;
+	}
+	&.sticky {
+		top: 0;
+		.container {
+			padding: 0;
+			max-width: 100%;
+		}
+		.box_wrap {
+			background-color: #ffffff;
+			border-color: $color_border;
+			box-shadow: 0 10px 30px 0 rgba(124, 88, 211, 0.15);
+			animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+		}
+	}
+}
+// Header Boxed - End
+
+// Header Transparent - Start
+.header_transparent {
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 40px 0;
+	position: absolute;
+	&.sticky {
+		padding: 15px 0;
+		background-color: #ffffff;
+		box-shadow: 0 4px 6px 0 rgba(124, 88, 211, 0.1);
+		animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+	}
+	>.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.main_menu_list {
+		>li {
+			&:not(:last-child) {
+				margin-right: 70px;
+			}
+		}
+	}
+}
+// Header Transparent - End
+
+// Header Default - Start
+.header_default {
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.icon_list {
+		a {
+			color: #ffffff;
+			i {
+				color: #ffffff;
+				transition: $transition;
+			}
+			&:hover {
+				i {
+					color: $color_warning;
+				}
+			}
+		}
+	}
+
+	.social_links {
+		a {
+			color: #ffffff;
+			&:hover {
+				color: $color_warning;
+			}
+		}
+	}
+
+	.header_top {
+		padding: 12px 0;
+		background-color: $color_primary;
+	}
+
+	.header_bottom {
+		padding: 22px 0;
+		background-color: #ffffff;
+	}
+
+	&.sticky {
+		.header_top {
+			display: none;
+		}
+		.header_bottom {
+			padding: 15px 0;
+			box-shadow: 0 4px 6px 0 rgba(124, 88, 211, 0.1);
+			animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+		}
+	}
+}
+// Header Default - End
+
+/* Template Header - End
+================================================== */

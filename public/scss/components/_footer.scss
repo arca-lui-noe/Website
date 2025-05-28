@@ -1,0 +1,93 @@
+/* 3.2 - Template Footer - Start
+================================================== */
+.footer_section {
+	.site_logo {
+		margin-bottom: 20px;
+	}
+	.footer_about {
+		p {
+			margin-bottom: 25px;
+		}
+	}
+
+	.page_list {
+		display: flex;
+		margin: -15px;
+		flex-wrap: wrap;
+		ul {
+			padding: 15px;
+		}
+		i {
+			color: $color_danger;
+		}
+	}
+}
+
+.footer_widget_title {
+	font-size: 24px;
+	line-height: 30px;
+	margin-bottom: 33px;
+}
+
+.footer_widget_area {
+	padding-bottom: 70px;
+}
+
+.copyrights_text {
+	padding: 30px 0;
+	font-size: 16px;
+	line-height: 22px;
+	color: $color_muted;
+	border-top: 1px solid $color_border;
+	a {
+		color: $color_muted;
+		&:hover {
+			color: $color_danger;
+		}
+	}
+}
+
+// Footer Newslatter - Start
+.footer_newslatter {
+	.form_item {
+		margin: 0;
+		display: flex;
+		input {
+			flex: 1;
+			height: 50px;
+			padding: 0 20px;
+		}
+		button {
+			height: 50px;
+			height: 50px;
+			color: #ffffff;
+			flex: 0 0 50px;
+			margin-left: 10px;
+			align-items: center;
+			display: inline-flex;
+			justify-content: center;
+			border-radius: $border_radius;
+			background-color: $color_primary;
+			&:hover {
+				background-color: $color_danger;
+			}
+		}
+	}
+}
+// Footer Newslatter - End
+
+// Footer Hotline - Start
+.footer_hotline {
+	.item_title {
+		a {
+			color: $color_dark;
+			&:hover {
+				color: $color_primary;
+			}
+		}
+	}
+}
+// Footer Hotline - End
+
+/* 3.2 - Template Footer - End
+================================================== */

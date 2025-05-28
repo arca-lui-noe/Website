@@ -1,0 +1,179 @@
+/* 2.16 - IconBox Style - Start
+================================================== */
+
+// IconBox Style - Start
+.iconbox_item {
+	position: relative;
+	.item_icon {
+		z-index: 1;
+		position: relative;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		transition: $transition;
+		svg,path {
+			transition: $transition;
+		}
+	}
+
+	p {
+		font-size: 16px;
+		margin-bottom: 0;
+	}
+
+	.item_global_link {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		position: absolute;
+	}
+}
+// IconBox Style - End
+
+// IconBox Default - Start
+.iconbox_item.iconbox_default {
+	padding: 30px;
+	background-size: auto;
+	transition: $transition;
+	background-color: #ffffff;
+	background-repeat: no-repeat;
+	border-radius: $border_radius;
+	border: 2px solid $color_border;
+	background-position: right bottom;
+	.item_icon {
+		height: 40px;
+		font-size: 32px;
+		margin-bottom: 15px;
+		color: $color_primary;
+	}
+	.policy_title {
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 5px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 23px;
+	}
+}
+// IconBox Default - End
+
+// IconBox OverIcon - Start
+.iconbox_item.iconbox_overicon {
+	text-align: center;
+
+	.item_icon {
+		width: 70px;
+		height: 70px;
+		font-size: 24px;
+		border-radius: 100%;
+		color: $color_primary;
+		background-color: #e3f3fd;
+	}
+
+	.item_content {
+		margin-top: -35px;
+		border-radius: $border_radius;
+		padding: 55px 30px 30px;
+		border: 2px solid #e3f3fd;
+		background-color: #ffffff;
+		transition: $transition;
+	}
+
+	.item_title {
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 5px;
+	}
+
+	.item_info_list {
+		>li {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&:hover {
+		.item_icon {
+			color: #ffffff;
+			background-color: $color_primary;
+			path {
+				fill: #ffffff;
+			}
+		}
+		.item_content {
+			border-color: $color_primary;
+		}
+	}
+}
+// IconBox OverIcon - End
+
+// IconBox LeftIcon - Start
+.iconbox_item.iconbox_lefticon {
+	display: flex;
+	.item_icon {
+		font-size: 52px;
+		margin-right: 15px;
+		color: $color_primary;
+	}
+	.item_title {
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 6px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 23px;
+	}
+}
+// IconBox LeftIcon - End
+
+// IconBox CenterIcon - Start
+.iconbox_item.iconbox_centericon {
+	padding: 0 30px;
+	text-align: center;
+	.item_icon {
+		z-index: 1;
+		width: 135px;
+		height: 135px;
+		font-size: 42px;
+		position: relative;
+		margin-bottom: 8px;
+		border-radius: 100%;
+		align-items: center;
+		display: inline-flex;
+		color: $color_primary;
+		justify-content: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center center;
+		&:before {
+			top: 8px;
+			left: 8px;
+			right: 8px;
+			bottom: 8px;
+			content: '';
+			z-index: -1;
+			position: absolute;
+			border-radius: 100%;
+			background-color: #ffffff;
+			border: 2px solid $color_border;
+		}
+	}
+	.item_title {
+		font-size: 24px;
+		font-weight: 800;
+		line-height: 30px;
+		margin-bottom: 5px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 23px;
+	}
+}
+// IconBox CenterIcon - End
+
+/* 2.16 - IconBox Style - End
+================================================== */

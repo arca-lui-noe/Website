@@ -1,0 +1,75 @@
+/* 2.10 - Tab Reset & Style - Start
+================================================== */
+
+//Tab Style Default - Start
+.tabs_nav {
+	margin-bottom: 30px;
+	>li {
+		&:not(:last-child) {
+			margin: 0 60px 0 0;
+		}
+		>button {
+			font-size: 22px;
+			font-weight: 800;
+			line-height: 30px;
+			position: relative;
+			color: $color_dark;
+			padding-bottom: 13px;
+			font-family: $font_heading;
+			&:before {
+				left: 50%;
+				opacity: 0;
+				width: 8px;
+				height: 8px;
+				content: '';
+				bottom: -8px;
+				position: absolute;
+				border-radius: 100%;
+				transform: translateX(-50%);
+				background-color: $color_danger;
+				transition: all 0.2s ease-in-out;
+			}
+			&:hover,
+			&.active {
+				color: $color_primary;
+			}
+			&.active {
+				&:before {
+					bottom: 0;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+//Tab Style Default - End
+
+//Tab Style Default - Start
+.tabs_nav_pill {
+	>li {
+		&:not(:last-child) {
+			margin: 0 30px 0 0;
+		}
+		>button {
+			color: #807E7E;
+			font-size: 20px;
+			font-weight: 800;
+			line-height: 30px;
+			padding: 20px 30px;
+			border: 1px solid #CDCCCE;
+			font-family: $font_heading;
+			border-radius: $border_radius;
+			&:hover,
+			&.active,
+			&.active-btn {
+				color: #ffffff;
+				border-color: $color_primary;
+				background-color: $color_primary;
+			}
+		}
+	}
+}
+//Tab Style Default - End
+
+/* 2.10 - Tab Reset & Style - End
+================================================== */

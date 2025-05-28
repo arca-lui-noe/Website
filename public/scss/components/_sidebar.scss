@@ -1,0 +1,246 @@
+/* 3.4 - Sidebar Section - Start
+================================================== */
+
+// Sidebar Section - Start
+.sidebar_section {
+	.page_list li:not(:last-child) {
+		margin-bottom: 10px;
+	}
+
+	.small_product_item .item_image {
+		width: 80px;
+		height: 80px;
+		flex: 0 0 80px;
+		margin-right: 15px;
+	}
+	.small_product_item .item_title {
+		font-size: 18px;
+		line-height: 20px;
+		margin-bottom: 5px;
+	}
+	.small_product_item .item_price {
+		font-size: 16px;
+		line-height: 18px;
+	}
+	.small_product_item:not(:last-child) {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+	}
+}
+// Sidebar Section - End
+
+// SB Widget - Start
+.sb_widget {
+	padding: 30px;
+	border-radius: $border_radius;
+	border: 2px solid $color_border;
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	.card-body {
+		border: none;
+		border-radius: 0;
+		padding: 20px 0 0;
+	}
+}
+// SB Widget - End
+
+// SB Widget Title - Start
+.sb_widget_title {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 30px;
+	color: $color_dark;
+	margin-bottom: 20px;
+	&[data-bs-toggle=collapse] {
+		cursor: pointer;
+		margin-bottom: 0;
+		position: relative;
+		&:after {
+			float: right;
+			content: '\f107';
+			font-weight: 500;
+			display: inline-block;
+			font-family: 'Font Awesome 5 Pro';
+		}
+	}
+}
+// SB Widget Title - End
+
+// Filter Topdar & Sidebar - Start
+.filter_topdar {
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	justify-content: space-between;
+	.filter_search_result {
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 18px;
+		font-family: $font_heading;
+	}
+	.select_option {
+		width: 320px;
+		.nice-select {
+			height: 50px;
+			font-size: 18px;
+			padding: 0 20px;
+			font-weight: 600;
+			line-height: 50px;
+			color: $color_dark;
+			font-family: $font_heading;
+		}
+	}
+}
+
+.filter_category_list {
+	>li {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+		}
+	}
+	.checkbox_item label {
+		flex: 1;
+		display: flex;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 18px;
+		align-items: center;
+		font-family: $font_heading;
+		justify-content: space-between;
+		small {
+			color: $color_muted;
+		}
+	}
+}
+// Filter Topdar & Sidebar - End
+
+// Sidebar Category List - Start
+.sb_category_list {
+	&.unorder_list_block > li {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid $color_border;
+		}
+	}
+	i {
+		opacity: 0.6;
+		margin-right: 10px;
+		color: $color_primary;
+		transition: $transition;
+	}
+	a {
+		display: block;
+		line-height: 1;
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 18px;
+		color: $color_dark;
+		font-family: $font_heading;
+		small {
+			float: right;
+			color: $color_muted;
+			transition: $transition;
+		}
+
+		&:hover {
+			color: $color_primary;
+			i {
+				opacity: 1;
+			}
+			small {
+				color: $color_primary;
+			}
+		}
+	}
+}
+// Sidebar Category List - End
+
+// Twitter Feed - Start
+.twitter_feed {
+	>li {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid $color_border;
+		}
+	}
+	a {
+		display: flex;
+		font-size: 16px;
+		line-height: 23px;
+		color: $color_muted;
+		&:hover {
+			color: $color_dark;
+		}
+		strong {
+			color: $color_dark;
+		}
+		i {
+			flex: 0 0 24px;
+			margin-top: 3px;
+			font-size: 16px;
+			color: $color_primary;
+		}
+	}
+}
+// Twitter Feed - End
+
+// Calender - Start
+.vanilla-calendar {
+	padding: 0;
+	width: auto;
+	border-radius: 0;
+	max-width: 370px;
+}
+.vanilla-calendar-header {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $color_border;
+}
+.vanilla-calendar-arrow {
+	right: 0;
+}
+.vanilla-calendar-arrow_prev {
+	left: 0;
+}
+.vanilla-calendar-header__content button {
+	padding: 0 2px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 19px;
+	color: $color_dark;
+	text-transform: uppercase;
+	font-family: $font_heading;
+}
+.vanilla-calendar-week__day {
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 17px;
+	color: $color_body;
+	font-family: $font_heading;
+}
+.vanilla-calendar-week {
+	margin-bottom: 5px;
+}
+.vanilla-calendar-day__btn {
+	font-size: 14px;
+	line-height: 26px;
+	border-radius: 4px;
+	color: $color_body;
+}
+.vanilla-calendar-day__btn:hover,
+.vanilla-calendar-day__btn_today {
+	color: #ffffff;
+	background-color: $color_primary;
+}
+.vanilla-calendar-day__btn_weekend,
+.vanilla-calendar-day__btn_holiday {
+	color: $color_danger;
+}
+// Calender - End
+
+/* 3.4 - Sidebar Section - End
+================================================== */

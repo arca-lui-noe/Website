@@ -1,0 +1,53 @@
+/* 3.25 - 404 Error - Start
+================================================== */
+.error_section {
+	height: 100vh;
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	background-color: #CCA162;
+
+	h1 {
+		display: flex;
+		line-height: 1;
+		font-size: 200px;
+		margin-bottom: 30px;
+		align-items: center;
+		justify-content: center;
+		img {
+			margin: 0 20px;
+		}
+	}
+	h2 {
+		font-size: 68px;
+		line-height: 71px;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: 18px;
+		line-height: 25px;
+		margin-bottom: 40px;
+	}
+
+	.social_links {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 35px 15px;
+		position: absolute;
+		>li {
+			&:not(:last-child) {
+				margin-right: 30px;
+			}
+		}
+		a {
+			line-height: 1;
+			font-size: 26px;
+			color: $color_primary;
+		}
+	}
+}
+/* 3.25 - 404 Error - End
+================================================== */

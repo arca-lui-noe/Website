@@ -1,0 +1,26 @@
+/* 2.17 - Office Hour Style - Start
+================================================== */
+.office_hour {
+	padding: 30px;
+	background-color: $color_light;
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+	span {
+		font-size: 18px;
+		line-height: 26px;
+		&:last-child {
+			font-weight: 700;
+		}
+	}
+	strong {
+		color: $color_danger;
+	}
+}
+/* 2.17 - Office Hour Style - End
+================================================== */

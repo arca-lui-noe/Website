@@ -1,0 +1,133 @@
+/* Template Information - start
+================================================== */
+/* 
+* Project Name   :  Petopia – Pet Care Service React NextJs Template
+* File           :  CSS Base
+* Version        :  1.0.1
+* Author         :  Unlockdesign
+* Developer		 :	https://themeforest.net/user/unlockdesign/portfolio
+
+* Table Of Content
+* ==================================================
+# 1 - Template Global Settings
+* 1.1 - Template Fonts
+* 1.2 - Template Global Reset
+
+# 2 - Template Elements
+* 2.1 - Backtotop Button
+* 2.2 - Space Settings
+* 2.3 - Template Color Classes
+* 2.4 - Button Style
+* 2.5 - Decorations Images & Shapes
+* 2.6 - Order & Unorder List Style
+* 2.7 - Typography Style
+* 2.8 - Carousel Reset & Settings
+* 2.9 - Form Style
+* 2.10 - Tab Reset & Style
+* 2.11 - Accordion Style
+* 2.12 - Social Media Style
+* 2.13 - Pagination Style
+* 2.14 - Rating Style
+* 2.15 - Comment List
+* 2.16 - IconBox Style
+* 2.17 - Office Hour Style
+* 2.18 - Price Range Slide
+* 2.19 - Countdown Style
+
+# 3 - Template Components
+* 3.1 - Template Header
+* 3.2 - Template Footer
+* 3.3 - Page Banner/Breadcrumb
+* 3.4 - Sidebar Section
+* 3.5 - Video Section
+* 3.6 - Banner Section
+* 3.7 - Pricing Section
+* 3.8 - Category Section
+* 3.9 - Service Section
+* 3.10 - Shop Section
+* 3.11 - Call To Action Section
+* 3.12 - Funfact Section
+* 3.13 - Testimonial Section
+* 3.14 - About Section
+* 3.15 - Gallery Section
+* 3.16 - Team Section
+* 3.17 - Instagram Section
+* 3.18 - Consultation Section
+* 3.19 - Feature Section
+* 3.20 - Blog Post
+* 3.21 - Contact Section
+* 3.22 - Cart Style
+* 3.23 - Details/Single Pages
+* 3.24 - FAQ Section
+* 3.25 - 404 Error
+
+# 4 - Template Responsive For Small Devices
+
+*/
+/* Template Information - end
+================================================== */
+
+// Template Global Settings
+@import 'variable';
+@import 'fonts';
+@import 'mixin';
+@import 'reset';
+
+// Template Elements
+@import 'elements/backtotop';
+@import 'elements/space';
+@import 'elements/color';
+@import 'elements/button';
+@import 'elements/decoration';
+@import 'elements/list';
+@import 'elements/typography';
+@import 'elements/carousel';
+@import 'elements/form';
+@import 'elements/tab';
+@import 'elements/accordion';
+@import 'elements/social';
+@import 'elements/pagination';
+@import 'elements/rating';
+@import 'elements/comment';
+@import 'elements/iconbox';
+@import 'elements/officehour';
+@import 'elements/range';
+@import 'elements/countdown';
+
+// Template Components
+@import 'components/header';
+@import 'components/footer';
+@import 'components/breadcrumb';
+@import 'components/sidebar';
+@import 'components/video';
+@import 'components/banner';
+@import 'components/pricing';
+@import 'components/category';
+@import 'components/service';
+@import 'components/shop';
+@import 'components/calltoaction';
+@import 'components/funfact';
+@import 'components/testimonial';
+@import 'components/about';
+@import 'components/gallery';
+@import 'components/team';
+@import 'components/instagram';
+@import 'components/consultation';
+@import 'components/feature';
+@import 'components/blog';
+@import 'components/contact';
+@import 'components/cart';
+@import 'components/details';
+@import 'components/faq';
+@import 'components/error';
+
+// Template Responsive For Small Devices
+@import 'responsive';
+
+/*	Extra Styel Import	*/
+@import url("accordion-style.css");
+@import url("custom-style.css");
+@import url("fontawesome.css");
+@import url("header-style.css");
+@import url("modal-video.css");
+@import url("slider-style.css");

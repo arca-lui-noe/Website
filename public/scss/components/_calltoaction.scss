@@ -1,0 +1,101 @@
+/* 3.11 - Call To Action Section - Start
+================================================== */
+.subscribe_wrap {
+	z-index: 1;
+	color: #ffffff;
+	overflow: hidden;
+	border-radius: $border_radius;
+	padding: 120px 40px;
+	background-color: $color_primary;
+
+	.overlay {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		background-size: 92%;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+
+	.shape_image_1 {
+		right: -5px;
+		bottom: -5px;
+	}
+	.shape_image_2 {
+		left: -270px;
+		bottom: -270px;
+		img {
+			width: 540px;
+			height: 540px;
+		}
+	}
+
+	.pet_image_1 {
+		left: -69px;
+		bottom: -99px;
+	}
+	.pet_image_2 {
+		right: -90px;
+		bottom: -230px;
+	}
+
+	.content_wrap {
+		z-index: 2;
+		margin: auto;
+		max-width: 844px;
+		text-align: center;
+		position: relative;
+	}
+
+	.title_text {
+		color: #ffffff;
+		font-size: 46px;
+		line-height: 46px;
+		margin-bottom: 15px;
+	}
+	.description_text {
+		padding: 0 80px;
+		margin-bottom: 40px;
+	}
+
+	.form_item {
+		margin: auto;
+		display: flex;
+		max-width: 480px;
+		input {
+			flex: 1;
+			color: #ffffff;
+			border-color: #ffffff;
+			background-color: transparent;
+			&:-moz-placeholder {
+				color: $color_light;
+			}
+			&::-moz-placeholder {
+				color: $color_light;
+			}
+			&:-ms-input-placeholder {
+				color: $color_light;
+			}
+			&::-webkit-input-placeholder {
+				color: $color_light;
+			}
+		}
+		.btn {
+			margin-left: 30px;
+			&:hover {
+				transform: unset;
+			}
+		}
+	}
+}
+
+.getservice_image {
+	margin-right: -30px;
+	img {
+		border-radius: $border_radius;
+	}
+}
+/* 3.11 - Call To Action Section - End
+================================================== */

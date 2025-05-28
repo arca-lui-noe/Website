@@ -1,0 +1,61 @@
+/* 2.11 - Accordion Style - Start
+================================================== */
+.accordion {
+	.accordion-item {
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+		&:not(:last-child) {
+			margin-bottom: 25px;
+			padding-bottom: 25px;
+			border-bottom: 1px solid #e3f3fd;
+		}
+	}
+	.accordion-button {
+		padding: 0;
+		font-size: 22px;
+		box-shadow: none;
+		font-weight: 700;
+		border-radius: 0;
+		line-height: 30px;
+		color: $color_dark;
+		background-color: transparent;
+		&:after {
+			padding: 0;
+			width: 40px;
+			height: 40px;
+			color: #ffffff;
+			transform: none;
+			font-weight: 400;
+			content: '\f107';
+			line-height: 40px;
+			text-align: center;
+			border-radius: $border_radius;
+			background: #084466;
+			font-family: 'Font Awesome 5 Pro';
+		}
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+		&:hover {
+			color: $color_primary;
+		}
+		&[aria-expanded=true] {
+			color: $color_primary;
+			&:after {
+				content: '\f106';
+			}
+		}
+	}
+	.accordion-body {
+		padding: 8px 0 0;
+	}
+
+	p {
+		font-size: 17px;
+		line-height: 23px;
+	}
+}
+/* 2.11 - Accordion Style - End
+================================================== */

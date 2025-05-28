@@ -1,0 +1,151 @@
+/* 2.6 - Order & Unorder List Style - Start
+================================================== */
+
+// List Default Style - Start
+.unorder_list,
+.unorder_list_right,
+.unorder_list_center {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  >li {
+    float: left;
+    list-style: none;
+    display: inline-block;
+  }
+}
+
+.unorder_list {
+  justify-content: flex-start;
+}
+.unorder_list_center {
+  justify-content: center;
+}
+.unorder_list_right {
+  justify-content: flex-end;
+}
+
+.unorder_list_block {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  >li {
+    display: block;
+    list-style: none;
+  }
+}
+// List Default Style - End
+
+// Icon List - Start
+.icon_list {
+  li {
+    font-size: 18px;
+    line-height: 26px;
+    i {
+      margin-right: 10px;
+      color: $color_primary;
+    }
+  }
+  &.unorder_list_block {
+    li {
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+// Icon List - End
+
+// Info List - Start
+.page_list {
+  li {
+    font-size: 18px;
+    line-height: 26px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  a {
+    color: $color_body;
+  }
+  i {
+    opacity: 0.3;
+    font-size: 7px;
+    margin-right: 8px;
+    color: $color_primary;
+    transition: $transition;
+    transform: translateY(-2px);
+  }
+  a {
+    &:hover {
+      i {
+        opacity: 1;
+      }
+    }
+  }
+}
+// Info List - End
+
+// Post Meta - Start
+.post_meta {
+  margin: -5px -5px 10px;
+  >li {
+    padding: 5px;
+    >a {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 19px;
+      color: $color_body;
+      font-family: $font_heading;
+      i {
+        margin-right: 5px;
+        color: $color_primary;
+      }
+      &:hover {
+        color: $color_primary;
+      }
+    }
+  }
+}
+// Post Meta - End
+
+// Tags List - Start
+.tags_list {
+  margin: -10px;
+  >li {
+    padding: 10px;
+  }
+  a {
+    display: block;
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+    color: $color_body;
+    padding: 8px 17px 9px;
+    border-radius: $border_radius;
+    border: 1px solid $color_border;
+    &:hover {
+      color: #ffffff;
+      border-color: $color_primary;
+      background-color: $color_primary;
+    }
+  }
+}
+
+.tags_list.blog_tags_list {
+  margin: -4px;
+  >li {
+    padding: 4px;
+  }
+  a {
+    line-height: 22px;
+    padding: 7px 15px 8px;
+  }
+}
+// Tags List - End
+
+/* 2.6 - Order & Unorder List Style - End
+================================================== */

@@ -1,0 +1,97 @@
+/* 2.15 - Comment List - Start
+================================================== */
+.comment_area {
+	margin-bottom: 80px;
+}
+
+.comment_area_title {
+	font-size: 32px;
+	line-height: 36px;
+	margin-bottom: 30px;
+}
+
+.comments_list {
+	>li {
+		padding: 40px;
+		border-radius: $border_radius;
+		background-color: $color_light;
+		&:not(:last-child) {
+			margin-bottom: 30px;
+		}
+		.comments_list {
+			padding-left: 50px;
+			>li {
+				padding: 30px 0 0;
+			}
+		}
+	}
+}
+
+.comment_item {
+	display: flex;
+	.thumbnail_wrap {
+		margin: 0 20px 0 0;
+	}
+	.commenter_thumbnail {
+		width: 80px;
+		height: 80px;
+		flex: 0 0 80px;
+		overflow: hidden;
+		margin-right: 20px;
+		border-radius: 100%;
+		display: inline-flex;
+	}
+	.commenter_name {
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 26px;
+		margin-bottom: 5px;
+		font-family: $font_body;
+	}
+	.comment_post_time {
+		font-size: 16px;
+		line-height: 23px;
+		color: $color_muted;
+		margin-bottom: 16px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 23px;
+	}
+	.rating_star > li {
+		font-size: 14px;
+	}
+	.reply_btn {
+		top: 0;
+		right: 0;
+		font-size: 16px;
+		padding: 15px 15px;
+		position: absolute;
+	}
+}
+
+.comment_form {
+	.comment_area_title {
+		margin-bottom: 40px;
+	}
+
+	.form_item {
+		textarea {
+			min-height: 160px;
+		}
+	}
+	.checkbox_item {
+		margin: 30px 0;
+		input {
+			width: 20px;
+			height: 20px;
+			margin: 0px 10px 0 0;
+			border: 1px solid #CDCCCE;
+			&:checked {
+				border-color: $color_primary;
+			}
+		}
+	}
+}
+/* 2.15 - Comment List - End
+================================================== */

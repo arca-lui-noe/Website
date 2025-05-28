@@ -1,0 +1,57 @@
+/* 3.19 - Feature Section - Start
+================================================== */
+
+// Feature Service - Start
+.feature_service {
+	padding: 200px 0 120px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+
+	.shape_image_2 {
+		top: 50%;
+		right: 113px;
+		transform: translateY(-50%);
+	}
+
+	.feature_image {
+		position: relative;
+		img {
+			border-radius: $border_radius;
+		}
+	}
+
+	.shape_image_1 {
+		top: -15px;
+		left: -18px;
+		z-index: 1;
+		position: absolute;
+	}
+
+	.item_title {
+		line-height: 1;
+		font-size: 46px;
+		margin-bottom: 20px;
+	}
+
+	.icon_list {
+		margin-bottom: 40px;
+	}
+
+	.decoration_image_1 {
+		top: -10px;
+		right: 345px;
+		overflow: hidden;
+		border-radius: $border_radius;
+	}
+	.decoration_image_2 {
+		bottom: 0;
+		right: 469px;
+		overflow: hidden;
+		border-radius: $border_radius;
+	}
+}
+// Feature Service - End
+
+/* 3.19 - Feature Section - End
+================================================== */

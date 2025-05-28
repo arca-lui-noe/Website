@@ -1,0 +1,21 @@
+/* 3.18 - Consultation Section - Start
+================================================== */
+.consultation_section {
+	background-color: $color_light;
+
+	.paw_shape_1 {
+		right: 0;
+		top: -30px;
+	}
+	.paw_shape_2 {
+		bottom: -10px;
+		left: -10px;
+	}
+}
+.consultation_wrap {
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position: center top 60px;
+}
+/* 3.18 - Consultation Section - End
+================================================== */
