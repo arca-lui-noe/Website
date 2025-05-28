@@ -1,4 +1,4 @@
-// File: D:\nextjs\arcaLuiNoe\websiteNext15\my-nextjs-app\src\app\[locale]\page.js
+// File: D:\nextjs\arcaLuiNoe\Website\src\app\[locale]\page.js
 import * as entry from '../../../../src/app/[locale]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
