@@ -1,5 +1,5 @@
 export default async function sitemap() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app';
   const { locales } = await import('@/lib/i18n-config');
   
   // Define your primary routes 

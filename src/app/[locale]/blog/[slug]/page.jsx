@@ -11,6 +11,8 @@ const BlogInsidePage = () => {
             <div className="col col-lg-9">
               <div className="details_image">
                 <Image
+                  width={1020}
+                  height={500}
                   src="/images/blog/blog_details_img_1.jpg"
                   alt="Pet Care Blog"
                 />
@@ -116,6 +118,8 @@ const BlogInsidePage = () => {
                   <div className="col col-md-6">
                     <div className="details_image m-0">
                       <Image
+                        width={500}
+                        height={317}
                         src="/images/blog/blog_details_img_2.jpg"
                         alt="Pet Care Blog"
                       />
@@ -124,6 +128,8 @@ const BlogInsidePage = () => {
                   <div className="col col-md-6">
                     <div className="details_image m-0">
                       <Image
+                        width={500}
+                        height={317}
                         src="/images/blog/blog_details_img_3.jpg"
                         alt="Pet Care Blog"
                       />
@@ -213,6 +219,8 @@ const BlogInsidePage = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_12.jpg"
                             alt="Pet Care Services"
                           />
@@ -233,6 +241,8 @@ const BlogInsidePage = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_13.jpg"
                             alt="Pet Care Services"
                           />
@@ -253,6 +263,8 @@ const BlogInsidePage = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_14.jpg"
                             alt="Pet Care Services"
                           />
@@ -298,6 +310,8 @@ const BlogInsidePage = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                    width={420}
+                    height={300}
                     src="/images/blog/blog_image_15.jpg"
                     alt="Pet Care Image"
                   />
@@ -339,6 +353,8 @@ const BlogInsidePage = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                    width={420}
+                    height={300}
                     src="/images/blog/blog_image_16.jpg"
                     alt="Pet Care Image"
                   />
@@ -380,6 +396,8 @@ const BlogInsidePage = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                    width={420}
+                    height={300}
                     src="/images/blog/blog_image_17.jpg"
                     alt="Pet Care Image"
                   />

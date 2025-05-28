@@ -15,7 +15,8 @@ const Gallery = () => {
       <div className="row">
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_1.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_1.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -25,7 +26,8 @@ const Gallery = () => {
 
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_2.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_2.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -35,7 +37,8 @@ const Gallery = () => {
 
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_3.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_3.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -45,7 +48,8 @@ const Gallery = () => {
 
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_4.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_4.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -55,7 +59,8 @@ const Gallery = () => {
 
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_5.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_5.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -65,7 +70,8 @@ const Gallery = () => {
 
         <div className="col col-lg-4 col-md-6 col-sm-6">
           <div className="gallery_item">
-            <div className="item_image"><Image src="/images/gallery/gallery_img_6.jpg" alt="Pet Image"/></div>
+            <div className="item_image"><Image  width={30}
+            height={30} src="/images/gallery/gallery_img_6.jpg" alt="Pet Image"/></div>
             <Link className="item_content" href="#!">
               <span className="d-block"><small>SERVICES</small></span>
               <strong className="d-block">Cat Grooming</strong>
@@ -75,7 +81,8 @@ const Gallery = () => {
       </div>
     </div>
     <div className="decoration_item shape_dot_1">
-      <Image src="/images/shape/shape_dot_group_2.svg" alt="Colorful Dots"/>
+      <Image  width={30}
+            height={30} src="/images/shape/shape_dot_group_2.svg" alt="Colorful Dots"/>
     </div>
   </section>
 

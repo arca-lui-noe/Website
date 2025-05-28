@@ -10,6 +10,8 @@ const ErrorPage = ({ error, reset }) => {
         {/* String element that stretches from top to ball */}
         <div className="string-container position-absolute w-100 h-100 d-flex justify-content-center">
           <Image
+             width={190}
+            height={700}
             src="/images/string2.png"
             alt="String"
             className="string-image"
@@ -31,20 +33,24 @@ const ErrorPage = ({ error, reset }) => {
           style={{ zIndex: 2 }}
         >
           <h1>
-            5 <Image src="/images/ball.png" alt="Pet Food Bowl" /> 0
+            5{" "}
+            <Image
+              width={216}
+              height={230}
+              src="/images/ball.png"
+              alt="Pet Food Bowl"
+            />{" "}
+            0
           </h1>
           <h2>Oops! Something Went Wrong</h2>
           <p>
             Don't worry, even the best pets have bad days.{" "}
             <span className="d-md-block">Let's get you back on track!</span>
           </p>
-         
+
           {/* Action buttons */}
           <div className="error-actions d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
-            <button 
-              className="btn btn_primary" 
-              onClick={() => reset()}
-            >
+            <button className="btn btn_primary" onClick={() => reset()}>
               <i className="fas fa-redo"></i> Try Again
             </button>
             <Link className="btn btn_primary" href="/">
@@ -53,12 +59,10 @@ const ErrorPage = ({ error, reset }) => {
           </div>
 
           {/* Error details - only show in development */}
-          {process.env.NODE_ENV === 'development' && error && (
+          {process.env.NODE_ENV === "development" && error && (
             <div className="error-details mt-5 p-3 bg-light rounded text-left">
               <h5>Error Details (Development Only):</h5>
-              <pre className="text-danger small">
-                {error.message}
-              </pre>
+              <pre className="text-danger small">{error.message}</pre>
             </div>
           )}
         </div>

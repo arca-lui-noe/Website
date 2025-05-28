@@ -15,10 +15,10 @@ const About = () => {
         pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
       />
 
-      <AboutUs/>
-    <Consulting />
-    <Faq />
-    <VideoSection />
+      <AboutUs />
+      <Consulting />
+      <Faq />
+      <VideoSection />
     </>
   );
 };

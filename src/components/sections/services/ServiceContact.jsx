@@ -9,7 +9,12 @@ const ServiceContact = () => {
           <div className="row align-items-center justify-content-lg-between">
             <div className="col col-lg-5 d-none d-lg-block">
               <div className="getservice_image">
-                <Image src="/images/about/contact.png" alt="Pet Care Service" />
+                <Image
+                  width={580}
+                  height={740}
+                  src="/images/about/contact.png"
+                  alt="Pet Care Service"
+                />
               </div>
             </div>
             <div className="col col-lg-6">

@@ -17,13 +17,13 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: 'website',
       locale: locale,
-      url: new URL(`/${locale}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
+      url: new URL(`/${locale}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
       title: dict.meta.title,
       description: dict.meta.description,
       siteName: dict.meta.siteName,
       images: [
         {
-          url: new URL('/og-image.jpg', process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
+          url: new URL('/og-image.jpg', process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
           width: 1200,
           height: 630,
           alt: dict.meta.ogImageAlt,
@@ -38,16 +38,16 @@ export async function generateMetadata({ params }) {
       description: dict.meta.description,
       creator: '@yourtwitter',
       images: [
-        new URL('/twitter-image.jpg', process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
+        new URL('/twitter-image.jpg', process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
       ],
     },
     
     // További meta adatok
     alternates: {
-      canonical: new URL(`/${locale}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
+      canonical: new URL(`/${locale}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
       languages: {
-        'hu': new URL('/hu', process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
-        'en': new URL('/en', process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com').toString(),
+        'hu': new URL('/hu', process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
+        'en': new URL('/en', process.env.NEXT_PUBLIC_SITE_URL || 'https://arcaluinoe.vercel.app').toString(),
       },
     },
     

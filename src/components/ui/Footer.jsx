@@ -27,7 +27,7 @@ export default function Footer({ locale, dict }) {
           <div className="sr-only" aria-hidden="true">
             <address itemScope itemType="https://schema.org/Organization">
               <span itemProp="name">NextJS Sample</span>
-              <link itemProp="url" href={`https://yourdomain.com/${locale}`} />
+              <link itemProp="url" href={`https://your.com/${locale}`} />
             </address>
           </div>
         </div>

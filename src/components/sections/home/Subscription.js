@@ -36,16 +36,28 @@ const Subscription = () => {
               }}
             ></div>
             <div className="decoration_item shape_image_1">
-              <Image src="/images/shape/shape_path_5.svg" alt="Shape Image" />
+              <Image
+                width={550}
+                height={350}
+                src="/images/shape/shape_path_5.svg"
+                alt="Shape Image"
+              />
             </div>
             {/* <div className="decoration_item shape_image_2">
-              <Image src="/images/shape/shape_circle_1.svg" alt="Shape Image" />
+              <Image  width={30}
+            height={30} src="/images/shape/shape_circle_1.svg" alt="Shape Image" />
             </div> */}
             {/* <div className="decoration_item pet_image_1">
-              <Image src="/images/about/about_img_4.png" alt="Pet Image" />
+              <Image  width={30}
+            height={30} src="/images/about/about_img_4.png" alt="Pet Image" />
             </div> */}
             <div className="decoration_item pet_image_2">
-              <Image src="/images/about/about_img_5.png" alt="Pet Image" />
+              <Image
+                width={400}
+                height={660}
+                src="/images/about/about_img_5.png"
+                alt="Pet Image"
+              />
             </div>
           </div>
         </div>

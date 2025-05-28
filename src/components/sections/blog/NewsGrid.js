@@ -23,6 +23,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_4.jpg"
                           alt="Pet Care Services"
                         />
@@ -77,6 +79,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_5.jpg"
                           alt="Pet Care Services"
                         />
@@ -212,6 +216,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_6.jpg"
                           alt="Pet Care Services"
                         />
@@ -261,6 +267,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_7.jpg"
                           alt="Pet Care Services"
                         />
@@ -312,6 +320,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_8.jpg"
                           alt="Pet Care Services"
                         />
@@ -362,6 +372,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_9.jpg"
                           alt="Pet Care Services"
                         />
@@ -411,6 +423,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_10.jpg"
                           alt="Pet Care Services"
                         />
@@ -460,6 +474,8 @@ const NewsGrid = () => {
                       </ul>
                       <Link className="item_image" href="blog/asd">
                         <Image
+                          width={280}
+                          height={310}
                           src="/images/blog/blog_image_11.jpg"
                           alt="Pet Care Services"
                         />
@@ -482,7 +498,10 @@ const NewsGrid = () => {
                           <Link href="blog/asd">
                             {" "}
                             How To Teach Your Puppy{" "}
-                            <span className="d-lg-block"> It&apos;s Name?</span>{" "}
+                            <span className="d-lg-block">
+                              {" "}
+                              It&apos;s Name?
+                            </span>{" "}
                           </Link>
                         </h3>
                         <p className="mb-0">
@@ -563,6 +582,8 @@ const NewsGrid = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_12.jpg"
                             alt="Pet Care Services"
                           />
@@ -586,6 +607,8 @@ const NewsGrid = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_13.jpg"
                             alt="Pet Care Services"
                           />
@@ -606,6 +629,8 @@ const NewsGrid = () => {
                       <div className="small_blog_item">
                         <Link className="item_image" href="blog/asd">
                           <Image
+                            width={80}
+                            height={80}
                             src="/images/blog/blog_image_14.jpg"
                             alt="Pet Care Services"
                           />

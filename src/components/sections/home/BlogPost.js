@@ -24,6 +24,8 @@ const BlogPost = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                     width={420}
+                  height={300}
                     src="/images/blog/blog_image_1.jpg"
                     alt="Pet Care Image"
                   />
@@ -65,6 +67,8 @@ const BlogPost = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                    width={420}
+                  height={300}
                     src="/images/blog/blog_image_2.jpg"
                     alt="Pet Care Image"
                   />
@@ -106,6 +110,8 @@ const BlogPost = () => {
                 </ul>
                 <Link className="item_image" href="blog/asd">
                   <Image
+                     width={420}
+                  height={300}
                     src="/images/blog/blog_image_3.jpg"
                     alt="Pet Care Image"
                   />

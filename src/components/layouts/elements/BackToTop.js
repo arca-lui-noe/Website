@@ -24,7 +24,8 @@ export default function WhatsappButton() {
           className="whatsapp-float"
           aria-label="Kapcsolat WhatsAppon"
         >
-          <Image
+          <Image  width={30}
+            height={30}
             src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
             alt="WhatsApp ikon"
             className="whatsapp-logo"
@@ -39,6 +40,8 @@ export default function WhatsappButton() {
         aria-label="Kapcsolat WhatsAppon"
       >
         <Image
+          width={30}
+          height={30}
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
           alt="WhatsApp ikon"
           className="whatsapp-logo"

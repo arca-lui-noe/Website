@@ -15,7 +15,7 @@ export default function DynamicLogo({
   const logoAlt = locale === 'hu' ? "Noé Bárkája logo" : "Arca lui Noe logo";
   
   return (
-    <Image
+    <Image 
       src={logoSrc}
       alt={logoAlt}
       width={width}

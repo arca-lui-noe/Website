@@ -31,9 +31,9 @@ export default async function HomePage({ params }) {
 
   const organizationData = {
     name: dict.meta.siteName,
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app",
     logo: `${
-      process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com"
+      process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app"
     }/logo.png`,
     socialLinks: [
       "https://facebook.com/yourcompany",

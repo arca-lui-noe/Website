@@ -1,5 +1,5 @@
 import PageTitle from "@/components/sections/PageTitle";
-import ServiceGrid from "@/components/sections/services/ServiceGrid";
+
 import React from "react";
 import ServiceContact from "../../../components/sections/services/ServiceContact";
 import Contact from "@/components/sections/home/Contact";
