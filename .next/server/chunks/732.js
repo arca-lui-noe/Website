@@ -1,0 +1,1 @@
+"use strict";exports.id=732,exports.ids=[732],exports.modules={9732:(s,e,o)=>{o.d(e,{locales:()=>t});let t=["hu","ro"]}};
