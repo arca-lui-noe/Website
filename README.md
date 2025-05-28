@@ -1,6 +1,6 @@
 # Arca Lui Noe - Veterinary Clinic
 
-![Arca Lui Noe Logo](public/images/logo.png)
+![Arca Lui Noe Logo](public/images/logo_White.png)
 
 ## Overview
 
