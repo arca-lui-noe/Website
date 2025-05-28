@@ -972,6 +972,13 @@ ul li{
   -ms-flex-align: center;
   align-items: center;
 }
+
+/* Tablet és Mobile */
+@media (max-width: 1024px) {
+  .page-title {
+    margin-top: 75px !important;
+  }
+}
 .title-wrapper{
   position: relative;
   z-index: 1;

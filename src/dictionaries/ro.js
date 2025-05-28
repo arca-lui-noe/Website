@@ -13,7 +13,7 @@ const dictionary = {
     label: 'Limba',
   },
   meta: {
-    title: 'Aplicație multilingvă Next.js 15 - SEO și performanță optimizate',
+    title: 'Arca Lui Noe',
     description: "Aplicație Next.js 15 rapidă, modernă și multilingvă optimizată pentru performanță și motoarele de căutare. Fundație perfectă pentru orice proiect.",
     siteName: "Pagina Exemplu NextJS",
     ogImageAlt: "Imagine previzualizare pentru Pagina Exemplu Next.js",

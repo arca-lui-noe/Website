@@ -22,8 +22,25 @@ export default function Header1({
     // Prevent default behavior if any
     event && event.preventDefault();
     
-    // Close the language menu
+    // Close ALL menus before redirecting
     setLangMenuOpen(false);
+    
+    // Force close mobile menu by simulating X button click
+    const closeBtn = document.querySelector('.mobile-menu .close-btn');
+    if (closeBtn) {
+      closeBtn.click();
+    }
+    
+    // Backup: manipulate DOM classes directly
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+    
+    if (mobileMenu) {
+      mobileMenu.classList.remove('mobile-menu-visible');
+      body.classList.remove('mobile-menu-visible');
+      // Remove any other possible mobile menu classes
+      body.classList.remove('moblie-menu-visible'); // typo in original code
+    }
     
     // Animate out before redirecting
     setAnimationClass("lang-switch-animate-out");
@@ -52,6 +69,13 @@ export default function Header1({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [langMenuOpen]);
+
+  // Close language menu when mobile menu is toggled
+  useEffect(() => {
+    if (handleMobileMenu) {
+      setLangMenuOpen(false);
+    }
+  }, [handleMobileMenu]);
 
   return (
     <>
@@ -118,9 +142,6 @@ export default function Header1({
                         <span className="current-lang text-white" style={{fontWeight: 'bold'}}>
                           {locale === 'hu' ? 'Magyar' : 'Română'}
                         </span>
-                        {/* <span className="lang-arrow text-white">
-                          <i className={`fas fa-chevron-${langMenuOpen ? 'up' : 'down'}`}></i>
-                        </span> */}
                       </button>
                       
                       <div className={`vet-lang-dropdown-content ${langMenuOpen ? 'show' : ''}`}>

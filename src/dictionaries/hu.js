@@ -21,7 +21,7 @@ const dictionary = {
     romanian: 'Română'
   },
   meta: {
-    title: 'Noé Bárkája - Segítő Szervezet',
+    title: 'Noé Bárkája',
     description: 'A Noé Bárkája alapítvány célja a rászoruló emberek és családok támogatása minden területen.',
     siteName: 'Noé Bárkája',
     ogImageAlt: 'Noé Bárkája előnézeti képe',
