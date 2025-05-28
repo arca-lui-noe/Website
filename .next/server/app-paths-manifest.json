@@ -1,14 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/[locale]/blog/page": "app/[locale]/blog/page.js",
-  "/[locale]/about/page": "app/[locale]/about/page.js",
-  "/[locale]/notfound/page": "app/[locale]/notfound/page.js",
-  "/[locale]/blog/[slug]/page": "app/[locale]/blog/[slug]/page.js",
-  "/[locale]/contact/page": "app/[locale]/contact/page.js",
-  "/[locale]/terms/page": "app/[locale]/terms/page.js",
-  "/[locale]/services/[slug]/page": "app/[locale]/services/[slug]/page.js",
-  "/[locale]/page": "app/[locale]/page.js",
-  "/[locale]/services/page": "app/[locale]/services/page.js"
+  "/[locale]/page": "app/[locale]/page.js"
 }
