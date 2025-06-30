@@ -1,6 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    async function fetchServices() {
+      try {
+        const res = await fetch("/api/services");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setServices(data);
+      } catch (err) {
+        console.error("Error loading services:", err);
+      }
+    }
+    fetchServices();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      service_id: e.target.select_service.value,
+      selected_date: e.target.input_time.value,
+      message: e.target.message.value,
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await res.json();
+    alert(result.message);
+  }
+
   const clinics = [
     {
       id: 1,
@@ -8,11 +48,7 @@ const Contact = () => {
       phone: ["(913) 756-3126", "(921) 557-1203"],
       email: ["central@petopia.com", "info@petopia.com"],
       address: ["17 Parkman Place, 2122", "Budapest, Hungary"],
-      hours: [
-        "Hétfő - Péntek: 8:00 - 18:00",
-        "Szombat: 9:00 - 16:00",
-        "Vasárnap: Zárva",
-      ],
+      hours: ["Hétfő - Péntek: 8:00 - 18:00", "Szombat: 9:00 - 16:00", "Vasárnap: Zárva"],
       mapSrc:
         "https://maps.google.com/maps?q=Budapest%20Váci%20utca&t=&z=15&ie=UTF8&iwloc=&output=embed",
     },
@@ -22,14 +58,10 @@ const Contact = () => {
       phone: ["(913) 756-4567", "(921) 557-8901"],
       email: ["north@petopia.com", "emergency@petopia.com"],
       address: ["25 Oak Street, 1034", "Budapest, Hungary"],
-      hours: [
-        "Hétfő - Péntek: 7:00 - 19:00",
-        "Szombat: 8:00 - 17:00",
-        "Vasárnap: 10:00 - 14:00",
-      ],
+      hours: ["Hétfő - Péntek: 7:00 - 19:00", "Szombat: 8:00 - 17:00", "Vasárnap: 10:00 - 14:00"],
       mapSrc:
         "https://maps.google.com/maps?q=Budapest%20Oktogon&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    }
+    },
   ];
   return (
     <>
@@ -43,9 +75,7 @@ const Contact = () => {
                     <span className="sub_title">Consultation</span>
                     {clinic.name}
                   </h2>
-                  <p className="mb-0">
-                    Auctor augue mauris augue neque gravida in fermentum
-                  </p>
+                  <p className="mb-0">Auctor augue mauris augue neque gravida in fermentum</p>
                 </div>
               </div>
               <div className="row justify-content-center">
@@ -57,13 +87,13 @@ const Contact = () => {
                     <div className="item_content">
                       <h3 className="item_title">Phone</h3>
                       <ul className="item_info_list unorder_list_block">
-                       {clinic.phone.map((phone, phoneIndex) => (
-                                <li key={phoneIndex}>
-                                  <Link href={`tel:${phone}`} className="text-decoration-none">
-                                    {phone}
-                                  </Link>
-                                </li>
-                              ))}
+                        {clinic.phone.map((phone, phoneIndex) => (
+                          <li key={phoneIndex}>
+                            <Link href={`tel:${phone}`} className="text-decoration-none">
+                              {phone}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -77,13 +107,13 @@ const Contact = () => {
                     <div className="item_content">
                       <h3 className="item_title">Email</h3>
                       <ul className="item_info_list unorder_list_block">
-                       {clinic.email.map((email, emailIndex) => (
-                                <li key={emailIndex}>
-                                  <Link href={`mailto:${email}`} className="text-decoration-none">
-                                    {email}
-                                  </Link>
-                                </li>
-                              ))}
+                        {clinic.email.map((email, emailIndex) => (
+                          <li key={emailIndex}>
+                            <Link href={`mailto:${email}`} className="text-decoration-none">
+                              {email}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -98,8 +128,8 @@ const Contact = () => {
                       <h3 className="item_title">Address</h3>
                       <ul className="item_info_list unorder_list_block">
                         {clinic.address.map((address, addressIndex) => (
-                                <li key={addressIndex}>{address}</li>
-                              ))}
+                          <li key={addressIndex}>{address}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -113,9 +143,9 @@ const Contact = () => {
                     <div className="item_content">
                       <h3 className="item_title">Open Hours</h3>
                       <ul className="item_info_list unorder_list_block">
-                       {clinic.hours.map((hour, hourIndex) => (
-                                <li key={hourIndex}>{hour}</li>
-                              ))}
+                        {clinic.hours.map((hour, hourIndex) => (
+                          <li key={hourIndex}>{hour}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -130,13 +160,13 @@ const Contact = () => {
                   <span className="sub_title">Our Contacts</span>Contact Us
                 </h2>
                 <p className="mb-0">
-                  Massa enim nec dui nunc mattis enim ut tellus. Auctor augue
-                  mauris augue neque gravida in fermentum
+                  Massa enim nec dui nunc mattis enim ut tellus. Auctor augue mauris augue neque
+                  gravida in fermentum
                 </p>
               </div>
 
               <div className="contact_form">
-                <form action="#">
+                <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col col-md-6 col-sm-6">
                       <div className="form_item mb-0">
@@ -169,25 +199,22 @@ const Contact = () => {
                         <label className="input_title" htmlFor="select_service">
                           Select Service<sup>*</sup>
                         </label>
-                        <select id="select_service">
-                          <option data-display="Select Service">
-                            Select a Service
-                          </option>
-                          <option value="1">Some option</option>
-                          <option value="2">Another option</option>
-                          <option value="3" disabled>
-                            A disabled option
-                          </option>
-                          <option value="4">Potato</option>
+                        <select id="select_service" name="select_service" required>
+                          <option value="">Select a Service</option>
+                          {services.map((service) => (
+                            <option key={service.id} value={service.id}>
+                              {service.name}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
                     <div className="col col-md-6 col-sm-6">
                       <div className="form_item mb-0">
                         <label className="input_title" htmlFor="input_time">
-                          Select Time<sup>*</sup>
+                          Select Date<sup>*</sup>
                         </label>
-                        <input id="input_time" type="time" name="time" />
+                        <input id="input_time" type="date" name="input_time" required />
                       </div>
                     </div>
                     <div className="col">
@@ -201,23 +228,14 @@ const Contact = () => {
                           placeholder="Type your message"
                         ></textarea>
                       </div>
-                       <label className="d-flex align-items-start">
-                        <input
-                          type="checkbox"
-                          name="gdpr-consent"
-                          required
-                          className="me-2 mt-1"
-                        />
+                      <label className="d-flex align-items-start">
+                        <input type="checkbox" name="gdpr-consent" required className="me-2 mt-1" />
                         <span className="small">
                           I agree to the{" "}
-                          <Link
-                            href={`/terms`}
-                            className="text-decoration-underline"
-                          >
+                          <Link href={`/terms`} className="text-decoration-underline">
                             Privacy Policy
                           </Link>{" "}
-                          and consent to the processing of my personal data for
-                          newsletter purposes.
+                          and consent to the processing of my personal data for newsletter purposes.
                         </span>
                       </label>
                       <button type="submit" className="btn btn_primary mt-3">
