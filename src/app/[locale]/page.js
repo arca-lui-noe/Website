@@ -1,5 +1,3 @@
-import { getDictionary } from "@/lib/dictionary";
-
 import { generateOrganizationSchema } from "@/lib/schema";
 import Script from "next/script";
 import Banner from "@/components/sections/home/Banner";
@@ -15,26 +13,15 @@ import Banner2 from "@/components/sections/home/Banner2";
 import BlogPost from "@/components/sections/home/BlogPost";
 import Subscription from "@/components/sections/home/Subscription";
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const dict = await getDictionary(locale);
-
-  return {
-    title: dict.home.title,
-    description: dict.home.description,
-  };
-}
+export async function generateMetadata({ params }) {}
 
 export default async function HomePage({ params }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale);
 
   const organizationData = {
-    name: dict.meta.siteName,
+    name: "Arca lui Noe", // Add this to translation file and replace hardcoded string
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app",
-    logo: `${
-      process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app"
-    }/logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app"}/logo.png`,
     socialLinks: [
       "https://facebook.com/yourcompany",
       "https://twitter.com/yourcompany",

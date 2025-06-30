@@ -6,67 +6,64 @@ import Menu from "./Menu";
 import MobileMenu from "./MobileMenu";
 import DynamicLogo from "./DynamicLogo";
 
-export default function Header1({
-  scroll,
-  handleMobileMenu,
-  isSearch,
-  dict,
-  locale
-}) {
+export default function Header1({ scroll, handleMobileMenu, isSearch, dict, locale }) {
   const pathname = usePathname();
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
-  
+
   // Improved language switcher function
   const handleLanguageChange = (newLocale) => {
     // Prevent default behavior if any
     event && event.preventDefault();
-    
+
     // Close ALL menus before redirecting
     setLangMenuOpen(false);
-    
+
     // Force close mobile menu by simulating X button click
-    const closeBtn = document.querySelector('.mobile-menu .close-btn');
+    const closeBtn = document.querySelector(".mobile-menu .close-btn");
     if (closeBtn) {
       closeBtn.click();
     }
-    
+
     // Backup: manipulate DOM classes directly
-    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenu = document.querySelector(".mobile-menu");
     const body = document.body;
-    
+
     if (mobileMenu) {
-      mobileMenu.classList.remove('mobile-menu-visible');
-      body.classList.remove('mobile-menu-visible');
+      mobileMenu.classList.remove("mobile-menu-visible");
+      body.classList.remove("mobile-menu-visible");
       // Remove any other possible mobile menu classes
-      body.classList.remove('moblie-menu-visible'); // typo in original code
+      body.classList.remove("moblie-menu-visible"); // typo in original code
     }
-    
+
     // Animate out before redirecting
     setAnimationClass("lang-switch-animate-out");
-    
+
     // Use a timeout to allow animation to complete
     setTimeout(() => {
       // Get the current path without the language prefix
-      const currentPath = pathname.replace(/^\/[^\/]+/, '') || '/';
+      const currentPath = pathname.replace(/^\/[^\/]+/, "") || "/";
       // Navigate to the same path with the new locale prefix
       window.location.href = `/${newLocale}${currentPath}`;
     }, 300); // Match animation duration
   };
-  
+
   // Close the language menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (langMenuOpen && !event.target.closest('.language-switcher') && 
-          !event.target.closest('.mobile-lang-switcher') &&
-          !event.target.closest('.sticky-mobile-lang')) {
+      if (
+        langMenuOpen &&
+        !event.target.closest(".language-switcher") &&
+        !event.target.closest(".mobile-lang-switcher") &&
+        !event.target.closest(".sticky-mobile-lang")
+      ) {
         setLangMenuOpen(false);
       }
     };
-    
-    document.addEventListener('mousedown', handleClickOutside);
+
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [langMenuOpen]);
 
@@ -79,11 +76,7 @@ export default function Header1({
 
   return (
     <>
-      <header
-        className={`main-header header-style3 ${
-          isSearch ? "moblie-search-active" : ""
-        }`}
-      >
+      <header className={`main-header header-style3 ${isSearch ? "moblie-search-active" : ""}`}>
         <div className="header_top d-none d-md-block">
           <div className="container">
             <div className="row align-items-center">
@@ -127,45 +120,53 @@ export default function Header1({
                   </li>
                   <li className="language-switcher">
                     <div className="vet-lang-dropdown">
-                      <button 
+                      <button
                         className="vet-lang-btn"
                         onClick={() => setLangMenuOpen(!langMenuOpen)}
                         aria-expanded={langMenuOpen}
                       >
                         <span className="vet-icon">
-                          {locale === 'hu' ? (
+                          {locale === "hu" ? (
                             <span className="vet-emoji">🐶</span>
                           ) : (
                             <span className="vet-emoji">🐱</span>
                           )}
                         </span>
-                        <span className="current-lang text-white" style={{fontWeight: 'bold'}}>
-                          {locale === 'hu' ? 'Magyar' : 'Română'}
+                        <span className="current-lang text-white" style={{ fontWeight: "bold" }}>
+                          {locale === "hu" ? "Magyar" : "Română"}
                         </span>
                       </button>
-                      
-                      <div className={`vet-lang-dropdown-content ${langMenuOpen ? 'show' : ''}`}>
+
+                      <div className={`vet-lang-dropdown-content ${langMenuOpen ? "show" : ""}`}>
                         <div className="lang-dropdown-header">
-                          <span className="paw-icon">🐾</span> {dict.languageSwitcher.label}
+                          <span className="paw-icon">🐾</span> {}
                         </div>
-                        
+
                         <div className="lang-options">
-                          <button 
-                            onClick={() => handleLanguageChange('hu')} 
-                            className={locale === 'hu' ? 'active' : ''}
+                          <button
+                            onClick={() => handleLanguageChange("hu")}
+                            className={locale === "hu" ? "active" : ""}
                           >
                             <span className="vet-lang-icon hu-vet">🐶</span>
                             <span className="lang-name">Magyar</span>
-                            {locale === 'hu' && <span className="active-indicator"><i className="fas fa-paw"></i></span>}
+                            {locale === "hu" && (
+                              <span className="active-indicator">
+                                <i className="fas fa-paw"></i>
+                              </span>
+                            )}
                           </button>
-                          
-                          <button 
-                            onClick={() => handleLanguageChange('ro')} 
-                            className={locale === 'ro' ? 'active' : ''}
+
+                          <button
+                            onClick={() => handleLanguageChange("ro")}
+                            className={locale === "ro" ? "active" : ""}
                           >
                             <span className="vet-lang-icon ro-vet">🐱</span>
                             <span className="lang-name">Română</span>
-                            {locale === 'ro' && <span className="active-indicator"><i className="fas fa-paw"></i></span>}
+                            {locale === "ro" && (
+                              <span className="active-indicator">
+                                <i className="fas fa-paw"></i>
+                              </span>
+                            )}
                           </button>
                         </div>
                       </div>
@@ -191,32 +192,34 @@ export default function Header1({
               {/* Mobile language switcher - visible only on mobile */}
               <div className="mobile-lang-switcher d-flex d-md-none">
                 <div className="vet-lang-dropdown">
-                  <button 
+                  <button
                     className="vet-lang-btn mobile-lang-btn"
                     onClick={() => setLangMenuOpen(!langMenuOpen)}
                     aria-expanded={langMenuOpen}
                   >
-                    <span className="vet-icon">
-                      {locale === 'hu' ? '🐶' : '🐱'}
+                    <span className="vet-icon">{locale === "hu" ? "🐶" : "🐱"}</span>
+                    <span className="ms-2" style={{ color: "#000", fontWeight: "bold" }}>
+                      {locale === "hu" ? "Hu" : "Ro"}
                     </span>
-                     <span className="ms-2" style={{color: '#000',fontWeight: 'bold'}}>
-                          {locale === 'hu' ? 'Hu' : 'Ro'}
-                        </span>
                   </button>
-                  
-                  <div className={`vet-lang-dropdown-content mobile-dropdown ${langMenuOpen ? 'show' : ''}`}>
+
+                  <div
+                    className={`vet-lang-dropdown-content mobile-dropdown ${
+                      langMenuOpen ? "show" : ""
+                    }`}
+                  >
                     <div className="lang-options">
-                      <button 
-                        onClick={(e) => handleLanguageChange('hu')} 
-                        className={locale === 'hu' ? 'active' : ''}
+                      <button
+                        onClick={(e) => handleLanguageChange("hu")}
+                        className={locale === "hu" ? "active" : ""}
                       >
                         <span className="vet-lang-icon">🐶</span>
                         <span className="lang-name">Magyar</span>
                       </button>
-                      
-                      <button 
-                        onClick={(e) => handleLanguageChange('ro')} 
-                        className={locale === 'ro' ? 'active' : ''}
+
+                      <button
+                        onClick={(e) => handleLanguageChange("ro")}
+                        className={locale === "ro" ? "active" : ""}
                       >
                         <span className="vet-lang-icon">🐱</span>
                         <span className="lang-name">Română</span>
@@ -239,7 +242,7 @@ export default function Header1({
                   <li className="me-0 d-none d-sm-block">
                     <Link href={`/${locale}/contact`} className="contact-btn btn btn_primary">
                       <i className="fas fa-stethoscope me-2"></i>
-                      <span>{locale === 'hu' ? 'Kapcsolat' : 'Contact'}</span>
+                      <span>{locale === "hu" ? "Kapcsolat" : "Contact"}</span>
                     </Link>
                   </li>
                 </ul>
@@ -263,7 +266,7 @@ export default function Header1({
               </div>
             </div>
             <MobileMenu dict={dict} locale={locale} />
-            
+
             <ul className="social-links">
               <li>
                 <Link href="/#">
@@ -288,12 +291,8 @@ export default function Header1({
             </ul>
           </nav>
         </div>
-       
-        <div
-          className={`sticky-header ${
-            scroll ? "fixed-header animated slideInDown" : ""
-          }`}
-        >
+
+        <div className={`sticky-header ${scroll ? "fixed-header animated slideInDown" : ""}`}>
           <div className="container">
             <div className="main-wrapper">
               {/*Logo*/}
@@ -302,27 +301,28 @@ export default function Header1({
                   <DynamicLogo locale={locale} />
                 </Link>
               </div>
-              
+
               {/* Sticky header language switcher for mobile */}
               <div className="sticky-mobile-lang d-md-none">
                 <div className="vet-lang-dropdown">
-                  <button 
-                    className="vet-lang-btn"
-                    onClick={() => setLangMenuOpen(!langMenuOpen)}
-                  >
-                    <span className="vet-emoji">{locale === 'hu' ? '🐶' : '🐱'}</span>
-                    <span className="ms-2" style={{color: '#000',fontWeight: 'bold'}}>
-                          {locale === 'hu' ? 'Hu' : 'Ro'}
-                        </span>
+                  <button className="vet-lang-btn" onClick={() => setLangMenuOpen(!langMenuOpen)}>
+                    <span className="vet-emoji">{locale === "hu" ? "🐶" : "🐱"}</span>
+                    <span className="ms-2" style={{ color: "#000", fontWeight: "bold" }}>
+                      {locale === "hu" ? "Hu" : "Ro"}
+                    </span>
                   </button>
-                  
-                  <div className={`vet-lang-dropdown-content sticky-dropdown ${langMenuOpen ? 'show' : ''}`}>
+
+                  <div
+                    className={`vet-lang-dropdown-content sticky-dropdown ${
+                      langMenuOpen ? "show" : ""
+                    }`}
+                  >
                     <div className="lang-options">
-                      <button onClick={(e) => handleLanguageChange('hu')}>
+                      <button onClick={(e) => handleLanguageChange("hu")}>
                         <span className="vet-lang-icon">🐶</span>
                         <span className="lang-name">Magyar</span>
                       </button>
-                      <button onClick={(e) => handleLanguageChange('ro')}>
+                      <button onClick={(e) => handleLanguageChange("ro")}>
                         <span className="vet-lang-icon">🐱</span>
                         <span className="lang-name">Română</span>
                       </button>
@@ -330,7 +330,7 @@ export default function Header1({
                   </div>
                 </div>
               </div>
-              
+
               {/*Right Col*/}
               <div className="nav-wrapper d-none d-lg-block">
                 {/* Main Menu */}
@@ -349,19 +349,16 @@ export default function Header1({
                   <li className="me-0 d-none d-sm-block">
                     <Link href={`/${locale}/contact`} className="contact-btn btn btn_primary">
                       <i className="fas fa-stethoscope me-2"></i>
-                      <span>{locale === 'hu' ? 'Kapcsolat' : 'Contact'}</span>
+                      <span>{locale === "hu" ? "Kapcsolat" : "Contact"}</span>
                     </Link>
                   </li>
                 </ul>
               </div>
-              
             </div>
           </div>
         </div>
         {/* End Sticky Menu */}
       </header>
-      
-    
     </>
   );
 }

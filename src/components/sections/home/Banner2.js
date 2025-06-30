@@ -1,13 +1,16 @@
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 
-const Banner2 = () => {
+const Banner2 = async () => {
+  const t = await getTranslations("Home");
+
   return (
     <>
       {/* style={{ backgroundImage: 'url(images/overlay/shapes_overlay_2.svg)' }} */}
       <section
         className="banner_section banner_style_2 decoration_wrap"
-        style={{ backgroundImage: "url(images/banner/shape_banner_bg.svg)" }}
+        style={{ backgroundImage: "url('/images/banner/shape_banner_bg.svg')" }}
       >
         <div className="section_overlay"></div>
         <div className="container">
@@ -25,16 +28,12 @@ const Banner2 = () => {
             <div className="col col-lg-6">
               <div className="banner_content">
                 <h1 className="banner_title">
-                  <span className="banner_sub_title">
-                    We care for your pets
-                  </span>{" "}
-                  We Help You Care for Animals with Nutrition
+                  <span className="banner_sub_title">{t("heading")}</span> {t("heading")}
                 </h1>
                 <p className="banner_description">
-                  All offers are subject to availability. Ut tortor pretium
-                  viverra suspendisse potenti nullam ac tortor vitae.
-                  Consectetur a erat nam at. Potenti nullam ac tortor vitae
-                  purus faucibus ornare.
+                  All offers are subject to availability. Ut tortor pretium viverra suspendisse
+                  potenti nullam ac tortor vitae. Consectetur a erat nam at. Potenti nullam ac
+                  tortor vitae purus faucibus ornare.
                 </p>
                 <div className="banner_policy_items row">
                   <div className="col">
@@ -46,10 +45,7 @@ const Banner2 = () => {
                         <h3 className="item_title mb-0">Trust & Safety</h3>
                         <p className="mb-0">Velit euismod pellentes</p>
                       </div>
-                      <Link
-                        className="item_global_link"
-                        href="/services"
-                      ></Link>
+                      <Link className="item_global_link" href="/services"></Link>
                     </div>
                   </div>
                   <div className="col">
@@ -61,10 +57,7 @@ const Banner2 = () => {
                         <h3 className="item_title mb-0">Discounts</h3>
                         <p className="mb-0">Bibendum ut tristique</p>
                       </div>
-                      <Link
-                        className="item_global_link"
-                        href="/services"
-                      ></Link>
+                      <Link className="item_global_link" href="/services"></Link>
                     </div>
                   </div>
                   <div className="col">
@@ -76,10 +69,7 @@ const Banner2 = () => {
                         <h3 className="item_title mb-0">Support</h3>
                         <p className="mb-0">Egestas quis ipsum velit</p>
                       </div>
-                      <Link
-                        className="item_global_link"
-                        href="/services"
-                      ></Link>
+                      <Link className="item_global_link" href="/services"></Link>
                     </div>
                   </div>
                   <div className="col">
@@ -91,10 +81,7 @@ const Banner2 = () => {
                         <h3 className="item_title mb-0">Guarantee</h3>
                         <p className="mb-0">Velit euismod pellentes</p>
                       </div>
-                      <Link
-                        className="item_global_link"
-                        href="/services"
-                      ></Link>
+                      <Link className="item_global_link" href="/services"></Link>
                     </div>
                   </div>
                 </div>

@@ -7,13 +7,7 @@ import MobileMenu from "./MobileMenu";
 import DynamicLogo from "./DynamicLogo";
 import Image from "next/image";
 
-export default function Header1({
-  scroll,
-  handleMobileMenu,
-  isSearch,
-  dict,
-  locale,
-}) {
+export default function Header1({ scroll, handleMobileMenu, isSearch, dict, locale }) {
   const pathname = usePathname();
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
@@ -112,22 +106,13 @@ export default function Header1({
                           {locale === "hu" ? "Magyar" : "Română"}
                         </span>
                         <span className="lang-arrow">
-                          <i
-                            className={`fas fa-chevron-${
-                              langMenuOpen ? "up" : "down"
-                            }`}
-                          ></i>
+                          <i className={`fas fa-chevron-${langMenuOpen ? "up" : "down"}`}></i>
                         </span>
                       </button>
 
-                      <div
-                        className={`pet-lang-dropdown-content ${
-                          langMenuOpen ? "show" : ""
-                        }`}
-                      >
+                      <div className={`pet-lang-dropdown-content ${langMenuOpen ? "show" : ""}`}>
                         <div className="lang-dropdown-header">
-                          <span className="paw-icon">🐾</span>{" "}
-                          {dict.languageSwitcher.label}
+                          <span className="paw-icon">🐾</span> {}
                         </div>
 
                         <div className="lang-options">
@@ -189,8 +174,7 @@ export default function Header1({
                   <li className="dropdown me-0 d-none d-sm-block">
                     <button className="cart_btn" type="button">
                       <i className="fas fa-shopping-cart"></i>{" "}
-                      <small className="cart_counter">2</small>{" "}
-                      <span>item</span>
+                      <small className="cart_counter">2</small> <span>item</span>
                     </button>
                     <div className="cart_dropdown dropdown-menu">
                       <ul className="cart_items_list unorder_list_block">
@@ -205,9 +189,7 @@ export default function Header1({
                           </Link>
                           <div className="item_content">
                             <h3 className="item_title">
-                              <Link href="shop-details">
-                                Flying Fish Cat Scratching
-                              </Link>
+                              <Link href="shop-details">Flying Fish Cat Scratching</Link>
                             </h3>
                             <span className="item_price">1 × $12.35</span>
                           </div>
@@ -257,16 +239,10 @@ export default function Header1({
                     className="mobile-pet-lang-btn"
                     aria-expanded={langMenuOpen}
                   >
-                    <span className="pet-emoji">
-                      {locale === "hu" ? "🐶" : "🐱"}
-                    </span>
+                    <span className="pet-emoji">{locale === "hu" ? "🐶" : "🐱"}</span>
                   </button>
 
-                  <div
-                    className={`mobile-pet-lang-dropdown ${
-                      langMenuOpen ? "show" : ""
-                    }`}
-                  >
+                  <div className={`mobile-pet-lang-dropdown ${langMenuOpen ? "show" : ""}`}>
                     <button
                       onClick={() => handleLanguageChange("hu")}
                       className={locale === "hu" ? "active" : ""}
@@ -333,7 +309,7 @@ export default function Header1({
             <div className="mobile-pet-language-selection">
               <div className="pet-lang-selection-header">
                 <span className="paw-icon">🐾</span>
-                <p>{dict.languageSwitcher.label}</p>
+                <p>{}</p>
               </div>
               <div className="pet-language-buttons">
                 <button
@@ -366,11 +342,7 @@ export default function Header1({
         </div>
         {/* End Mobile Menu */}
         {/* Sticky Header  */}
-        <div
-          className={`sticky-header ${
-            scroll ? "fixed-header animated slideInDown" : ""
-          }`}
-        >
+        <div className={`sticky-header ${scroll ? "fixed-header animated slideInDown" : ""}`}>
           <div className="container">
             <div className="main-wrapper">
               {/*Logo*/}
@@ -398,24 +370,12 @@ export default function Header1({
                       className="sticky-pet-lang-btn"
                       aria-expanded={langMenuOpen}
                     >
-                      <span className="pet-emoji-sticky">
-                        {locale === "hu" ? "🐶" : "🐱"}
-                      </span>
-                      <span className="current-lang-code">
-                        {locale === "hu" ? "HU" : "RO"}
-                      </span>
-                      <i
-                        className={`fas fa-chevron-${
-                          langMenuOpen ? "up" : "down"
-                        }`}
-                      ></i>
+                      <span className="pet-emoji-sticky">{locale === "hu" ? "🐶" : "🐱"}</span>
+                      <span className="current-lang-code">{locale === "hu" ? "HU" : "RO"}</span>
+                      <i className={`fas fa-chevron-${langMenuOpen ? "up" : "down"}`}></i>
                     </button>
 
-                    <div
-                      className={`sticky-pet-lang-dropdown ${
-                        langMenuOpen ? "show" : ""
-                      }`}
-                    >
+                    <div className={`sticky-pet-lang-dropdown ${langMenuOpen ? "show" : ""}`}>
                       <button
                         onClick={() => handleLanguageChange("hu")}
                         className={locale === "hu" ? "active" : ""}

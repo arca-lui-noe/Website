@@ -1,8 +1,9 @@
 import { nunito, lato } from "@/lib/fonts";
-import { getDictionary } from "@/lib/dictionary";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 import ClientLayout from "@/components/layouts/ClientLayout";
-import '/public/css/bootstrap.min.css';
-import '/public/css/style.css';
+import "/public/css/bootstrap.min.css";
+import "/public/css/style.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -12,39 +13,21 @@ export async function generateStaticParams() {
   return [{ locale: "hu" }, { locale: "ro" }];
 }
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const dict = await getDictionary(locale);
+export async function generateMetadata({ params }) {}
 
-  return {
-    title: dict.meta.title,
-    description: dict.meta.description,
-    keywords: dict.meta.keywords,
-    robots: dict.meta.robots || "index, follow",
-    openGraph: {
-      title: dict.meta.title,
-      description: dict.meta.description,
-      locale: locale,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: dict.meta.title,
-      description: dict.meta.description,
-    },
-  };
-}
-
-export default async function RootLayout({ children, params }) {
+export default async function LocaleLayout({ children, params }) {
+  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  const dict = await getDictionary(locale);
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
   return (
     <html lang={locale}>
       <body className={`${nunito.variable} ${lato.variable}`}>
-        <ClientLayout footerStyle={null} locale={locale} dict={dict}>
-          {children}
-        </ClientLayout>
+        <NextIntlClientProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
