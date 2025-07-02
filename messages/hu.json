@@ -1,8 +1,68 @@
 {
+  "Menu": {
+    "home-title": "Kezdőlap",
+    "services-title": "Szolgáltatások",
+    "contact-title": "Kapcsolat",
+    "about-title": "Rólunk",
+    "blog-title": "Blog"
+  },
   "Home": {
-    "heading": "Test heading"
+    "hero-title": "Szeretettel és szakértelemmel kedvencéért",
+    "hero-subtitle": "Több mint 25 év prémium állatorvosi szakértelem",
+    "hero-desc": "Negyedévszázados megbízhatóság és folyamatosan fejlődő szakértelem - ez a Noé Bárkája Kisállatklinika. Korszerű, professzionális berendezéseinkkel és több mint 25 éves tapasztalatunkkal minden páciensünknek a legmagasabb szintű ellátást nyújtjuk. A mi legnagyobb örömünk és elismerésünk, amikor látjuk őket egészségesen és boldogan távozni - ez a csendes hála, amit nap mint nap kapunk.",
+    "value1-title": "Teljeskörű Ellátás",
+    "value1-desc": "Minden egy helyen kedvencéért.",
+    "value2-title": "25 Év Tapasztalat",
+    "value2-desc": "Negyedévszázadnyi biztos szakértelem.",
+    "value3-title": "Korszerű Eszközök",
+    "value3-desc": "Modern technológia kedvenced gyors felépüléséért.",
+    "value4-title": "Szívvel és Elhivatottsággal",
+    "value4-desc": "Mert minden kisállat számít.",
+    "service-title": "Szolgáltatásaink",
+    "service-subtitle": "Teljeskörű állatorvosi ellátás"
+  },
+  "Clinic": {
+    "title": "Klinika",
+    "phone": "0365 738 824",
+    "address-title": "Cím",
+    "address": "Tudor Vladimirescu utca 143",
+    "address-city": "Marosvásárhely",
+    "program-title": "Nyitvatartás",
+    "program1": "Hétfő - Péntek:",
+    "program1-time": "09:00 - 17:00",
+    "program2": "Szombat:",
+    "program2-time": "10:00 - 13:00",
+    "program3": "Vasárnap:",
+    "program3-time": "Zárva"
+  },
+  "Cabinet": {
+    "title": "Rendelő",
+    "phone": "0265 212 062",
+    "address-title": "Cím",
+    "address": "Tudor Vladimirescu utca 145",
+    "address-city": "Marosvásárhely",
+    "program-title": "Nyitvatartás",
+    "program1": "Hétfő - Péntek:",
+    "program1-time": "08:00 - 16:00",
+    "program2": "Szombat:",
+    "program2-time": "09:00 - 12:00",
+    "program3": "Vasárnap:",
+    "program3-time": "Zárva"
+  },
+  "Contact": {
+    "contact-title": "Kapcsolatfelvétel",
+    "contact-subtitle": "Vegye fel velünk a kapcsolatot",
+    "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban."
   },
   "About": {
     "heading": "Test about heading"
+  },
+  "Footer": {
+    "description": "Ahogy Noé bárkáján minden állat menedékre lelt, úgy nyújt klinikánk biztonságot és gyógyulást minden hozzánk érkező kisállatnak.",
+    "phone-address": "Állatorvosi klinika",
+    "program-title": "Klinika nyitvatartás",
+    "useful-links-title": "Hasznos linkek",
+    "newsletter-title": "Iratkozzon fel hírlevelünkre",
+    "newsletter-desc": "Maradjon naprakész a legfrissebb hírekkel és különleges ajánlatokkal. Iratkozzon fel hírlevelünkre, és hasznos információkat kap közvetlenül az e-mail fiókjába."
   }
 }

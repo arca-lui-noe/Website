@@ -3425,7 +3425,7 @@ hr {
   color: #e3f3fd;
 }
 .subscribe_wrap .form_item .btn {
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 .subscribe_wrap .form_item .btn:hover {
   -webkit-transform: unset;
