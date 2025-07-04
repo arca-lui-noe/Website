@@ -17,7 +17,7 @@ const nextConfig = {
 
 	// Képek optimalizálása
 	images: {
-		formats: ["image/avif", "image/webp"],
+		formats: ["image/webp", "image/avif"],
 		remotePatterns: [new URL("http://localhost/**")],
 		minimumCacheTTL: 60,
 	},

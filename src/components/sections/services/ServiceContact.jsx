@@ -1,7 +1,47 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const ServiceContact = () => {
+	const [services, setServices] = useState([]);
+
+	useEffect(() => {
+		async function fetchServices() {
+			try {
+				const res = await fetch("/api/services");
+				if (!res.ok) throw new Error("Failed to fetch");
+				const data = await res.json();
+				setServices(data);
+			} catch (err) {
+				console.error("Error loading services:", err);
+			}
+		}
+		fetchServices();
+	}, []);
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+
+		const formData = {
+			name: e.target.name.value,
+			email: e.target.input_email.value,
+			service_id: e.target.select_service.value,
+			selected_date: e.target.input_time.value,
+			message: e.target.message.value,
+		};
+
+		const res = await fetch("/api/contact", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(formData),
+		});
+
+		const result = await res.json();
+		alert(result.message);
+	}
+
 	return (
 		<>
 			<section className="getservice_section section_space_lg pb-0">
@@ -26,7 +66,7 @@ const ServiceContact = () => {
 										mauris augue neque gravida in fermentum
 									</p>
 								</div>
-								<form action="#">
+								<form onSubmit={handleSubmit}>
 									<div className="row">
 										<div className="col col-md-6">
 											<div className="form_item mb-0">
@@ -56,26 +96,33 @@ const ServiceContact = () => {
 										</div>
 										<div className="col col-md-6">
 											<div className="select_option mb-0">
-												<label htmlFor="select_service" className="input_title">
-													Select Service
+												<label className="input_title" htmlFor="select_service">
+													Select Service<sup>*</sup>
 												</label>
-												<select id="select_service">
-													<option data-display="Select Service">Nothing</option>
-													<option value="1">Some option</option>
-													<option value="2">Another option</option>
-													<option value="3" disabled>
-														A disabled option
-													</option>
-													<option value="4">Potato</option>
+												<select
+													id="select_service"
+													name="select_service"
+													required>
+													<option value="">Select a Service</option>
+													{services.map((service) => (
+														<option key={service.id} value={service.id}>
+															{service.name}
+														</option>
+													))}
 												</select>
 											</div>
 										</div>
 										<div className="col col-md-6">
 											<div className="form_item mb-0">
-												<label htmlFor="input_time" className="input_title">
-													Select Time
+												<label className="input_title" htmlFor="input_time">
+													Select Date<sup>*</sup>
 												</label>
-												<input id="input_time" type="time" name="time" />
+												<input
+													id="input_time"
+													type="date"
+													name="input_time"
+													required
+												/>
 											</div>
 										</div>
 

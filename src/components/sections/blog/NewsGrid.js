@@ -1,661 +1,262 @@
 "use client";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+
+const BLOGS_PER_PAGE = 5;
 
 const NewsGrid = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [catLoading, setCatLoading] = useState(true);
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const [relatedLoading, setRelatedLoading] = useState(true);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const searchParams = useSearchParams();
+  const categoryFilter = searchParams.get("category");
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const url = categoryFilter ? `/api/blogs?category=${categoryFilter}` : "/api/blogs";
+        const res = await fetch(url);
+        const data = await res.json();
+        setBlogs(data);
+        setCurrentPage(1); // reset to first page on category change
+      } catch (err) {
+        console.error("Failed to load blogs", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, [categoryFilter]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/blog_categories");
+        const data = await res.json();
+        setCategories(data);
+      } catch (err) {
+        console.error("Failed to load categories", err);
+      } finally {
+        setCatLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchRelatedBlogs = async () => {
+      setRelatedLoading(true);
+      try {
+        const res = await fetch("/api/blogs"); // fetch all blogs
+        const data = await res.json();
+
+        const sorted = data
+          .filter((blog) => blog.updated_date)
+          .sort((a, b) => new Date(b.updated_date) - new Date(a.updated_date));
+
+        setRelatedBlogs(sorted.slice(0, 3));
+      } catch (err) {
+        console.error("Failed to load related blogs", err);
+      } finally {
+        setRelatedLoading(false);
+      }
+    };
+
+    fetchRelatedBlogs();
+  }, []);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE);
+
+  // Slice blogs for current page
+  const paginatedBlogs = blogs.slice(
+    (currentPage - 1) * BLOGS_PER_PAGE,
+    currentPage * BLOGS_PER_PAGE
+  );
+
+  // Handle page click
+  const handlePageClick = (pageNum) => {
+    if (pageNum < 1 || pageNum > totalPages) return;
+    setCurrentPage(pageNum);
+    // Scroll to top of blogs list or container if desired
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <>
-      <section className="blog_section section_space_lg pb-0">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col col-lg-9">
-              <div className="blogs_wrapper">
-                <div className="row">
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_4.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
+    <section className="blog_section section_space_lg pb-0">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col col-lg-9">
+            <div className="blogs_wrapper">
+              <div className="row">
+                {loading && <p>Loading...</p>}
+                {!loading && blogs.length === 0 && <p>No blogs found.</p>}
+
+                {!loading &&
+                  paginatedBlogs.map((blog) => (
+                    <div className="col col-md-6" key={blog.id}>
+                      <div className="blog_item">
+                        <ul className="badge_group unorder_list_right">
                           <li>
-                            <Link href="#!">
-                              <i className="fas fa-thumbtack"></i> Sticky Post
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
+                            <Link className="badge badge_sale" href="#!">
+                              {blog.category_name}
                             </Link>
                           </li>
                         </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            Top Cat Foods to Consider If You Are a{" "}
-                            <span className="d-lg-block">First Time Owner</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Amet porttitor eget dolor morbi non arcu risus quis
-                          varius sodales ut etiam sit amet
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
+                        <Link className="item_image" href={`/blog/${blog.slug}`}>
+                          <Image
+                            width={280}
+                            height={310}
+                            src={"http://localhost/petvet_admin/uploads/blog/" + blog.image}
+                            alt={blog.title}
+                          />
+                        </Link>
+                        <div className="item_content">
+                          <ul className="post_meta unorder_list">
+                            {blog.sticky && (
+                              <li>
+                                <Link href="#!">
+                                  <i className="fas fa-thumbtack"></i> Sticky Post
+                                </Link>
+                              </li>
+                            )}
+                            <li>
+                              <Link href="#!">
+                                <i className="fas fa-user"></i> by {blog.author}
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="#!">
+                                <i className="fas fa-calendar-day"></i>{" "}
+                                {new Date(blog.created_date).toLocaleDateString()}
+                              </Link>
+                            </li>
+                          </ul>
+                          <h3 className="item_title">
+                            <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
+                          </h3>
+                          <p className="mb-0">{blog.lead}</p>
+                          <div className="details_btn">
+                            <Link className="btn_unfill" href={`/blogs/${blog.slug}`}>
+                              <span>Read Post</span>
+                              <i className="far fa-long-arrow-right"></i>
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
 
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_5.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            6 Tips to Keep Your Pet Healthy{" "}
-                            <span className="d-lg-block">and Happy</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Est pellentesque elit ullamcorper dignissim cras
-                          tincidunt lobortis feugiat vivamus.
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list p-0">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET FOOD
-                          </Link>
-                        </li>
-                      </ul>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            Choosing the Right Food{" "}
-                            <span className="d-lg-block">for Your Pet </span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Semper feugiat nibh sed pulvinar proin gravida. Turpis
-                          cursus in hac habitasse platea dictumst quisque
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list p-0">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET TOYS
-                          </Link>
-                        </li>
-                      </ul>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            How to Choose the Right Toys{" "}
-                            <span className="d-lg-block">for Your Dog?</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Lacus luctus accumsan tortor posuere ac ut consequat
-                          semper. Ut tristique et egestas quis
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_6.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            Your Dog Desperately Needs{" "}
-                            <span className="d-lg-block">From You</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Amet porttitor eget dolor morbi non arcu risus quis
-                          varius sodales ut etiam sit amet
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_7.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            5 Crazy Things Dogs Do When{" "}
-                            <span className="d-lg-block">
-                              Left Alone At Home
-                            </span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Est pellentesque elit ullamcorper dignissim cras
-                          tincidunt lobortis feugiat vivamus.
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_8.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            {" "}
-                            How to Encourage Positive Behaviour{" "}
-                            <span className="d-lg-block">in Your Dogs</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Amet porttitor eget dolor morbi non arcu risus quis
-                          varius sodales ut etiam sit amet{" "}
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_9.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            How to Encourage Positive Behaviour{" "}
-                            <span className="d-lg-block">in Your Dogs</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Amet porttitor eget dolor morbi non arcu risus quis
-                          varius sodales ut etiam sit amet{" "}
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_10.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            Dental Problems Cats Encounter{" "}
-                            <span className="d-lg-block">Across The Years</span>
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Est pellentesque elit ullamcorper dignissim cras
-                          tincidunt lobortis feugiat vivamus.
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col col-md-6">
-                    <div className="blog_item">
-                      <ul className="badge_group unorder_list_right">
-                        <li>
-                          <Link className="badge badge_sale" href="#!">
-                            PET HEALTH
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link className="item_image" href="blog/asd">
-                        <Image
-                          width={280}
-                          height={310}
-                          src="/images/blog/blog_image_11.jpg"
-                          alt="Pet Care Services"
-                        />
-                      </Link>
-                      <div className="item_content">
-                        <ul className="post_meta unorder_list">
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-user"></i> by Corabelle
-                              Durrad
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#!">
-                              <i className="fas fa-calendar-day"></i> 02.01.2022
-                            </Link>
-                          </li>
-                        </ul>
-                        <h3 className="item_title">
-                          <Link href="blog/asd">
-                            {" "}
-                            How To Teach Your Puppy{" "}
-                            <span className="d-lg-block">
-                              {" "}
-                              It&apos;s Name?
-                            </span>{" "}
-                          </Link>
-                        </h3>
-                        <p className="mb-0">
-                          Est pellentesque elit ullamcorper dignissim cras
-                          tincidunt lobortis feugiat vivamus.
-                        </p>
-                        <div className="details_btn">
-                          <Link className="btn_unfill" href="blog/asd">
-                            <span>Read Post</span>{" "}
-                            <i className="far fa-long-arrow-right"></i>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                {/* Pagination */}
+                {totalPages > 1 && (
                   <div className="col">
                     <div className="pagination_wrap p-0">
                       <ul className="pagination_nav unorder_list">
-                        <li className="active">
-                          <Link href="#!">1</Link>
+                        {/* Previous Button */}
+                        <li
+                          className={currentPage === 1 ? "disabled" : ""}
+                          onClick={() => handlePageClick(currentPage - 1)}
+                          style={{ cursor: currentPage === 1 ? "default" : "pointer" }}
+                        >
+                          <Link href="#!">&laquo;</Link>
                         </li>
-                        <li>
-                          <Link href="#!">2</Link>
-                        </li>
-                        <li>
-                          <Link href="#!">3</Link>
+
+                        {/* Page Numbers */}
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                          <li
+                            key={num}
+                            className={num === currentPage ? "active" : ""}
+                            onClick={() => handlePageClick(num)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            <Link href="#!">{num}</Link>
+                          </li>
+                        ))}
+
+                        {/* Next Button */}
+                        <li
+                          className={currentPage === totalPages ? "disabled" : ""}
+                          onClick={() => handlePageClick(currentPage + 1)}
+                          style={{ cursor: currentPage === totalPages ? "default" : "pointer" }}
+                        >
+                          <Link href="#!">&raquo;</Link>
                         </li>
                       </ul>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
+          </div>
 
-            <div className="col col-lg-3">
-              <aside className="sidebar_section">
-                <div className="sb_widget">
-                  <h3 className="sb_widget_title">Categories</h3>
+          <div className="col col-lg-3">
+            <aside className="sidebar_section">
+              <div className="sb_widget">
+                <h3 className="sb_widget_title">Categories</h3>
+                {catLoading && <p>Loading categories...</p>}
+                {!catLoading && categories.length === 0 && <p>No categories found.</p>}
+                {!catLoading && categories.length > 0 && (
                   <ul className="icon_list sb_category_list unorder_list_block">
-                    <li>
-                      <Link href="#!">
-                        <i className="fal fa-angle-right"></i>{" "}
-                        <span>Pet Health</span> <small>23</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#!">
-                        <i className="fal fa-angle-right"></i>{" "}
-                        <span>Grooming</span> <small>31</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#!">
-                        <i className="fal fa-angle-right"></i>{" "}
-                        <span>Pet Food</span> <small>34</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#!">
-                        <i className="fal fa-angle-right"></i>{" "}
-                        <span>Training</span> <small>18</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#!">
-                        <i className="fal fa-angle-right"></i>{" "}
-                        <span>Pet Toys</span> <small>19</small>
-                      </Link>
-                    </li>
+                    {categories.map((cat) => (
+                      <li key={cat.id}>
+                        <Link href={`/blog?category=${cat.id}`}>
+                          <i className="fal fa-angle-right"></i> <span>{cat.name}</span>{" "}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
-                </div>
+                )}
+              </div>
 
-                <div className="sb_widget">
-                  <h3 className="sb_widget_title">Related News</h3>
+              <div className="sb_widget">
+                <h3 className="sb_widget_title">Related News</h3>
+                {relatedLoading && <p>Loading related news...</p>}
+                {!relatedLoading && relatedBlogs.length === 0 && <p>No related news found.</p>}
+                {!relatedLoading && relatedBlogs.length > 0 && (
                   <ul className="small_post_wrap unorder_list_block">
-                    <li>
-                      <div className="small_blog_item">
-                        <Link className="item_image" href="blog/asd">
-                          <Image
-                            width={80}
-                            height={80}
-                            src="/images/blog/blog_image_12.jpg"
-                            alt="Pet Care Services"
-                          />
-                        </Link>
-                        <div className="item_content">
-                          <h3 className="item_title">
-                            {" "}
-                            <Link href="blog/asd">
-                              {" "}
-                              How to Protect Your Cat From Heatstroke{" "}
-                            </Link>
-                          </h3>
-                          <Link className="item_admin" href="#!">
-                            {" "}
-                            <i className="fas fa-user"></i> by Miriam Jesus{" "}
+                    {relatedBlogs.map((blog) => (
+                      <li key={blog.id}>
+                        <div className="small_blog_item">
+                          <Link className="item_image" href={`/blog/${blog.slug}`}>
+                            <Image
+                              width={80}
+                              height={80}
+                              src={"http://localhost/petvet_admin/uploads/blog/" + blog.image}
+                              alt={blog.title}
+                            />
                           </Link>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="small_blog_item">
-                        <Link className="item_image" href="blog/asd">
-                          <Image
-                            width={80}
-                            height={80}
-                            src="/images/blog/blog_image_13.jpg"
-                            alt="Pet Care Services"
-                          />
-                        </Link>
-                        <div className="item_content">
-                          <h3 className="item_title">
-                            <Link href="blog/asd">
-                              Why Are Dogs Scared of Fireworks?{" "}
+                          <div className="item_content">
+                            <h3 className="item_title">
+                              <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
+                            </h3>
+                            <Link className="item_admin" href="#!">
+                              <i className="fas fa-user"></i> by {blog.author}{" "}
                             </Link>
-                          </h3>
-                          <Link className="item_admin" href="#!">
-                            <i className="fas fa-user"></i> by Paulina Gayoso
-                          </Link>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="small_blog_item">
-                        <Link className="item_image" href="blog/asd">
-                          <Image
-                            width={80}
-                            height={80}
-                            src="/images/blog/blog_image_14.jpg"
-                            alt="Pet Care Services"
-                          />
-                        </Link>
-                        <div className="item_content">
-                          <h3 className="item_title">
-                            <Link href="blog/asd">
-                              {" "}
-                              How Do Dog’s Digest Their Food?
-                            </Link>
-                          </h3>
-                          <Link className="item_admin" href="#!">
-                            <i className="fas fa-user"></i> by Neville Griffin
-                          </Link>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
-                </div>
-              </aside>
-            </div>
+                )}
+              </div>
+            </aside>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
+
 export default NewsGrid;

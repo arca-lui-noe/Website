@@ -27,7 +27,7 @@ export default async function LocaleLayout({ children, params }) {
 		<html lang={locale}>
 			<body className={`${nunito.variable} ${lato.variable}`}>
 				<NextIntlClientProvider>
-					<ClientLayout>{children}</ClientLayout>
+					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
 			</body>
 		</html>
