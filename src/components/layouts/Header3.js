@@ -260,7 +260,7 @@ export default function Header1({
 											href={`/${locale}/contact`}
 											className="contact-btn btn btn_primary">
 											<i className="fas fa-stethoscope me-2"></i>
-											<span>{locale === "hu" ? "Kapcsolat" : "Contact"}</span>
+											{menu_text("clinic-title")}
 										</Link>
 									</li>
 								</ul>
@@ -377,7 +377,7 @@ export default function Header1({
 											href={`/${locale}/contact`}
 											className="contact-btn btn btn_primary">
 											<i className="fas fa-stethoscope me-2"></i>
-											<span>{locale === "hu" ? "Kapcsolat" : "Contact"}</span>
+											{menu_text("clinic-title")}
 										</Link>
 									</li>
 								</ul>

@@ -46,6 +46,7 @@ export default async function HomePage({ params }) {
 			/>
 
 			{/* <Banner /> */}
+			<HeroVideo />
 			<Banner2 />
 			<Service noPaddingBottom={true} showButton={true} limit={5} />
 			<Faq />

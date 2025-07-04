@@ -7,7 +7,7 @@ const HeroVideo = () => {
 	return (
 		<>
 			<video width="1020" height="240" controls autoplay muted preload="none">
-				<source src="/videos/herobg.mp4" type="video/mp4" />
+				<source src="/video/petvet-video.mp4" type="video/mp4" />
 			</video>
 		</>
 	);
