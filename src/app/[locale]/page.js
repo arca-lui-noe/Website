@@ -1,17 +1,12 @@
-import { generateOrganizationSchema } from "@/lib/schema";
-import Script from "next/script";
-import Banner from "@/components/sections/home/Banner";
-import Service from "@/components/sections/home/Service";
-import Faq from "@/components/sections/home/Faq";
-import Gallery from "@/components/sections/home/Gallery";
-import Pricing from "@/components/sections/home/Pricing";
-import Testimonial from "@/components/sections/home/Testimonial";
-import Features from "@/components/sections/home/Features";
-import Team from "@/components/sections/home/Team";
-import Contact from "@/components/sections/home/Contact";
+import TestComp from "@/components/layouts/TestComp";
 import Banner2 from "@/components/sections/home/Banner2";
 import BlogPost from "@/components/sections/home/BlogPost";
+import Contact from "@/components/sections/home/Contact";
+import Faq from "@/components/sections/home/Faq";
+import Service from "@/components/sections/home/Service";
 import Subscription from "@/components/sections/home/Subscription";
+import { generateOrganizationSchema } from "@/lib/schema";
+import Script from "next/script";
 
 export async function generateMetadata({ params }) {}
 
@@ -41,7 +36,7 @@ export default async function HomePage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-
+      <TestComp/>
       {/* <Banner /> */}
       <Banner2 />
       <Service noPaddingBottom={true} showButton={true} limit={5} />
