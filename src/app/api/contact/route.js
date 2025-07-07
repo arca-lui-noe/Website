@@ -11,7 +11,7 @@ export async function POST(req) {
     formData.append("message", body.message || "");
 
     const phpResponse = await fetch(
-      "http://localhost/petvet_admin/admin/events/submit_contact.php",
+      "https://arcaluinoe.prismasolutions.ro/admin/events/submit_contact.php",
       {
         method: "POST",
         headers: {

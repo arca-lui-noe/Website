@@ -119,7 +119,7 @@ const NewsGrid = () => {
                           <Image
                             width={280}
                             height={310}
-                            src={"http://localhost/petvet_admin/uploads/blog/" + blog.image}
+                            src={"https://arcaluinoe.prismasolutions.ro/uploads/blog/" + blog.image}
                             alt={blog.title}
                           />
                         </Link>
@@ -233,7 +233,9 @@ const NewsGrid = () => {
                             <Image
                               width={80}
                               height={80}
-                              src={"http://localhost/petvet_admin/uploads/blog/" + blog.image}
+                              src={
+                                "https://arcaluinoe.prismasolutions.ro/uploads/blog/" + blog.image
+                              }
                               alt={blog.title}
                             />
                           </Link>

@@ -1,6 +1,8 @@
 export async function GET() {
   try {
-    const backendRes = await fetch("http://localhost/petvet_admin/admin/events/services_list.php");
+    const backendRes = await fetch(
+      "https://arcaluinoe.prismasolutions.ro/admin/events/services_list.php"
+    );
 
     if (!backendRes.ok) {
       return new Response(JSON.stringify({ error: "Failed to fetch services" }), {

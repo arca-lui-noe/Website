@@ -18,7 +18,10 @@ const nextConfig = {
   // Képek optimalizálása
   images: {
     formats: ["image/webp", "image/avif"],
-    remotePatterns: [new URL("http://localhost/**")],
+    remotePatterns: [
+      new URL("http://localhost/**"),
+      new URL("https://arcaluinoe.prismasolutions.ro/**"),
+    ],
     minimumCacheTTL: 60,
   },
 

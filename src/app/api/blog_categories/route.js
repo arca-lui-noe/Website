@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const res = await fetch("http://localhost/petvet_admin/admin/events/get_blog_categories.php");
+    const res = await fetch(
+      "https://arcaluinoe.prismasolutions.ro/admin/events/get_blog_categories.php"
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch blog categories");
