@@ -44,7 +44,7 @@ const ServiceContact = () => {
 
   return (
     <>
-      <section className="getservice_section section_space_lg pb-0">
+      <section id="service_contact" className="getservice_section section_space_lg pb-0">
         <div className="container">
           <div className="row align-items-center justify-content-lg-between">
             <div className="col col-lg-5 d-none d-lg-block">
