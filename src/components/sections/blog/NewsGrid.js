@@ -83,11 +83,11 @@ const NewsGrid = () => {
 	const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE);
 
 	// Slice blogs for current page
-	// let paginatedBlogs = blogs.slice(
-	// 	(currentPage - 1) * BLOGS_PER_PAGE,
-	// 	currentPage * BLOGS_PER_PAGE
-	// );
-	const paginatedBlogs = [];
+	let paginatedBlogs = blogs.slice(
+		(currentPage - 1) * BLOGS_PER_PAGE,
+		currentPage * BLOGS_PER_PAGE
+	);
+	// const paginatedBlogs = [];
 
 	// Handle page click
 	const handlePageClick = (pageNum) => {
