@@ -84,22 +84,26 @@ export default function Footer1({ locale }) {
 											</li>
 											<li>
 												<Link href={`/${locale}/about`}>
-													<i className="fas fa-circle"></i>About Us
+													<i className="fas fa-circle"></i>
+													{menu_text("about-title")}
 												</Link>
 											</li>
 											<li>
 												<Link href={`/${locale}/about`}>
-													<i className="fas fa-circle"></i>How we started
+													<i className="fas fa-circle"></i>
+													{menu_text("how_we_started-title")}
 												</Link>
 											</li>
 											<li>
 												<Link href={`/${locale}/services`}>
-													<i className="fas fa-circle"></i>Services
+													<i className="fas fa-circle"></i>
+													{menu_text("services-title")}
 												</Link>
 											</li>
 											<li>
 												<Link href={`/${locale}/blog`}>
-													<i className="fas fa-circle"></i>Blogs
+													<i className="fas fa-circle"></i>
+													{menu_text("blog-title")}
 												</Link>
 											</li>
 										</ul>
@@ -108,8 +112,12 @@ export default function Footer1({ locale }) {
 							</div>
 							<div className="col-xl-3 col-sm-6">
 								<div className="footer_widget">
-									<h3 className="footer_widget_title"></h3>
-									<button className="btn btn_primary">Go to the App</button>
+									<h3 className="footer_widget_title">
+										{menu_text("app-title")}
+									</h3>
+									<button className="btn btn_primary">
+										{menu_text("app-button-text")}
+									</button>
 								</div>
 							</div>
 							{/* <div className="col-xl-3 col-sm-6">

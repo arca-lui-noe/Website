@@ -74,13 +74,14 @@ const Contact = () => {
 									<h3 className="item_title">Telefon</h3>
 									<ul className="item_info_list unorder_list_block">
 										<li>
-											<a
+											<Link
+												className="text-black"
 												href={`tel:${currentContact("phone").replace(
 													/\s/g,
 													""
 												)}`}>
 												{currentContact("phone")}
-											</a>
+											</Link>
 										</li>
 									</ul>
 								</div>
@@ -96,9 +97,11 @@ const Contact = () => {
 									<h3 className="item_title">Email</h3>
 									<ul className="item_info_list unorder_list_block">
 										<li>
-											<a href={`mailto:arcaluinoe.noebarkaja@gmail.com`}>
+											<Link
+												href={`mailto:arcaluinoe.noebarkaja@gmail.com`}
+												className="text-black">
 												arcaluinoe.noebarkaja@gmail.com
-											</a>
+											</Link>
 										</li>
 									</ul>
 								</div>

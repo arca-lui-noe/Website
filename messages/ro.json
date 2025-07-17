@@ -5,7 +5,9 @@
     "clinic-title": "Clinică",
     "how_we_started-title": "Cum am început",
     "about-title": "Despre noi",
-    "blog-title": "Blog"
+    "blog-title": "Blog",
+    "app-title": "Descarcă aplicația",
+    "app-button-text": "Trecere la aplicație"
   },
   "Home": {
     "appointment-booking": "Programare",

@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
-const VideoBackground = () => {
+const VideoBackground = ({ locale }) => {
 	// Load translations for the component
 	const home_text = useTranslations("Home");
 	const menu_text = useTranslations("Menu");
@@ -167,12 +168,16 @@ const VideoBackground = () => {
 								<div className="text-center text-white">
 									<h1 className="hero-title">{home_text("welcome-title")}</h1>
 									<div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-										<button className="contact-btn btn btn_primary">
-											{home_text("appointment-booking")}
-										</button>
-										<button className="btn btn-outline-custom">
-											{menu_text("services-title")}
-										</button>
+										<Link href={`/${locale}/contact`}>
+											<button className="contact-btn btn btn_primary h-100">
+												{home_text("appointment-booking")}
+											</button>
+										</Link>
+										<Link href={`/${locale}/services`}>
+											<button className="btn btn-outline-custom h-100">
+												{menu_text("services-title")}
+											</button>
+										</Link>
 									</div>
 								</div>
 							</div>

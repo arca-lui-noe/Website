@@ -5,7 +5,9 @@
     "clinic-title": "Klinika",
     "how_we_started-title": "Hogyan kezdtük",
     "about-title": "Rólunk",
-    "blog-title": "Blog"
+    "blog-title": "Blog",
+    "app-title": "Alkalmazás letöltése",
+    "app-button-text": "Tovább az alkalmazáshoz"
   },
   "Home": {
     "appointment-booking": "Időpont foglalás",
