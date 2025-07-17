@@ -1,8 +1,84 @@
 {
+  "Menu": {
+    "home-title": "Kezdőlap",
+    "services-title": "Szolgáltatások",
+    "clinic-title": "Klinika",
+    "how_we_started-title": "Hogyan kezdtük",
+    "about-title": "Rólunk",
+    "blog-title": "Blog",
+    "app-title": "Alkalmazás letöltése",
+    "app-button-text": "Tovább az alkalmazáshoz"
+  },
   "Home": {
-    "heading": "Test heading hu"
+    "appointment-booking": "Időpont foglalás",
+    "hero-title": "Szeretettel és szakértelemmel kedvencéért",
+    "hero-subtitle": "Több mint 25 év prémium állatorvosi szakértelem",
+    "hero-desc": "A Noé Bárkájánál teljes szívvel gondoskodunk kedvencei egészségéről és jólétéről. Büszkék vagyunk szenvedélyes és tapasztalt állatorvos csapatunkra, akik a legmagasabb színvonalú ellátást biztosítják szeretett kisállatai számára.",
+    "value1-title": "Teljeskörű Ellátás",
+    "value1-desc": "Minden egy helyen kedvencéért.",
+    "value2-title": "25 Év Tapasztalat",
+    "value2-desc": "Negyedévszázadnyi biztos szakértelem.",
+    "value3-title": "Korszerű Eszközök",
+    "value3-desc": "Modern technológia kedvenced gyors felépüléséért.",
+    "value4-title": "Szívvel és Elhivatottsággal",
+    "value4-desc": "Mert minden kisállat számít.",
+    "service-title": "Szolgáltatásaink",
+    "service-subtitle": "Teljeskörű állatorvosi ellátás",
+    "welcome-title": "Üdvözöljük a Noé Bárkájánál!",
+    "welcome-desc": "A Noé Bárkájánál teljes szívvel gondoskodunk kedvencei egészségéről és jólétéről. Büszkék vagyunk szenvedélyes és tapasztalt állatorvos csapatunkra, akik a legmagasabb színvonalú ellátást biztosítják szeretett kisállatai számára.",
+    "welcome-title1": "Rólunk",
+    "welcome-desc1": "Klinikánkat az állatszeretet hívta életre, ahol kiváló orvosi ellátást nyújtunk. Elhivatott csapatunk minden pácienst szeretettel és tisztelettel kezel, így építve fel egy bizalmon alapuló, professzionális közösséget az évek során.",
+    "welcome-title2": "Küldetésünk",
+    "welcome-desc2": "Célunk, hogy a legkiválóbb, személyre szabott állatorvosi ellátást nyújtsuk, biztonságos és nyugodt környezetben. Támogatjuk a megelőző egészségügyet és oktatjuk a gazdákat, hozzájárulva ezzel kisállataik hosszú és boldog életéhez.",
+    "welcome-title3": "Szolgáltatásaink",
+    "welcome-desc3": "A Noé Bárkájánál teljes körű ellátást talál: konzultációk, oltások, műtétek, laborvizsgálatok, fogászat és modern képalkotó diagnosztika. Célunk, hogy a legújabb eszközökkel és technikákkal biztosítsuk kedvence legmagasabb szintű ellátását.",
+    "welcome-title4": "Társadalmi Felelősség",
+    "welcome-desc4": "Már az alapításunk óta aktívan részt veszünk a közösség életében. Szívügyünk a menhelyek támogatása, ivartalanítási és örökbefogadási kampányokat, valamint figyelemfelhívó akciókat szervezünk. Hiszünk abban, hogy jobb világot teremthetünk minden élőlény számára.",
+    "welcome-title5": "Csapatunk",
+    "welcome-desc5": "A Noé Bárkája csapatát tapasztalt állatorvosok és elhivatott asszisztensek alkotják, akiket az állatok iránti feltétlen szenvedély köt össze. Szakértelemmel, empátiával és hasznos tanácsokkal segítünk, mindezt barátságos környezetben."
+  },
+  "Clinic": {
+    "title": "Klinika",
+    "phone": "0365 738 824",
+    "address-title": "Cím",
+    "address": "Tudor Vladimirescu utca 143",
+    "address-city": "Marosvásárhely",
+    "program-title": "Nyitvatartás",
+    "program1": "Hétfő - Péntek:",
+    "program1-time": "09:00 - 17:00",
+    "program2": "Szombat:",
+    "program2-time": "10:00 - 13:00",
+    "program3": "Vasárnap:",
+    "program3-time": "Zárva"
+  },
+  "Cabinet": {
+    "title": "Rendelő",
+    "phone": "0265 212 062",
+    "address-title": "Cím",
+    "address": "Arieşului utca 19A",
+    "address-city": "Marosvásárhely",
+    "program-title": "Nyitvatartás",
+    "program1": "Hétfő - Péntek:",
+    "program1-time": "09:00 - 17:00",
+    "program2": "Szombat:",
+    "program2-time": "Zárva",
+    "program3": "Vasárnap:",
+    "program3-time": "Zárva"
+  },
+  "Contact": {
+    "contact-title": "Kapcsolatfelvétel",
+    "contact-subtitle": "Vegye fel velünk a kapcsolatot",
+    "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban."
   },
   "About": {
-    "heading": "Test about heading hu"
+    "heading": "Test about heading"
+  },
+  "Footer": {
+    "description": "Ahogy Noé bárkáján minden állat menedékre lelt, úgy nyújt klinikánk biztonságot és gyógyulást minden hozzánk érkező kisállatnak.",
+    "phone-address": "Állatorvosi klinika",
+    "program-title": "Klinika nyitvatartás",
+    "useful-links-title": "Hasznos linkek",
+    "newsletter-title": "Iratkozzon fel hírlevelünkre",
+    "newsletter-desc": "Maradjon naprakész a legfrissebb hírekkel és különleges ajánlatokkal. Iratkozzon fel hírlevelünkre, és hasznos információkat kap közvetlenül az e-mail fiókjába."
   }
 }

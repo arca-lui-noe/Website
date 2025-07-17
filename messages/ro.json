@@ -1,8 +1,84 @@
 {
+  "Menu": {
+    "home-title": "Acasă",
+    "services-title": "Servicii",
+    "clinic-title": "Clinică",
+    "how_we_started-title": "Cum am început",
+    "about-title": "Despre noi",
+    "blog-title": "Blog",
+    "app-title": "Descarcă aplicația",
+    "app-button-text": "Trecere la aplicație"
+  },
   "Home": {
-    "heading": "Test heading"
+    "appointment-booking": "Programare",
+    "hero-title": "Cu drag și profesionalism pentru animăluțul tău.",
+    "hero-subtitle": "Peste 25 de ani de expertiză veterinară profesională.",
+    "hero-desc": "Un sfert de secol de fiabilitate și expertiză în continuă dezvoltare - aceasta este clinica veterinară Arca lui Noe. Cu echipamentele noastre moderne, profesionale, și cu peste 25 de ani de experiență, oferim fiecărui pacient îngrijire la cel mai înalt nivel. Cea mai mare bucurie și recunoaștere a noastră este să îi vedem plecând sănătoși și fericiți - aceasta este mulțumirea tăcută pe care o primim zi de zi.",
+    "value1-title": "Îngrijire Completă",
+    "value1-desc": "Totul într-un singur loc pentru animăluțul tău.",
+    "value2-title": "25 Ani de Experiență",
+    "value2-desc": "Un sfert de secol de expertiză.",
+    "value3-title": "Echipament Modern",
+    "value3-desc": "Tehnologie modernă pentru vindecarea rapidă.",
+    "value4-title": "Cu Drag și Devotament",
+    "value4-desc": "Fiecare animăluț este important.",
+    "service-title": "Serviciile noastre",
+    "service-subtitle": "Servicii veterinare complete",
+    "welcome-title": "Bine ați venit la Arca lui Noe!",
+    "welcome-desc": "La Arca lui Noe, ne dedicăm în totalitate sănătății și bunăstării prietenilor dumneavoastră necuvântători. Suntem mândri de echipa noastră de medici veterinari pasionați și experimentați, gata să ofere îngrijire de cea mai înaltă calitate pentru animăluțele dumneavoastră.",
+    "welcome-title1": "Despre Arca lui Noe",
+    "welcome-desc1": "Am fondat clinica noastră din pură pasiune pentru animale, oferind îngrijire medicală de excelență. Echipa noastră dedicată tratează fiecare pacient cu dragoste și respect, construind o comunitate profesională bazată pe încredere de-a lungul anilor.",
+    "welcome-title2": "Misiunea Noastră",
+    "welcome-desc2": "Misiunea noastră este să oferim servicii veterinare personalizate și de cea mai înaltă calitate, într-un mediu sigur și liniștit. Susținem medicina preventivă și educăm proprietarii, contribuind astfel la o viață lungă și fericită pentru animăluțele lor.",
+    "welcome-title3": "Serviciile Noastre",
+    "welcome-desc3": "La Arca lui Noe, oferim o gamă completă de servicii: consultații, vaccinări, intervenții chirurgicale, analize de laborator, stomatologie și imagistică modernă. Ne asigurăm că primii cea mai bună îngrijire, folosind cele mai noi tehnici și echipamente.",
+    "welcome-title4": "Responsabilitate Socială",
+    "welcome-desc4": "De la înființare, ne implicăm activ în viața comunității. Susținem adăposturile, organizăm campanii de sterilizare/adopție și de conștientizare. Credem cu tărie că putem contribui la crearea unei lumi mai bune pentru toate ființele.",
+    "welcome-title5": "Echipa Noastră",
+    "welcome-desc5": "Echipa Arca lui Noe este formată din medici veterinari experimentați și asistenți dedicați, uniți de pasiunea lor absolută pentru animale. Vă ghidăm cu profesionalism, empatie și sfaturi utile, totul într-un mediu prietenos."
+  },
+  "Clinic": {
+    "title": "Clinică",
+    "phone": "0365 738 824",
+    "address-title": "Adresă",
+    "address": "Strada Tudor Vladimirescu 143",
+    "address-city": "Târgu Mureș",
+    "program-title": "Program de lucru",
+    "program1": "Luni - Vineri:",
+    "program1-time": "09:00 - 17:00",
+    "program2": "Sâmbătă:",
+    "program2-time": "10:00 - 13:00",
+    "program3": "Duminică:",
+    "program3-time": "Închis"
+  },
+  "Cabinet": {
+    "title": "Cabinet",
+    "phone": "0265 212 062",
+    "address-title": "Adresă",
+    "address": "Strada Arieşului 19A",
+    "address-city": "Târgu Mureș",
+    "program-title": "Program de lucru",
+    "program1": "Luni - Vineri:",
+    "program1-time": "09:00 - 17:00",
+    "program2": "Sâmbătă:",
+    "program2-time": "Închis",
+    "program3": "Duminică:",
+    "program3-time": "Închis"
+  },
+  "Contact": {
+    "contact-title": "Contactează-ne",
+    "contact-subtitle": "Ia legătura cu noi",
+    "contact-desc": "Răspundem cu plăcere la orice întrebare. Contactează-ne telefonic sau prin e-mail și te ajutăm cu sănătatea animăluțului tău."
   },
   "About": {
     "heading": "Test about heading"
+  },
+  "Footer": {
+    "description": "Așa cum pe Arca lui Noe fiecare animal și-a găsit adăpost, tot așa clinica noastră oferă siguranță și vindecare fiecărui animăluț care ne trece pragul.",
+    "phone-address": "clinica veterinară",
+    "program-title": "Program de lucru",
+    "useful-links-title": "Linkuri utile",
+    "newsletter-title": "Abonează-te la newsletter",
+    "newsletter-desc": "Fii la curent cu ultimele noutăți și oferte speciale. Abonează-te la newsletter-ul nostru și primește informații utile direct în căsuța ta de e-mail."
   }
 }

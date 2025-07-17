@@ -59,6 +59,8 @@ ul li{
 .main-header.header-style3 .header-lower{
   /* background-color: #fff; */
   width: 100%;
+  background-color: transparent; /* Átlátszó háttér az alapállapotban */
+  transition: background-color 300ms ease;
 }
 .main-header .header-lower .logo-box {
   position: relative;
@@ -74,6 +76,12 @@ ul li{
 .main-header .logo img {
   max-width: 100%;
   height: auto;
+  transition: all 300ms ease;
+}
+
+/* Logo transition for smooth changes */
+.LogoImage {
+  transition: opacity 300ms ease;
 }
 .main-header .main-wrapper {
   border-bottom: 2px solid #e3f3fd;
@@ -144,6 +152,13 @@ ul li{
   background-color: var(--bs-primary-bg-subtle);
   color: #084466;
 }
+
+/* Scrollozott állapotban a hover és aktív linkek */
+.sticky-header .main-list .navigation > li:hover > a,
+.sticky-header .main-list .navigation > li.current > a {
+  color: #084466;
+  background-color: var(--bs-primary-bg-subtle);
+}
 .main-list .navigation li:hover ul li a,
 .main-list .navigation li:hover ul li:hover ul li a{
   background-color: #fff;
@@ -159,10 +174,22 @@ ul li{
   line-height: 1;
   font-size: 18px;
   font-weight: 700;
-  color: #1C103B;
+  color: #FFFFFF; /* Fehér szín az átlátszó fejlécen */
   position: relative;
+  transition: all 300ms ease;
 }
+
+/* Fehér háttér esetén (scrollozott állapot) */
+.sticky-header .main-list .navigation > li > a {
+  color: #1C103B; /* Sötét szín a fehér fejlécen */
+}
+
 .main-list .navigation > li.current > a {
+  color: #084466;
+}
+
+/* Scrollozott állapotban az aktív link színe */
+.sticky-header .main-list .navigation > li.current > a {
   color: #084466;
 }
 .main-list .navigation > li.dropdown > a {
@@ -567,10 +594,14 @@ ul li{
 
 /*  ==== Mobile Menu  ==== */
 .mobile-nav-toggler {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 15px;
   position: relative;
   font-size: 24px;
   line-height: 20px;
-  cursor: pointer;
   color: var(--bs-dark);
   display: none;
   top: 0px;
@@ -578,6 +609,17 @@ ul li{
   -webkit-box-ordinal-group: 9;
       -ms-flex-order: 8;
           order: 8;
+}
+
+.mobile-nav-toggler .icon {
+  color: #FFFFFF; /* Fehér szín az átlátszó fejlécen */
+  font-size: 18px;
+  transition: color 300ms ease;
+}
+
+/* Scrollozott állapotban */
+.sticky-header .mobile-nav-toggler .icon {
+  color: #1C103B; /* Sötét szín a fehér fejlécen */
 }
 @media only screen and (max-width: 991px) {
   .mobile-nav-toggler {
@@ -1086,4 +1128,79 @@ ul li{
 }
 .innerpage-breadcrumb li a:hover {
   color: var(--bs-secondary);
+}
+
+/* Language switcher styles for transparent header */
+.vet-lang-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 300ms ease;
+}
+
+.vet-lang-btn .current-lang {
+  color: #FFFFFF !important; /* Fehér szín az átlátszó fejlécen */
+  transition: color 300ms ease;
+}
+
+/* Scrollozott állapotban */
+.sticky-header .vet-lang-btn .current-lang {
+  color: #1C103B !important; /* Sötét szín a fehér fejlécen */
+}
+
+/* Contact button color adjustments */
+.contact-btn.btn.btn_primary {
+  transition: all 300ms ease;
+}
+
+.contact-btn.btn.btn_primary i {
+  color: inherit;
+}
+
+/* Ensure proper text color for the top header icons */
+.header_top .icon_list > li a {
+  color: #ffffff;
+  transition: color 300ms ease;
+}
+
+/* Mobile language switcher */
+.mobile-lang-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 300ms ease;
+}
+
+.mobile-lang-btn span {
+  color: #1C103B;
+  transition: color 300ms ease;
+}
+
+/* Sticky header mobile language switcher */
+.sticky-header .mobile-lang-btn span {
+  color: #1C103B;
+}
+
+/* Non-home page styles - menu links should be dark on all pages except home */
+.non-home-page .main-list .navigation > li > a {
+  color: #1C103B; /* Dark color for non-home pages */
+}
+
+.non-home-page .main-list .navigation > li.current > a,
+.non-home-page .main-list .navigation > li:hover > a {
+  color: #084466; /* Primary color for active/hover states */
+}
+
+/* Ensure sticky header maintains dark text on non-home pages */
+.non-home-page.sticky-header .main-list .navigation > li > a {
+  color: #1C103B;
+}
+
+.non-home-page.sticky-header .main-list .navigation > li.current > a,
+.non-home-page.sticky-header .main-list .navigation > li:hover > a {
+  color: #084466;
 }

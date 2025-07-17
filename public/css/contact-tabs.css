@@ -1,0 +1,78 @@
+/* Contact Section Tab Styles */
+.contact_tabs_nav {
+  margin-bottom: 2rem;
+}
+
+.contact_tabs_nav .nav-tabs {
+  border: none;
+  background: #ffffff;
+  border-radius: 50px;
+  padding: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.contact_tabs_nav .nav-tabs .nav-item {
+  margin: 0;
+}
+
+.contact_tabs_nav .nav-tabs .nav-link {
+  border: none;
+  background: transparent;
+  color: #666;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+
+.contact_tabs_nav .nav-tabs .nav-link:hover {
+  color: #244463;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.contact_tabs_nav .nav-tabs .nav-link.active {
+  background: #244463;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.contact_tabs_nav .nav-tabs .nav-link i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Animation for tab switching */
+.contact_section .row.justify-content-center:last-of-type {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact_tabs_nav .nav-tabs .nav-link {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .contact_tabs_nav .nav-tabs .nav-link i {
+    margin-right: 6px;
+    font-size: 14px;
+  }
+}
+
+/* Contact info cards hover effect enhancement */
+.contact_section .iconbox_item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact_section .iconbox_item:hover {
+  transform: translateY(-5px);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+}

@@ -124,6 +124,10 @@ hr {
   background-color: #e3f3fd;
 }
 
+.text-black {
+  color: #0e081e;
+}
+
 .dropdown-menu {
   top: 100%;
   opacity: 0;
