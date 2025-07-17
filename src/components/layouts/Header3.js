@@ -20,6 +20,10 @@ export default function Header1({
 	const [animationClass, setAnimationClass] = useState("");
 
 	const menu_text = useTranslations("Menu");
+	const clinic_text = useTranslations("Clinic");
+
+	// Meghatározzuk, hogy a főoldalon vagyunk-e
+	const isHomePage = pathname === `/${locale}` || pathname === "/";
 
 	// Improved language switcher function
 	const handleLanguageChange = (newLocale) => {
@@ -89,7 +93,7 @@ export default function Header1({
 			<header
 				className={`main-header header-style3 ${
 					isSearch ? "moblie-search-active" : ""
-				}`}>
+				} ${!isHomePage ? "non-home-page" : ""}`}>
 				<div className="header_top d-none d-md-block">
 					<div className="container">
 						<div className="row align-items-center">
@@ -122,13 +126,25 @@ export default function Header1({
 									<li>
 										<Link href="#!">
 											<i className="fas fa-phone"></i>
-											<span>0000 - 123456789</span>
+											<span>
+												<a
+													href={`tel:${clinic_text("phone").replace(
+														/\s/g,
+														""
+													)}`}>
+													{clinic_text("phone")}
+												</a>
+											</span>
 										</Link>
 									</li>
 									<li>
 										<Link href="#!">
 											<i className="fas fa-envelope"></i>
-											<span>info@example.com</span>
+											<span>
+												<a href="mailto:arcaluinoe.noebarkaja@gmail.com">
+													arcaluinoe.noebarkaja@gmail.com
+												</a>
+											</span>
 										</Link>
 									</li>
 									<li className="language-switcher">
@@ -199,7 +215,11 @@ export default function Header1({
 							<div className="logo-box">
 								<div className="logo">
 									<Link href={`/${locale}`}>
-										<DynamicLogo locale={locale} />
+										<DynamicLogo
+											locale={locale}
+											scroll={false}
+											isHomePage={isHomePage}
+										/>
 									</Link>
 								</div>
 							</div>
@@ -273,10 +293,15 @@ export default function Header1({
 					<div className="menu-backdrop" onClick={handleMobileMenu} />
 
 					<nav className="menu-box">
+						{" "}
 						<div className="upper-box">
 							<div className="nav-logo d-block d-lg-none">
 								<Link href={`/${locale}`}>
-									<DynamicLogo locale={locale} />
+									<DynamicLogo
+										locale={locale}
+										scroll={false}
+										isHomePage={isHomePage}
+									/>
 								</Link>
 							</div>
 							<div className="close-btn" onClick={handleMobileMenu}>
@@ -284,7 +309,6 @@ export default function Header1({
 							</div>
 						</div>
 						<MobileMenu dict={dict} locale={locale} />
-
 						<ul className="social-links">
 							<li>
 								<Link href="/#">
@@ -319,7 +343,11 @@ export default function Header1({
 							{/*Logo*/}
 							<div className="logo">
 								<Link href={`/${locale}`}>
-									<DynamicLogo locale={locale} />
+									<DynamicLogo
+										locale={locale}
+										scroll={scroll}
+										isHomePage={isHomePage}
+									/>
 								</Link>
 							</div>
 

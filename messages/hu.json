@@ -3,10 +3,12 @@
     "home-title": "Kezdőlap",
     "services-title": "Szolgáltatások",
     "clinic-title": "Klinika",
+    "how_we_started-title": "Hogyan kezdtük",
     "about-title": "Rólunk",
     "blog-title": "Blog"
   },
   "Home": {
+    "appointment-booking": "Időpont foglalás",
     "hero-title": "Szeretettel és szakértelemmel kedvencéért",
     "hero-subtitle": "Több mint 25 év prémium állatorvosi szakértelem",
     "hero-desc": "A Noé Bárkájánál teljes szívvel gondoskodunk kedvencei egészségéről és jólétéről. Büszkék vagyunk szenvedélyes és tapasztalt állatorvos csapatunkra, akik a legmagasabb színvonalú ellátást biztosítják szeretett kisállatai számára.",

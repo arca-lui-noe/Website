@@ -9,6 +9,7 @@ const Banner2 = async () => {
 		<>
 			{/* style={{ backgroundImage: 'url(images/overlay/shapes_overlay_2.svg)' }} */}
 			<section
+				id="home"
 				className="banner_section banner_style_2 decoration_wrap"
 				style={{
 					backgroundImage: "url('/images/banner/shape_banner_bg.svg')",

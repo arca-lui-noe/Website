@@ -23,7 +23,11 @@ export default function Footer1({ locale }) {
 								<div className="footer_widget footer_about mb50-lg">
 									<div className="site_logo">
 										<Link href={`/${locale}`}>
-											<DynamicLogo locale={locale} />
+											<DynamicLogo
+												locale={locale}
+												scroll={true}
+												isHomePage={false}
+											/>
 										</Link>
 									</div>
 									<p>{footer_text("description")}</p>

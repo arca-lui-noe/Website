@@ -1,7 +1,11 @@
 "use client";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const VideoBackground = () => {
+	// Load translations for the component
+	const home_text = useTranslations("Home");
+	const menu_text = useTranslations("Menu");
 	return (
 		<>
 			<style jsx>{`
@@ -88,26 +92,35 @@ const VideoBackground = () => {
 					left: 50%;
 					transform: translateX(-50%);
 					color: white;
-					animation: bounce 2s infinite;
+					cursor: pointer;
+					transition: color 0.3s ease;
+					z-index: 4;
+					padding: 10px;
+					text-align: center;
 				}
 
-				@keyframes bounce {
+				.scroll-indicator-text {
+					font-size: 0.9rem;
+					margin-bottom: 8px;
+					opacity: 0.8;
+					font-weight: 500;
+				}
+
+				.scroll-indicator-arrow {
+					animation: upDown 2s infinite ease-in-out;
+				}
+
+				.scroll-indicator:hover {
+					color: #007bff;
+				}
+
+				@keyframes upDown {
 					0%,
-					20%,
-					53%,
-					80%,
 					100% {
-						transform: translateX(-50%) translateY(0);
+						transform: translateY(0);
 					}
-					40%,
-					43% {
-						transform: translateX(-50%) translateY(-15px);
-					}
-					70% {
-						transform: translateX(-50%) translateY(-7px);
-					}
-					90% {
-						transform: translateX(-50%) translateY(-3px);
+					50% {
+						transform: translateY(-10px);
 					}
 				}
 
@@ -152,25 +165,13 @@ const VideoBackground = () => {
 						<div className="row justify-content-center">
 							<div className="col-lg-10 col-xl-8">
 								<div className="text-center text-white">
-									{/* Main Heading */}
-									<h1 className="hero-title">Üdvözöljük a Noé Bárkájánál!</h1>
-
-									{/* Description */}
-									{/* <p className="hero-description">
-										A Noé Bárkájánál teljes szívvel gondoskodunk kedvencei
-										egészségéről és jólétéről. Büszkék vagyunk szenvedélyes és
-										tapasztalt állatorvos csapatunkra, akik a legmagasabb
-										színvonalú ellátást biztosítják szeretett kisállatai
-										számára.
-									</p> */}
-
-									{/* Call to Action Buttons */}
+									<h1 className="hero-title">{home_text("welcome-title")}</h1>
 									<div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-										<button className="btn btn-primary btn-primary-custom">
-											Időpont foglalás
+										<button className="contact-btn btn btn_primary">
+											{home_text("appointment-booking")}
 										</button>
 										<button className="btn btn-outline-custom">
-											Szolgáltatások
+											{menu_text("services-title")}
 										</button>
 									</div>
 								</div>
@@ -180,20 +181,46 @@ const VideoBackground = () => {
 				</div>
 
 				{/* Scroll indicator */}
-				<div className="scroll-indicator">
-					<svg
-						width="24"
-						height="24"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24">
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M19 14l-7 7m0 0l-7-7m7 7V3"
-						/>
-					</svg>
+				<div
+					className="scroll-indicator"
+					onClick={() => {
+						const targetSection = document.getElementById("home");
+						if (targetSection) {
+							targetSection.scrollIntoView({
+								behavior: "smooth",
+								block: "start",
+							});
+						}
+					}}
+					role="button"
+					tabIndex={0}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							const targetSection = document.getElementById("home");
+							if (targetSection) {
+								targetSection.scrollIntoView({
+									behavior: "smooth",
+									block: "start",
+								});
+							}
+						}
+					}}>
+					<div className="scroll-indicator-text">Scroll Down</div>
+					<div className="scroll-indicator-arrow">
+						<svg
+							width="24"
+							height="24"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth={2}
+								d="M19 14l-7 7m0 0l-7-7m7 7V3"
+							/>
+						</svg>
+					</div>
 				</div>
 			</div>
 		</>
