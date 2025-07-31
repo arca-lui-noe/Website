@@ -22,6 +22,7 @@ const nextConfig = {
       new URL("http://localhost/**"),
       new URL("https://arcaluinoe.prismasolutions.ro/**"),
     ],
+    domains: ['via.placeholder.com'],
     minimumCacheTTL: 60,
   },
 
