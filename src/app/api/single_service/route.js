@@ -2,9 +2,10 @@ export async function GET(request) {
 	try {
 		const { searchParams } = new URL(request.url);
 		const slug = searchParams.get("slug");
+		const locale = searchParams.get("locale") || "ro";
 		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 		const backendRes = await fetch(
-			`${apiUrl}/admin/events/get_single_service.php?slug=${slug}`
+			`${apiUrl}/admin/events/get_single_service.php?slug=${slug}&locale=${locale}`
 		);
 
 		if (!backendRes.ok) {

@@ -58,7 +58,7 @@ const Service = ({
 
 									<Link
 										className="btn_unfill"
-										href={`/services/${service.slug}`}>
+										href={`/services/${service.slug}?locale=${locale}`}>
 										<span>
 											{locale === "hu"
 												? "Szolgáltatás igénylése"

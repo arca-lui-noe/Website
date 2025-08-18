@@ -5,12 +5,14 @@ import ServiceDetailsSec1 from "@/components/sections/services/ServiceDetailsSec
 import ServiceDetailsSec2 from "@/components/sections/services/ServiceDetailsSec2";
 import ServiceDetailsSec3 from "@/components/sections/services/ServiceDetailsSec3";
 import ServiceDetailsSec5 from "@/components/sections/services/ServiceDetailsSec5";
+import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
 import React from "react";
 
 const ServiceDetails = ({ params }) => {
 	const { slug } = React.use(params);
+	const locale = useLocale();
 	const [service, setService] = useState(null);
 	const [gallery, setGallery] = useState(null);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -18,7 +20,9 @@ const ServiceDetails = ({ params }) => {
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
-				const res = await fetch(`/api/single_service?slug=${slug}`);
+				const res = await fetch(
+					`/api/single_service?slug=${slug}&locale=${locale}`
+				);
 				const data = await res.json();
 				setService(data);
 				console.log("Fetched service:", data);
