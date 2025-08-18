@@ -1,29 +1,33 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const category = searchParams.get("category");
+	try {
+		const apiUrl = process.env.API_URL;
+		const { searchParams } = new URL(request.url);
+		const category = searchParams.get("category");
 
-    let url = "https://arcaluinoe.prismasolutions.ro/admin/events/get_all_blogs.php";
+		let url = `${apiUrl}/get_all_blogs.php`;
 
-    if (category && !isNaN(category)) {
-      // Use the category-specific endpoint with category_id param
-      url = `https://arcaluinoe.prismasolutions.ro/admin/events/get_blogs_by_category.php?category_id=${encodeURIComponent(
-        category
-      )}`;
-    }
+		if (category && !isNaN(category)) {
+			// Use the category-specific endpoint with category_id param
+			url = `${apiUrl}/get_blogs_by_category.php?category_id=${encodeURIComponent(
+				category
+			)}`;
+		}
 
-    const res = await fetch(url);
+		const res = await fetch(url);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blogs");
-    }
+		if (!res.ok) {
+			throw new Error("Failed to fetch blogs");
+		}
 
-    const data = await res.json();
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("API error:", error);
-    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
-  }
+		const data = await res.json();
+		return NextResponse.json(data);
+	} catch (error) {
+		console.error("API error:", error);
+		return NextResponse.json(
+			{ error: "Failed to fetch blogs" },
+			{ status: 500 }
+		);
+	}
 }

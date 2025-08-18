@@ -1,19 +1,21 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  try {
-    const res = await fetch(
-      "https://arcaluinoe.prismasolutions.ro/admin/events/get_blog_categories.php"
-    );
+	try {
+		const apiUrl = process.env.API_URL;
+		const res = await fetch(`${apiUrl}/get_blog_categories.php`);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog categories");
-    }
+		if (!res.ok) {
+			throw new Error("Failed to fetch blog categories");
+		}
 
-    const data = await res.json();
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("API error:", error);
-    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
-  }
+		const data = await res.json();
+		return NextResponse.json(data);
+	} catch (error) {
+		console.error("API error:", error);
+		return NextResponse.json(
+			{ error: "Failed to fetch blogs" },
+			{ status: 500 }
+		);
+	}
 }

@@ -4,17 +4,25 @@ import React from "react";
 import ServiceContact from "../../../components/sections/services/ServiceContact";
 import Contact from "@/components/sections/home/Contact";
 import Service from "@/components/sections/home/Service";
+import { getTranslations } from "next-intl/server";
 
-const Services = () => {
+const Services = async ({ params: { locale } }) => {
+	const t = await getTranslations("Services");
+
 	return (
 		<>
 			<PageTitle
 				customClass="servicedetails-style"
-				pageName="Pet Sitting"
+				pageName={t("title")}
 				floatImage="/images/breadcrumb/breadcrumb_img_3.png"
-				pageText="Blandit cursus risus at ultrices. Enim sit amet venenatis urna cursus eget nunc scelerisque"
+				pageText={t("subtitle")}
 			/>
-			<Service showButton={false} />
+			<Service
+				showButton={false}
+				serviceCallout={t("callout")}
+				serviceCalloutTitle={t("callout-title")}
+				locale={locale}
+			/>
 			<Contact />
 			{/* <ServiceContact /> */}
 		</>

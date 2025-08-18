@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 const Service = ({
 	noPaddingBottom = false,
 	showButton = true,
 	limit = null,
+	serviceCallout,
+	serviceCalloutTitle,
+	locale,
 }) => {
 	// Limitáljuk a szolgáltatásokat, ha meg van adva limit
 	const [services, setServices] = useState([]);
@@ -15,9 +18,10 @@ const Service = ({
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
-				const res = await fetch("/api/services");
+				const res = await fetch(`/api/services?locale=${locale}`);
 				const data = await res.json();
 				setServices(data);
+				console.log("Fetched services:", data);
 			} catch (err) {
 				console.error("Failed to load services", err);
 			}
@@ -35,8 +39,8 @@ const Service = ({
 				<div className="container">
 					<div className="section_title text-center">
 						<h2 className="title_text mb-0">
-							<span className="sub_title">Our Services</span> All Pet Care
-							Services
+							<span className="sub_title">{serviceCallout}</span>
+							{serviceCalloutTitle}
 						</h2>
 					</div>
 
@@ -52,8 +56,14 @@ const Service = ({
 										<h3 className="item_title mb-0">{service.name}</h3>
 									</div>
 
-									<Link className="btn_unfill" href="#service_contact">
-										<span>Get Service</span>
+									<Link
+										className="btn_unfill"
+										href={`/services/${service.slug}`}>
+										<span>
+											{locale === "hu"
+												? "Szolgáltatás igénylése"
+												: "Solicită serviciul"}
+										</span>
 										<i className="far fa-long-arrow-right"></i>
 									</Link>
 									<div className="decoration_image">
@@ -71,7 +81,8 @@ const Service = ({
 						{showButton && (
 							<div className="text-center mt-2">
 								<Link className="btn btn_primary" href="/services">
-									<i className="fas fa-paw"></i> All Services
+									<i className="fas fa-paw"></i>
+									{locale === "hu" ? "Összes szolgáltatás" : "Toate serviciile"}
 								</Link>
 							</div>
 						)}

@@ -73,6 +73,12 @@
   "About": {
     "heading": "Test about heading"
   },
+  "Services": {
+    "title": "Servicii",
+    "subtitle": "La Clinica Veterinară Arca lui Noe primim fiecare animal de companie cu empatie și îngrijire profesională, deoarece știm că și ei fac parte din familie. Scopul nostru este să le oferim, din perioada de pui până la vârsta înaintată, îngrijire completă și sigură într-un singur loc.",
+    "callout": "Serviciile noastre",
+    "callout-title": "Descoperiți serviciile noastre"
+  },
   "Footer": {
     "description": "Așa cum pe Arca lui Noe fiecare animal și-a găsit adăpost, tot așa clinica noastră oferă siguranță și vindecare fiecărui animăluț care ne trece pragul.",
     "phone-address": "clinica veterinară",

@@ -1,31 +1,29 @@
 import Image from "next/image";
 
-// Logo komponens, amely a nyelv, scroll állapot és oldal típusa alapján választja ki a megfelelő logót
 export default function DynamicLogo({
 	width = 260,
 	height = 120,
 	className = "LogoImage",
 	locale,
-	scroll = false, // scroll állapot a fejléc színének megfelelő logo kiválasztásához
-	isHomePage = false, // új paraméter: true ha a főoldalon vagyunk
+	scroll = false,
+	isHomePage = false,
 }) {
-	// A nyelv, scroll állapot és oldal típusa alapján választjuk ki a megfelelő logót
 	const logoSrc = scroll
 		? locale === "hu"
-			? "/images/logo/logo_hor_hu_color.png" // Sötét logo scrollozott állapotban (fehér háttér)
+			? "/images/logo/logo_hor_hu_color.png"
 			: locale === "ro"
-			? "/images/logo/logo_hor_ro_color.png" // Sötét logo scrollozott állapotban (fehér háttér) román nyelvhez
+			? "/images/logo/logo_hor_ro_color.png"
 			: ""
 		: isHomePage
 		? locale === "hu"
-			? "/images/logo/logo_hor_hu_white.png" // Fehér logo a főoldal tetején (átlátszó háttér)
+			? "/images/logo/logo_hor_hu_white.png"
 			: locale === "ro"
-			? "/images/logo/logo_hor_ro_white.png" // Fehér logo a főoldal tetején (átlátszó háttér) román nyelvhez
+			? "/images/logo/logo_hor_ro_white.png"
 			: ""
 		: locale === "hu"
-		? "/images/logo/logo_hor_hu_color.png" // Sötét logo más oldalakon (fehér háttér)
+		? "/images/logo/logo_hor_hu_color.png"
 		: locale === "ro"
-		? "/images/logo/logo_hor_ro_color.png" // Sötét logo más oldalakon (fehér háttér) román nyelvhez
+		? "/images/logo/logo_hor_ro_color.png"
 		: "";
 
 	const logoAlt = locale === "hu" ? "Noé Bárkája logo" : "Arca lui Noe logo";

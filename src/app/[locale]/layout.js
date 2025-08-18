@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "/public/css/contact-tabs.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
+import { notFound } from "next/navigation";
 export async function generateStaticParams() {
 	return [{ locale: "hu" }, { locale: "ro" }];
 }
@@ -19,9 +20,9 @@ export async function generateMetadata({ params }) {}
 export default async function LocaleLayout({ children, params }) {
 	// Ensure that the incoming `locale` is valid
 	const { locale } = await params;
-	if (!hasLocale(routing.locales, locale)) {
-		notFound();
-	}
+	// if (!hasLocale(routing.locales, locale)) {
+	// 	notFound();
+	// }
 
 	return (
 		<html lang={locale}>

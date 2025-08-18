@@ -14,7 +14,7 @@ const PageTitle = (props) => {
 						<li>{props.pageName}</li>
 					</ul>
 					<h1 className="title">{props.pageName}</h1>
-					<p className="text">{props.pageText}</p>
+					<p className="text">{props.pageDescription}</p>
 				</div>
 			</div>
 			<Image

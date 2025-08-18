@@ -41,7 +41,12 @@ export default async function HomePage({ params }) {
 			<TestComp locale={locale} />
 			{/* <Banner /> */}
 			<Banner2 />
-			<Service noPaddingBottom={true} showButton={true} limit={5} />
+			<Service
+				noPaddingBottom={true}
+				showButton={true}
+				limit={5}
+				locale={locale}
+			/>
 			<Faq />
 			{/* <Gallery /> */}
 			<BlogPost />

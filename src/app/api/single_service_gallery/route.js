@@ -1,15 +1,16 @@
 export async function GET(request) {
 	try {
 		const { searchParams } = new URL(request.url);
-		const locale = searchParams.get("locale");
+		const id = searchParams.get("id");
 		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 		const backendRes = await fetch(
-			`${apiUrl}/admin/events/services_list.php?locale=${locale}`
+			`${apiUrl}/admin/events/get_service_gallery.php?id=${id}`
 		);
 
 		if (!backendRes.ok) {
 			return new Response(
-				JSON.stringify({ error: "Failed to fetch services" }),
+				JSON.stringify({ error: "Failed to fetch single service gallery" }),
 				{
 					status: backendRes.status,
 					headers: { "Content-Type": "application/json" },
@@ -17,10 +18,9 @@ export async function GET(request) {
 			);
 		}
 
-		const services = await backendRes.json();
-		console.log("Fetched services:", services);
+		const gallery = await backendRes.json();
 
-		return new Response(JSON.stringify(services), {
+		return new Response(JSON.stringify(gallery), {
 			status: 200,
 			headers: { "Content-Type": "application/json" },
 		});

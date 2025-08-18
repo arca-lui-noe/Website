@@ -3623,7 +3623,7 @@ hr {
   padding: 4px;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .about_image_1 .image_1 img,
 .about_image_1 .image_2 img,
@@ -3631,7 +3631,7 @@ hr {
   border-radius: 8px;
 }
 .about_image_1 .image_1 {
-  max-width: 483px;
+  max-width: 900px;
 }
 .about_image_1 .image_2 {
   bottom: 0;
@@ -6764,4 +6764,10 @@ body.loading-active {
   #timeline {
     height: 50vh;
   }
+}
+
+.single-service-description li {
+  position: relative;
+  padding-left: .5rem;
+  list-style: none;
 }

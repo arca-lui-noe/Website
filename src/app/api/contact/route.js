@@ -1,36 +1,39 @@
 export async function POST(req) {
-  try {
-    const body = await req.json();
+	try {
+		const apiUrl = process.env.API_URL;
 
-    // Send form data to PHP backend using URLSearchParams (simulate form POST)
-    const formData = new URLSearchParams();
-    formData.append("name", body.name || "");
-    formData.append("email", body.email || "");
-    formData.append("service_id", body.service_id || "");
-    formData.append("selected_date", body.selected_date || "");
-    formData.append("message", body.message || "");
+		const body = await req.json();
 
-    const phpResponse = await fetch(
-      "https://arcaluinoe.prismasolutions.ro/admin/events/submit_contact.php",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: formData.toString(),
-      }
-    );
+		// Send form data to PHP backend using URLSearchParams (simulate form POST)
+		const formData = new URLSearchParams();
+		formData.append("name", body.name || "");
+		formData.append("email", body.email || "");
+		formData.append("service_id", body.service_id || "");
+		formData.append("selected_date", body.selected_date || "");
+		formData.append("message", body.message || "");
 
-    const data = await phpResponse.json();
+		const phpResponse = await fetch(`${apiUrl}/submit_contact.php`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: formData.toString(),
+		});
 
-    return new Response(JSON.stringify(data), {
-      status: phpResponse.ok ? 200 : 500,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    return new Response(
-      JSON.stringify({ success: false, message: "Server error", error: error.message }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  }
+		const data = await phpResponse.json();
+
+		return new Response(JSON.stringify(data), {
+			status: phpResponse.ok ? 200 : 500,
+			headers: { "Content-Type": "application/json" },
+		});
+	} catch (error) {
+		return new Response(
+			JSON.stringify({
+				success: false,
+				message: "Server error",
+				error: error.message,
+			}),
+			{ status: 500, headers: { "Content-Type": "application/json" } }
+		);
+	}
 }

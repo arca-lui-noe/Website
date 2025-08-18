@@ -73,6 +73,12 @@
   "About": {
     "heading": "Test about heading"
   },
+  "Services": {
+    "title": "Szolgáltatások",
+    "subtitle": "A Noé Bárkája Kisállatklinikán minden házi kedvencet empátiával és szakszerű gondoskodással fogadunk, hiszen tudjuk, hogy ők is a család tagjai. Célunk, hogy kölyökkortól egészen idős korukig egy helyen, teljes körű és biztonságos ellátást nyújtsunk számukra.",
+    "callout": "Szolgáltatásaink",
+    "callout-title": "Fedezze fel szolgáltatásainkat"
+  },
   "Footer": {
     "description": "Ahogy Noé bárkáján minden állat menedékre lelt, úgy nyújt klinikánk biztonságot és gyógyulást minden hozzánk érkező kisállatnak.",
     "phone-address": "Állatorvosi klinika",

@@ -1,15 +1,15 @@
 export async function GET(request) {
 	try {
 		const { searchParams } = new URL(request.url);
-		const locale = searchParams.get("locale");
+		const slug = searchParams.get("slug");
 		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 		const backendRes = await fetch(
-			`${apiUrl}/admin/events/services_list.php?locale=${locale}`
+			`${apiUrl}/admin/events/get_single_service.php?slug=${slug}`
 		);
 
 		if (!backendRes.ok) {
 			return new Response(
-				JSON.stringify({ error: "Failed to fetch services" }),
+				JSON.stringify({ error: "Failed to fetch single service" }),
 				{
 					status: backendRes.status,
 					headers: { "Content-Type": "application/json" },
@@ -18,7 +18,6 @@ export async function GET(request) {
 		}
 
 		const services = await backendRes.json();
-		console.log("Fetched services:", services);
 
 		return new Response(JSON.stringify(services), {
 			status: 200,
