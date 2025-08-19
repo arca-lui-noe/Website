@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
@@ -58,7 +57,7 @@ const Service = ({
 
 									<Link
 										className="btn_unfill"
-										href={`/services/${service.slug}?locale=${locale}`}>
+										href={`/services/${service.slug}`}>
 										<span>
 											{locale === "hu"
 												? "Szolgáltatás igénylése"

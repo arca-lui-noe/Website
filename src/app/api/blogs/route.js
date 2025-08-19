@@ -2,19 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
 	try {
-		const apiUrl = process.env.API_URL;
+		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 		const { searchParams } = new URL(request.url);
-		const category = searchParams.get("category");
+		const locale = searchParams.get("locale");
 
-		let url = `${apiUrl}/get_all_blogs.php`;
-
-		if (category && !isNaN(category)) {
-			// Use the category-specific endpoint with category_id param
-			url = `${apiUrl}/get_blogs_by_category.php?category_id=${encodeURIComponent(
-				category
-			)}`;
-		}
-
+		let url = `${apiUrl}/admin/events/get_all_blogs.php?locale=${locale}`;
 		const res = await fetch(url);
 
 		if (!res.ok) {
@@ -30,4 +22,5 @@ export async function GET(request) {
 			{ status: 500 }
 		);
 	}
+	d;
 }

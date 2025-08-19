@@ -6,21 +6,21 @@ import PageTitle from "@/components/sections/PageTitle";
 import StoryTimeline from "@/components/StoryTimeline/StoryTimeline";
 
 const About = () => {
-  return (
-    <>
-      <PageTitle
-        customClass="about-style"
-        pageName="About Us"
-        floatImage="/images/breadcrumb/breadcrumb_img_1.png"
-        pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
-      />
-<StoryTimeline />
-      <AboutUs />
-      <Consulting />
-      <Faq />
-      <VideoSection />
-    </>
-  );
+	return (
+		<>
+			<PageTitle
+				customClass="about-style"
+				pageName="About Us"
+				floatImage="/images/breadcrumb/breadcrumb_img_1.png"
+				pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
+			/>
+			{/* <StoryTimeline /> */}
+			<AboutUs />
+			<Consulting />
+			<Faq />
+			<VideoSection />
+		</>
+	);
 };
 
 export default About;

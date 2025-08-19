@@ -24,6 +24,8 @@
     "value4-desc": "Fiecare animăluț este important.",
     "service-title": "Serviciile noastre",
     "service-subtitle": "Servicii veterinare complete",
+    "blog-title": "Știri și sfaturi utile",
+    "blog-subtitle": "Blogul Arca lui Noe",
     "welcome-title": "Bine ați venit la Arca lui Noe!",
     "welcome-desc": "La Arca lui Noe, ne dedicăm în totalitate sănătății și bunăstării prietenilor dumneavoastră necuvântători. Suntem mândri de echipa noastră de medici veterinari pasionați și experimentați, gata să ofere îngrijire de cea mai înaltă calitate pentru animăluțele dumneavoastră.",
     "welcome-title1": "Despre Arca lui Noe",
@@ -86,5 +88,10 @@
     "useful-links-title": "Linkuri utile",
     "newsletter-title": "Abonează-te la newsletter",
     "newsletter-desc": "Fii la curent cu ultimele noutăți și oferte speciale. Abonează-te la newsletter-ul nostru și primește informații utile direct în căsuța ta de e-mail."
+  },
+  "Blog": {
+    "home-title": "Acasă",
+    "title": "Blog",
+    "subtitle": "Știri și sfaturi utile"
   }
 }

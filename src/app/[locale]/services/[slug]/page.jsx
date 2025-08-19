@@ -48,7 +48,7 @@ const ServiceDetails = ({ params }) => {
 		if (slug) {
 			fetchServices();
 		}
-	}, [slug]);
+	}, [slug, locale]);
 
 	return (
 		<>
@@ -71,10 +71,16 @@ const ServiceDetails = ({ params }) => {
 						? `${apiUrl}/uploads/service/${service.pet_image}`
 						: "public\\images\\logo\\logo.svg"
 				}
+				videoUrl={service ? service.video : null}
 			/>
 			{/* <ServiceDetailsSec4 /> */}
 			{/* <ServiceDetailsSec5 /> */}
-			<Service noPaddingBottom={true} showButton={true} limit={3} />
+			<Service
+				noPaddingBottom={true}
+				showButton={true}
+				limit={3}
+				locale={locale}
+			/>
 		</>
 	);
 };

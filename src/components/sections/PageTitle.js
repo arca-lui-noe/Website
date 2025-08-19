@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import React from "react";
 
 const PageTitle = (props) => {
@@ -9,12 +9,12 @@ const PageTitle = (props) => {
 				<div className="title-wrapper">
 					<ul className="innerpage-breadcrumb ps-0">
 						<li>
-							<Link href="/">Home</Link>
+							<Link href="/">{props.homeName}</Link>
 						</li>
 						<li>{props.pageName}</li>
 					</ul>
 					<h1 className="title">{props.pageName}</h1>
-					<p className="text">{props.pageDescription}</p>
+					<p className="text">{props.pageText}</p>
 				</div>
 			</div>
 			<Image

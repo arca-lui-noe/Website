@@ -24,6 +24,8 @@
     "value4-desc": "Mert minden kisállat számít.",
     "service-title": "Szolgáltatásaink",
     "service-subtitle": "Teljeskörű állatorvosi ellátás",
+    "blog-title": "Friss hírek és hasznos tanácsok",
+    "blog-subtitle": "Noé Bárkája Blog",
     "welcome-title": "Üdvözöljük a Noé Bárkájánál!",
     "welcome-desc": "A Noé Bárkájánál teljes szívvel gondoskodunk kedvencei egészségéről és jólétéről. Büszkék vagyunk szenvedélyes és tapasztalt állatorvos csapatunkra, akik a legmagasabb színvonalú ellátást biztosítják szeretett kisállatai számára.",
     "welcome-title1": "Rólunk",
@@ -86,5 +88,10 @@
     "useful-links-title": "Hasznos linkek",
     "newsletter-title": "Iratkozzon fel hírlevelünkre",
     "newsletter-desc": "Maradjon naprakész a legfrissebb hírekkel és különleges ajánlatokkal. Iratkozzon fel hírlevelünkre, és hasznos információkat kap közvetlenül az e-mail fiókjába."
+  },
+  "Blog": {
+    "home-title": "Főoldal",
+    "title": "Blog",
+    "subtitle": "Friss hírek és hasznos tanácsok"
   }
 }

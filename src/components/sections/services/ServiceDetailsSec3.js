@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 
-const ServiceDetailsSec3 = ({ pageDescription, petImage }) => {
+const ServiceDetailsSec3 = ({ pageDescription, petImage, videoUrl }) => {
 	const descriptionRef = useRef(null);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 	console.log("Pet Image URL:", petImage);
@@ -92,6 +92,34 @@ const ServiceDetailsSec3 = ({ pageDescription, petImage }) => {
 					/>
 				</div>
 			</section>
+			{videoUrl && (
+				<section className="video_section section_space_lg pb-0">
+					<div className="container">
+						<div
+							className="video_widget"
+							style={{
+								position: "relative",
+								paddingBottom: "56.25%",
+								height: 0,
+							}}>
+							<iframe
+								style={{
+									position: "absolute",
+									top: 0,
+									left: 0,
+									width: "100%",
+									height: "100%",
+									borderRadius: "20px",
+								}}
+								src={videoUrl}
+								title="YouTube video player"
+								frameBorder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen></iframe>
+						</div>
+					</div>
+				</section>
+			)}
 		</>
 	);
 };

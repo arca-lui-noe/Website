@@ -1,32 +1,32 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const BLOGS_PER_PAGE = 5;
 
 const NewsGrid = () => {
 	const [blogs, setBlogs] = useState([]);
-	const [categories, setCategories] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [catLoading, setCatLoading] = useState(true);
-	const [relatedBlogs, setRelatedBlogs] = useState([]);
+	const [relatedBlogs, setRelatedBlogs] = useState([]); // will hold recommended blogs
 	const [relatedLoading, setRelatedLoading] = useState(true);
+	const locale = useLocale();
 
 	// Pagination state
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const searchParams = useSearchParams();
-	const categoryFilter = searchParams.get("category");
+
+	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 	useEffect(() => {
 		const fetchBlogs = async () => {
 			setLoading(true);
 			try {
-				const url = categoryFilter
-					? `/api/blogs?category=${categoryFilter}`
-					: "/api/blogs";
+				const url = `/api/blogs?locale=${locale}`;
 				const res = await fetch(url);
 				const data = await res.json();
 				setBlogs(data);
@@ -39,45 +39,27 @@ const NewsGrid = () => {
 		};
 
 		fetchBlogs();
-	}, [categoryFilter]);
+	}, [locale]);
 
+	// Fetch recommended blogs (independent of loaded blogs)
 	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				const res = await fetch("/api/blog_categories");
-				const data = await res.json();
-				setCategories(data);
-			} catch (err) {
-				console.error("Failed to load categories", err);
-			} finally {
-				setCatLoading(false);
-			}
-		};
-
-		fetchCategories();
-	}, []);
-
-	useEffect(() => {
-		const fetchRelatedBlogs = async () => {
+		const fetchRecommended = async () => {
 			setRelatedLoading(true);
 			try {
-				const res = await fetch("/api/blogs"); // fetch all blogs
+				const res = await fetch(`/api/recommended_blogs?locale=${locale}`);
+				if (!res.ok) throw new Error("Failed to fetch recommended blogs");
 				const data = await res.json();
-
-				const sorted = data
-					.filter((blog) => blog.updated_date)
-					.sort((a, b) => new Date(b.updated_date) - new Date(a.updated_date));
-
-				setRelatedBlogs(sorted.slice(0, 3));
+				setRelatedBlogs(data || []);
 			} catch (err) {
-				console.error("Failed to load related blogs", err);
+				console.error("Failed to load recommended blogs", err);
+				setRelatedBlogs([]);
 			} finally {
 				setRelatedLoading(false);
 			}
 		};
 
-		fetchRelatedBlogs();
-	}, []);
+		fetchRecommended();
+	}, [locale]);
 
 	// Calculate total pages
 	const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE);
@@ -117,17 +99,41 @@ const NewsGrid = () => {
 															{blog.category_name}
 														</Link>
 													</li>
+													<li>
+														{(() => {
+															if (!blog?.created_date) return null;
+															// Expecting YYYY-MM-DD
+															const parts = blog.created_date.split("-");
+															if (parts.length !== 3) return null;
+															const created = new Date(
+																Number(parts[0]),
+																Number(parts[1]) - 1,
+																Number(parts[2])
+															);
+															const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
+															const isRecent =
+																Date.now() - created.getTime() <= oneWeekMs;
+															if (!isRecent) return null;
+															return (
+																<Link className="badge badge_sale" href="#!">
+																	{locale === "ro" ? "Nou" : "Új"}
+																</Link>
+															);
+														})()}
+													</li>
 												</ul>
 												<Link
 													className="item_image"
 													href={`/blog/${blog.slug}`}>
 													<Image
 														width={280}
-														height={310}
-														src={
-															"https://arcaluinoe.prismasolutions.ro/uploads/blog/" +
-															blog.image
-														}
+														height={100}
+														style={{
+															width: "100%",
+															height: "300px",
+															objectFit: "cover",
+														}}
+														src={`${apiUrl}/uploads/blog/${blog.cover_image}`}
 														alt={blog.title}
 													/>
 												</Link>
@@ -136,14 +142,15 @@ const NewsGrid = () => {
 														{blog.sticky && (
 															<li>
 																<Link href="#!">
-																	<i className="fas fa-thumbtack"></i> Sticky
-																	Post
+																	<i className="fas fa-star"></i>{" "}
+																	{locale === "ro" ? "Recommendat" : "Ajánlott"}
 																</Link>
 															</li>
 														)}
 														<li>
 															<Link href="#!">
-																<i className="fas fa-user"></i> by {blog.author}
+																<i className="fas fa-user"></i>{" "}
+																{locale === "ro" ? "De" : "Írta"} {blog.author}
 															</Link>
 														</li>
 														<li>
@@ -156,7 +163,7 @@ const NewsGrid = () => {
 														</li>
 													</ul>
 													<h3 className="item_title">
-														<Link href={`/blogs/${blog.slug}`}>
+														<Link href={`/blog/${blog.slug}`}>
 															{blog.title}
 														</Link>
 													</h3>
@@ -164,8 +171,12 @@ const NewsGrid = () => {
 													<div className="details_btn">
 														<Link
 															className="btn_unfill"
-															href={`/blogs/${blog.slug}`}>
-															<span>Read Post</span>
+															href={`/blog/${blog.slug}`}>
+															<span>
+																{locale === "ro"
+																	? "Citește mai mult"
+																	: "Olvasd el"}
+															</span>
 															<i className="far fa-long-arrow-right"></i>
 														</Link>
 													</div>
@@ -227,36 +238,22 @@ const NewsGrid = () => {
 
 					<div className="col col-lg-3">
 						<aside className="sidebar_section">
-							<div className="sb_widget">
-								<h3 className="sb_widget_title">Categories</h3>
-								{catLoading && <p>Loading categories...</p>}
-								{!catLoading && categories.length === 0 && (
-									<p>No categories found.</p>
-								)}
-								{!catLoading && categories.length > 0 && (
-									<ul className="icon_list sb_category_list unorder_list_block">
-										{categories.map((cat) => (
-											<li key={cat.id}>
-												<Link href={`/blog?category=${cat.id}`}>
-													<i className="fal fa-angle-right"></i>{" "}
-													<span>{cat.name}</span>{" "}
-												</Link>
-											</li>
-										))}
-									</ul>
-								)}
-							</div>
+							{/* <div className="sb_widget"> */}
+							{/* Categories widget omitted */}
+							{/* </div> */}
 
 							<div className="sb_widget">
-								<h3 className="sb_widget_title">Related News</h3>
-								{relatedLoading && <p>Loading related news...</p>}
+								<h3 className="sb_widget_title">
+									{locale === "ro" ? "Recomandate" : "Ajánlott Blogok"}
+								</h3>
+								{relatedLoading && <p>Loading recommended news...</p>}
 								{!relatedLoading && relatedBlogs.length === 0 && (
-									<p>No related news found.</p>
+									<p>No recommended news found.</p>
 								)}
 								{!relatedLoading && relatedBlogs.length > 0 && (
 									<ul className="small_post_wrap unorder_list_block">
-										{relatedBlogs.map((blog) => (
-											<li key={blog.id}>
+										{relatedBlogs.map((blog, idx) => (
+											<li key={blog.id || idx}>
 												<div className="small_blog_item">
 													<Link
 														className="item_image"
@@ -264,10 +261,7 @@ const NewsGrid = () => {
 														<Image
 															width={80}
 															height={80}
-															src={
-																"https://arcaluinoe.prismasolutions.ro/uploads/blog/" +
-																blog.image
-															}
+															src={`${apiUrl}/uploads/blog/${blog.cover_image}`}
 															alt={blog.title}
 														/>
 													</Link>
@@ -278,7 +272,8 @@ const NewsGrid = () => {
 															</Link>
 														</h3>
 														<Link className="item_admin" href="#!">
-															<i className="fas fa-user"></i> by {blog.author}{" "}
+															<i className="fas fa-user"></i> by{" "}
+															{blog.author || "Unknown"}{" "}
 														</Link>
 													</div>
 												</div>
