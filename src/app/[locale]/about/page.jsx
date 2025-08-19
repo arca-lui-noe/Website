@@ -14,7 +14,6 @@ const About = () => {
 				floatImage="/images/breadcrumb/breadcrumb_img_1.png"
 				pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
 			/>
-			{/* <StoryTimeline /> */}
 			<AboutUs />
 			<Consulting />
 			<Faq />

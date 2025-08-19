@@ -1,237 +1,245 @@
 // components/StoryTimeline/StoryTimeline.jsx
 "use client";
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import Lenis from "@studio-freight/lenis";
-
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const SCROLL_STEP_RATIO = 0.4; // 40% of visible width per click
+const TARGET_IMAGE_HEIGHT = 550; // Increased visual height for the timeline (was 560)
+// Replace fixed duration with base; actual duration will be distance-based
+const BASE_SCROLL_DURATION = 320; // ms (faster than previous 550)
+
 const StoryTimeline = () => {
-	const timelineSectionRef = useRef(null);
-	const timelineWrapperRef = useRef(null);
+	const scrollContainerRef = useRef(null);
+	const imageRef = useRef(null);
 	const leftBtnRef = useRef(null);
 	const rightBtnRef = useRef(null);
+	const [dimensions, setDimensions] = useState({
+		width: null,
+		height: TARGET_IMAGE_HEIGHT,
+	});
+	const [loaded, setLoaded] = useState(false);
 
-	let imageWidth = 0;
-	let containerWidth = 0;
-	let maxScrollX = 0;
-	let currentTimelineProgress = 0;
-	let timelineTween;
+	// rAF animation state
+	const animRef = useRef({
+		frame: null,
+		start: 0,
+		from: 0,
+		to: 0,
+		duration: BASE_SCROLL_DURATION,
+	});
+
+	const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+	const cancelAnim = () => {
+		if (animRef.current.frame) cancelAnimationFrame(animRef.current.frame);
+		animRef.current.frame = null;
+	};
+
+	const smoothScrollTo = (targetX, baseDuration = BASE_SCROLL_DURATION) => {
+		const sc = scrollContainerRef.current;
+		if (!sc) return;
+		const maxX = sc.scrollWidth - sc.clientWidth;
+		const clamped = Math.max(0, Math.min(maxX, targetX));
+
+		const now = performance.now();
+		const from = sc.scrollLeft;
+		// Distance-based dynamic duration (faster overall)
+		const distance = Math.abs(clamped - from);
+		// Scale: 0px -> 0ms; 800px -> ~320ms (BASE), clamp to [140, 380]
+		const scaled = (distance / 800) * baseDuration;
+		const duration = Math.min(380, Math.max(140, scaled));
+
+		animRef.current = { frame: null, start: now, from, to: clamped, duration };
+
+		const step = (ts) => {
+			const { start, from, to, duration } = animRef.current;
+			const elapsed = Math.min(1, (ts - start) / duration);
+			const eased = easeOutCubic(elapsed);
+			sc.scrollLeft = from + (to - from) * eased;
+			if (elapsed < 1) {
+				animRef.current.frame = requestAnimationFrame(step);
+			} else {
+				animRef.current.frame = null;
+				updateButtonStates();
+			}
+		};
+
+		cancelAnim();
+		animRef.current.frame = requestAnimationFrame(step);
+	};
+
+	const updateButtonStates = () => {
+		const sc = scrollContainerRef.current;
+		if (!sc || !leftBtnRef.current || !rightBtnRef.current) return;
+		const atStart = sc.scrollLeft <= 0;
+		const atEnd = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 1; // allow tiny rounding
+		leftBtnRef.current.disabled = atStart;
+		rightBtnRef.current.disabled = atEnd;
+	};
+
+	const navigate = (dir) => {
+		const sc = scrollContainerRef.current;
+		if (!sc) return;
+		const step = sc.clientWidth * SCROLL_STEP_RATIO * dir;
+		smoothScrollTo(sc.scrollLeft + step);
+	};
 
 	useEffect(() => {
-		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-		const lenis = new Lenis({
-			duration: 1.2,
-			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-			smoothTouch: true,
-			syncTouch: true,
-		});
-
-		lenis.on("scroll", ScrollTrigger.update);
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
-		gsap.ticker.lagSmoothing(0);
-
-		const setupTimelineAnimation = () => {
-			if (!timelineSectionRef.current || !timelineWrapperRef.current) return;
-
-			containerWidth = timelineSectionRef.current.offsetWidth;
-			const tempImage = new Image();
-			tempImage.src = "/story_timeline.png";
-
-			tempImage.onload = () => {
-				const imageHeight = timelineSectionRef.current.offsetHeight;
-				imageWidth =
-					tempImage.naturalWidth * (imageHeight / tempImage.naturalHeight);
-				maxScrollX = Math.max(0, imageWidth - containerWidth);
-
-				if (leftBtnRef.current && rightBtnRef.current) {
-					if (maxScrollX <= 0) {
-						leftBtnRef.current.style.display = "none";
-						rightBtnRef.current.style.display = "none";
-					} else {
-						leftBtnRef.current.style.display = "flex";
-						rightBtnRef.current.style.display = "flex";
-					}
-				}
-
-				if (timelineTween) {
-					timelineTween.kill();
-				}
-				ScrollTrigger.getById("timelineScroll")?.kill();
-
-				timelineTween = gsap.to(timelineSectionRef.current, {
-					backgroundPosition: `-${maxScrollX}px 50%`,
-					ease: "none",
-					scrollTrigger: {
-						id: "timelineScroll",
-						trigger: timelineWrapperRef.current,
-						start: "top top",
-						end: () => `+=${maxScrollX * 1.5}`,
-						scrub: 2,
-						pin: true,
-						anticipatePin: 1,
-						invalidateOnRefresh: true,
-						onUpdate: (self) => {
-							currentTimelineProgress = self.progress;
-							updateButtonStates();
-						},
-					},
-				});
-				updateButtonStates();
-			};
-			tempImage.onerror = () => {
-				console.error(
-					"Failed to load 'story_timeline.webp'. Please ensure the image exists in the public directory."
-				);
-				if (leftBtnRef.current) leftBtnRef.current.style.display = "none";
-				if (rightBtnRef.current) rightBtnRef.current.style.display = "none";
-			};
-		};
-
-		const updateButtonStates = () => {
-			const st = ScrollTrigger.getById("timelineScroll");
-			if (st && leftBtnRef.current && rightBtnRef.current) {
-				leftBtnRef.current.disabled = st.progress <= 0.01;
-				rightBtnRef.current.disabled = st.progress >= 0.99;
-			} else if (leftBtnRef.current && rightBtnRef.current) {
-				leftBtnRef.current.disabled = true;
-				rightBtnRef.current.disabled = true;
-			}
-		};
-
-		const navigateTimeline = (direction) => {
-			const st = ScrollTrigger.getById("timelineScroll");
-			if (!st) return;
-
-			const scrollRange = st.end - st.start;
-			const step = scrollRange * 0.2;
-
-			let targetScrollPos;
-			if (direction > 0) {
-				targetScrollPos = Math.min(st.end, st.scroll() + step);
-			} else {
-				targetScrollPos = Math.max(st.start, st.scroll() - step);
-			}
-
-			gsap.to(window, {
-				scrollTo: {
-					y: targetScrollPos,
-					autoKill: false,
-				},
-				duration: 0.8,
-				ease: "power2.inOut",
-				onComplete: updateButtonStates,
-			});
-		};
-
-		if (leftBtnRef.current) {
-			leftBtnRef.current.addEventListener("click", () => navigateTimeline(-1));
-		}
-		if (rightBtnRef.current) {
-			rightBtnRef.current.addEventListener("click", () => navigateTimeline(1));
-		}
-
-		const handleKeyDown = (e) => {
-			if (
-				e.key === "ArrowLeft" &&
-				leftBtnRef.current &&
-				!leftBtnRef.current.disabled
-			) {
-				e.preventDefault();
-				navigateTimeline(-1);
-			} else if (
-				e.key === "ArrowRight" &&
-				rightBtnRef.current &&
-				!rightBtnRef.current.disabled
-			) {
-				e.preventDefault();
-				navigateTimeline(1);
-			}
-		};
-		document.addEventListener("keydown", handleKeyDown);
-
-		setupTimelineAnimation();
-		ScrollTrigger.refresh(true);
-
-		const handleResize = () => {
-			if (window.resizeTimeout) clearTimeout(window.resizeTimeout);
-			window.resizeTimeout = setTimeout(() => {
-				ScrollTrigger.refresh(true);
-				setupTimelineAnimation();
-			}, 250);
-		};
-		window.addEventListener("resize", handleResize);
+		const sc = scrollContainerRef.current;
+		if (!sc) return;
 
 		const handleScroll = () => updateButtonStates();
-		window.addEventListener("scroll", handleScroll);
+		const handleResize = () => updateButtonStates();
+		const handleKeyDown = (e) => {
+			if (e.key === "ArrowLeft" && !leftBtnRef.current?.disabled) {
+				e.preventDefault();
+				navigate(-1);
+			} else if (e.key === "ArrowRight" && !rightBtnRef.current?.disabled) {
+				e.preventDefault();
+				navigate(1);
+			}
+		};
+		const handleWheel = (e) => {
+			if (!e.shiftKey && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+				e.preventDefault();
+				const sc = scrollContainerRef.current;
+				if (!sc) return;
+				const multiplier = 1.1; // slightly faster
+				smoothScrollTo(
+					sc.scrollLeft + e.deltaY * multiplier,
+					BASE_SCROLL_DURATION
+				);
+			}
+		};
+
+		sc.addEventListener("scroll", handleScroll, { passive: true });
+		sc.addEventListener("wheel", handleWheel, { passive: false });
+		window.addEventListener("resize", handleResize);
+		document.addEventListener("keydown", handleKeyDown);
+
+		updateButtonStates();
 
 		return () => {
-			lenis.destroy();
-			gsap.ticker.remove(lenis.raf);
-			ScrollTrigger.getAll().forEach((st) => st.kill());
-			if (timelineTween) timelineTween.kill();
-
-			if (leftBtnRef.current) {
-				leftBtnRef.current.removeEventListener("click", () =>
-					navigateTimeline(-1)
-				);
-			}
-			if (rightBtnRef.current) {
-				rightBtnRef.current.removeEventListener("click", () =>
-					navigateTimeline(1)
-				);
-			}
-			document.removeEventListener("keydown", handleKeyDown);
+			sc.removeEventListener("scroll", handleScroll);
+			sc.removeEventListener("wheel", handleWheel);
 			window.removeEventListener("resize", handleResize);
-			window.removeEventListener("scroll", handleScroll);
+			document.removeEventListener("keydown", handleKeyDown);
+			cancelAnim();
 		};
-	}, []);
+	}, [loaded, dimensions.width]);
+
+	const onImageLoad = () => {
+		const img = imageRef.current;
+		if (!img) return;
+		const { naturalWidth, naturalHeight } = img;
+		// Calculate scaled width for target height; ensure width at least 1.5x viewport to force scroll if original not wide enough
+		const ratio = naturalWidth / naturalHeight || 1;
+		let computedWidth = Math.round(TARGET_IMAGE_HEIGHT * ratio);
+		const viewportWidth =
+			scrollContainerRef.current?.clientWidth || window.innerWidth;
+		if (computedWidth < viewportWidth * 1.5) {
+			computedWidth = Math.round(viewportWidth * 1.5); // upscale to guarantee horizontal scroll
+		}
+		setDimensions({ width: computedWidth, height: TARGET_IMAGE_HEIGHT });
+		setLoaded(true);
+		requestAnimationFrame(updateButtonStates);
+	};
 
 	return (
-		<>
-			<section className="timeline-wrapper" ref={timelineWrapperRef}>
-				<div className="timeline-container">
-					<div className="container">
-						<div className="section_title">
-							<h2 className="title_text">
-								<span className="sub_title">Our History</span> Interactive
-								Timeline
-							</h2>
-						</div>
-					</div>
-					<div className="position-relative">
-						<div id="timeline" ref={timelineSectionRef}>
-							<div className="timeline-overlay"></div>
-						</div>
-
-						<div className="timeline-controls left">
-							<button
-								className="btn-control"
-								id="control-timeline-left"
-								aria-label="Scroll left"
-								ref={leftBtnRef}>
-								<ChevronLeft size={32} />
-							</button>
-						</div>
-
-						<div className="timeline-controls right">
-							<button
-								className="btn-control"
-								id="control-timeline-right"
-								aria-label="Scroll right"
-								ref={rightBtnRef}>
-								<ChevronRight size={32} />
-							</button>
-						</div>
+		<section className="timeline-wrapper">
+			<div className="timeline-container">
+				<div className="container">
+					<div className="section_title">
+						<h2 className="title_text">
+							<span className="sub_title">Our History</span> Interactive
+							Timeline
+						</h2>
 					</div>
 				</div>
-			</section>
-		</>
+				<div className="position-relative">
+					<div
+						className="timeline-scroll-container"
+						ref={scrollContainerRef}
+						style={{
+							overflowX: "auto",
+							overflowY: "hidden",
+							whiteSpace: "nowrap",
+							position: "relative",
+							WebkitOverflowScrolling: "touch",
+							scrollbarWidth: "none", // hide Firefox scrollbar
+							// Hide scrollbar in IE/Edge (legacy) via inline style
+							msOverflowStyle: "none",
+							borderRadius: 8,
+							background: "var(--timeline-bg, rgba(0,0,0,0.03))",
+							padding: "16px 0",
+							maxWidth: "100%",
+							scrollBehavior: "auto", // we control animation manually
+							cursor: "grab",
+						}}
+						aria-label="Historical timeline horizontal scroll">
+						{/* Wrapper preserves intrinsic width of the image so horizontal scroll works */}
+						<div style={{ display: "inline-block", position: "relative" }}>
+							<img
+								ref={imageRef}
+								src="/story_timeline.png"
+								alt="Company history timeline"
+								style={{
+									display: "block",
+									height: dimensions.height,
+									width: dimensions.width ? dimensions.width : "auto",
+									maxWidth: "none",
+									userSelect: "none",
+									flexShrink: 0,
+									pointerEvents: "none",
+								}}
+								draggable="false"
+								onLoad={onImageLoad}
+								onError={() => {
+									console.error("Failed to load /story_timeline.png");
+									if (leftBtnRef.current)
+										leftBtnRef.current.style.display = "none";
+									if (rightBtnRef.current)
+										rightBtnRef.current.style.display = "none";
+								}}
+							/>
+							{/* Optional overlay retained */}
+							<div
+								className="timeline-overlay"
+								style={{ pointerEvents: "none" }}
+							/>
+						</div>
+					</div>
+
+					<div className="timeline-controls left">
+						<button
+							className="btn-control"
+							id="control-timeline-left"
+							aria-label="Scroll left"
+							ref={leftBtnRef}
+							onClick={() => navigate(-1)}>
+							<ChevronLeft size={32} />
+						</button>
+					</div>
+
+					<div className="timeline-controls right">
+						<button
+							className="btn-control"
+							id="control-timeline-right"
+							aria-label="Scroll right"
+							ref={rightBtnRef}
+							onClick={() => navigate(1)}>
+							<ChevronRight size={32} />
+						</button>
+					</div>
+				</div>
+			</div>
+			{/* Scoped styles to hide WebKit scrollbars without affecting global scrollbars */}
+			<style jsx>{`
+				.timeline-scroll-container::-webkit-scrollbar {
+					display: none;
+				}
+			`}</style>
+		</section>
 	);
 };
 

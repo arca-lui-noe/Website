@@ -9,7 +9,7 @@ const PageTitle = (props) => {
 				<div className="title-wrapper">
 					<ul className="innerpage-breadcrumb ps-0">
 						<li>
-							<Link href="/">{props.homeName}</Link>
+							<Link href="/">ARCA LUI NOE</Link>
 						</li>
 						<li>{props.pageName}</li>
 					</ul>

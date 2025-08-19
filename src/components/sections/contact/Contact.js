@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 
+const LinkClinic = "https://maps.app.goo.gl/5oHoVadU21h6L1e27";
+const LinkCabinet = " https://maps.app.goo.gl/GDJgYgkSCiFcx8sr5";
+
 const Contact = () => {
 	const [activeTab, setActiveTab] = useState("clinic");
 	const contact_clinic = useTranslations("Clinic");
@@ -88,14 +91,14 @@ const Contact = () => {
 										<h3 className="item_title">Telefon</h3>
 										<ul className="item_info_list unorder_list_block">
 											<li>
-												<Link
+												<a
 													href={`tel:${currentContact("phone").replace(
 														/\s/g,
 														""
 													)}`}
-													className="text-decoration-none">
+													className="text-black">
 													{currentContact("phone")}
-												</Link>
+												</a>
 											</li>
 										</ul>
 									</div>
@@ -111,11 +114,11 @@ const Contact = () => {
 										<h3 className="item_title">Email</h3>
 										<ul className="item_info_list unorder_list_block">
 											<li>
-												<Link
+												<a
 													href="mailto:arcaluinoe.noebarkaja@gmail.com"
-													className="text-decoration-none">
+													className="text-black">
 													arcaluinoe.noebarkaja@gmail.com
-												</Link>
+												</a>
 											</li>
 										</ul>
 									</div>
@@ -124,18 +127,23 @@ const Contact = () => {
 
 							<div className="col col-lg-3 col-md-6 col-sm-6">
 								<div className="iconbox_item iconbox_overicon">
-									<div className="item_icon">
-										<i className="fas fa-map-marker-alt"></i>
-									</div>
-									<div className="item_content">
-										<h3 className="item_title">
-											{currentContact("address-title")}
-										</h3>
-										<ul className="item_info_list unorder_list_block">
-											<li>{currentContact("address")}</li>
-											<li>{currentContact("address-city")}</li>
-										</ul>
-									</div>
+									<a
+										className="w-100 text-black"
+										href={activeTab === "clinic" ? LinkClinic : LinkCabinet}
+										target="_blank">
+										<div className="item_icon">
+											<i className="fas fa-map-marker-alt"></i>
+										</div>
+										<div className="item_content">
+											<h3 className="item_title">
+												{currentContact("address-title")}
+											</h3>
+											<ul className="item_info_list unorder_list_block">
+												<li>{currentContact("address")}</li>
+												<li>{currentContact("address-city")}</li>
+											</ul>
+										</div>
+									</a>
 								</div>
 							</div>
 

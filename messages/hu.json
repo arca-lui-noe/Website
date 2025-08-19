@@ -93,5 +93,11 @@
     "home-title": "Főoldal",
     "title": "Blog",
     "subtitle": "Friss hírek és hasznos tanácsok"
+  },
+  "History": {
+    "title": "Hogyan kezdtük",
+    "lead": "A Noé Bárkája állatorvosi klinika története több mint 25 évvel ezelőtt kezdődött, amikor egy szenvedélyes állatorvos úgy döntött, hogy megosztja tudását és szeretetét a kisállatok iránt a közösséggel.",
+    "text1": "Hello",
+    "text2": "Hello"
   }
 }

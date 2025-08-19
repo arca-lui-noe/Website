@@ -1,30 +1,26 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
-export default function Menu({ locale }) {
+export default function Menu() {
 	const menu_text = useTranslations("Menu");
 
 	return (
 		<>
 			<ul className="navigation">
 				<li className="">
-					<Link href={`/${locale}`}>{menu_text("home-title")}</Link>
+					<Link href={`/`}>{menu_text("home-title")}</Link>
 				</li>
 				<li className="">
-					<Link href={`/${locale}/about`}>{menu_text("about-title")}</Link>
+					<Link href={`/about`}>{menu_text("about-title")}</Link>
 				</li>
 				<li className="">
-					<Link href={`/${locale}/about`}>
-						{menu_text("how_we_started-title")}
-					</Link>
+					<Link href={`/history`}>{menu_text("how_we_started-title")}</Link>
 				</li>
 				<li className="">
-					<Link href={`/${locale}/services`}>
-						{menu_text("services-title")}
-					</Link>
+					<Link href={`/services`}>{menu_text("services-title")}</Link>
 				</li>
 				<li className="">
-					<Link href={`/${locale}/blog`}>{menu_text("blog-title")}</Link>
+					<Link href={`/blog`}>{menu_text("blog-title")}</Link>
 				</li>
 			</ul>
 		</>
