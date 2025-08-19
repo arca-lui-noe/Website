@@ -28,6 +28,28 @@ export default function Header1({
 	// Meghatározzuk, hogy a főoldalon vagyunk-e
 	const isHomePage = pathname === `/${locale}` || pathname === "/";
 
+	// NEW: Define per-route hamburger icon colors (strip locale prefix before matching)
+	// Add or modify entries below to control which pages get a different hamburger color when at the top.
+	const hamburgerColorMap = {
+		"/": "#ffffff", // home (example keeps white)
+		"/about": "#1C103B", // example page
+		"/services": "#1C103B", // example page
+		"/contact": "#1C103B", // example page
+		// Add more: "/your-path": "#hexColor"
+	};
+
+	// Current path without the leading locale (e.g. /hu/about -> /about)
+	const localeStrippedPath =
+		pathname.replace(/^\/[a-zA-Z-]{2}(?=\/|$)/, "") || "/";
+
+	// Determine color only when NOT scrolled (at top). When scrolled (sticky), we keep default styling.
+	const hamburgerColor = !scroll
+		? hamburgerColorMap[localeStrippedPath]
+		: undefined;
+
+	// Helper style object
+	const hamburgerStyle = hamburgerColor ? { color: hamburgerColor } : undefined;
+
 	// Improved language switcher function
 	const handleLanguageChange = (newLocale) => {
 		// Prevent default behavior if any
@@ -249,7 +271,7 @@ export default function Header1({
 											{locale === "hu" ? "🐶" : "🐱"}
 										</span> */}
 										<span
-											className="ms-2"
+											className={`ms-2`}
 											style={{ color: "#000", fontWeight: "bold" }}>
 											{locale === "hu" ? "Hu" : "Ro"}
 										</span>
@@ -299,7 +321,9 @@ export default function Header1({
 							</div>
 							<div className="outer-box d-flex align-items-center">
 								<div className="mobile-nav-toggler" onClick={handleMobileMenu}>
-									<span className="icon fas fa-bars"></span>
+									<span
+										className="icon fas fa-bars"
+										style={hamburgerStyle}></span>
 								</div>
 								<ul className="header_btns_group unorder_list_right">
 									<li className="me-0 d-none d-sm-block">
@@ -391,11 +415,25 @@ export default function Header1({
 										}`}>
 										<div className="lang-options">
 											<button onClick={(e) => handleLanguageChange("hu")}>
-												<span className="vet-lang-icon">🐶</span>
+												<span className="vet-lang-icon">
+													<Image
+														src={huFlag}
+														alt="Hungarian Flag"
+														width={18}
+														height={18}
+													/>
+												</span>
 												<span className="lang-name">Magyar</span>
 											</button>
 											<button onClick={(e) => handleLanguageChange("ro")}>
-												<span className="vet-lang-icon">🐱</span>
+												<span className="vet-lang-icon">
+													<Image
+														src={roFlag}
+														alt="Romanian Flag"
+														width={18}
+														height={18}
+													/>
+												</span>
 												<span className="lang-name">Română</span>
 											</button>
 										</div>
@@ -415,6 +453,7 @@ export default function Header1({
 							</div>
 							<div className="outer-box d-flex align-items-center">
 								<div className="mobile-nav-toggler" onClick={handleMobileMenu}>
+									{/* When sticky (scrolled), we intentionally drop custom color to inherit sticky header styling */}
 									<span className="icon fas fa-bars"></span>
 								</div>
 								<ul className="header_btns_group unorder_list_right">
