@@ -29,12 +29,12 @@ const Banner2 = async () => {
 						</div>
 						<div className="col col-lg-6">
 							<div className="banner_content">
-								<h1 className="banner_title">
+								<h2 className="banner_title">
 									<span className="banner_sub_title">
 										{home_text("hero-subtitle")}
 									</span>{" "}
 									{home_text("hero-title")}
-								</h1>
+								</h2>
 								<p className="banner_description">{home_text("hero-desc")}</p>
 								<div className="banner_policy_items row">
 									<div className="col">
