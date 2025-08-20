@@ -87,7 +87,7 @@ const Subscription = () => {
 									width={400}
 									height={660}
 									// src="/images/about/about_img_5.png"
-									src="/images/application/mobile.png"
+									src="/images/application/mobile1.png"
 									alt="Pet Image"
 									priority
 								/>
