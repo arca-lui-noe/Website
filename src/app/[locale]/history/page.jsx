@@ -12,7 +12,7 @@ const History = async () => {
 			<PageTitle
 				customClass="about-style"
 				pageName={history_text("title")}
-				floatImage="/images/breadcrumb/breadcrumb_img_1.png"
+				floatImage="/images/breadcrumb/breadcrumb_img_12.png"
 				pageText={history_text("lead")}
 			/>
 			<div className="container pt-5 mt-md-5 pb-0">

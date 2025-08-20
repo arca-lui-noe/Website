@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const VideoBackground = ({ locale }) => {
 	// Load translations for the component
@@ -87,6 +87,16 @@ const VideoBackground = ({ locale }) => {
 					transform: translateY(-2px);
 				}
 
+				/* Ensure both hero buttons share identical height & alignment */
+				.hero-action-btn {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					padding: 12px 32px; /* unify padding */
+					min-height: 56px; /* fixed consistent height */
+					line-height: 1.2;
+				}
+
 				.scroll-indicator {
 					position: absolute;
 					bottom: 30px;
@@ -132,6 +142,9 @@ const VideoBackground = ({ locale }) => {
 					.hero-description {
 						font-size: 1.1rem;
 					}
+					.hero-action-btn {
+						min-height: 52px;
+					}
 				}
 
 				@media (max-width: 576px) {
@@ -140,6 +153,10 @@ const VideoBackground = ({ locale }) => {
 					}
 					.hero-description {
 						font-size: 1rem;
+					}
+					.hero-action-btn {
+						min-height: 50px;
+						padding: 10px 26px;
 					}
 				}
 			`}</style>
@@ -167,14 +184,14 @@ const VideoBackground = ({ locale }) => {
 							<div className="col-lg-10 col-xl-8">
 								<div className="text-center text-white">
 									<h1 className="hero-title">{home_text("welcome-title")}</h1>
-									<div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-										<Link href={`/${locale}/contact`}>
-											<button className="contact-btn btn btn_primary h-100">
+									<div className="d-flex flex-column align-items-center flex-sm-row gap-3 justify-content-center">
+										<Link href={`/contact`}>
+											<button className="contact-btn btn btn_primary hero-action-btn">
 												{home_text("appointment-booking")}
 											</button>
 										</Link>
-										<Link href={`/${locale}/services`}>
-											<button className="btn btn-outline-custom h-100">
+										<Link href={`/services`}>
+											<button className="btn btn-outline-custom hero-action-btn">
 												{menu_text("services-title")}
 											</button>
 										</Link>

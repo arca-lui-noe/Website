@@ -27,7 +27,7 @@ const Service = ({
 		};
 
 		fetchServices();
-	}, []);
+	}, [locale]);
 
 	return (
 		<>

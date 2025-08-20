@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import DynamicLogo from "./DynamicLogo";
 
 // Javítás: a locale paraméter megfelelő destrukturálása
@@ -22,7 +22,7 @@ export default function Footer1({ locale }) {
 							<div className="col-xl-3 col-sm-6">
 								<div className="footer_widget footer_about mb50-lg">
 									<div className="site_logo">
-										<Link href={`/${locale}`}>
+										<Link href={`/`}>
 											<DynamicLogo
 												locale={locale}
 												scroll={true}
@@ -83,25 +83,25 @@ export default function Footer1({ locale }) {
 												</Link>
 											</li>
 											<li>
-												<Link href={`/${locale}/about`}>
+												<Link href={`/about`}>
 													<i className="fas fa-circle"></i>
 													{menu_text("about-title")}
 												</Link>
 											</li>
 											<li>
-												<Link href={`/${locale}/about`}>
+												<Link href={`/about`}>
 													<i className="fas fa-circle"></i>
 													{menu_text("how_we_started-title")}
 												</Link>
 											</li>
 											<li>
-												<Link href={`/${locale}/services`}>
+												<Link href={`/services`}>
 													<i className="fas fa-circle"></i>
 													{menu_text("services-title")}
 												</Link>
 											</li>
 											<li>
-												<Link href={`/${locale}/blog`}>
+												<Link href={`/blog`}>
 													<i className="fas fa-circle"></i>
 													{menu_text("blog-title")}
 												</Link>
@@ -115,9 +115,11 @@ export default function Footer1({ locale }) {
 									<h3 className="footer_widget_title">
 										{menu_text("app-title")}
 									</h3>
-									<button className="btn btn_primary">
-										{menu_text("app-button-text")}
-									</button>
+									<a href="https://play.google.com/store/apps/details?id=com.digitail.digitail&hl=en&pli=1">
+										<button className="btn btn_primary">
+											{menu_text("app-button-text")}
+										</button>
+									</a>
 								</div>
 							</div>
 							{/* <div className="col-xl-3 col-sm-6">

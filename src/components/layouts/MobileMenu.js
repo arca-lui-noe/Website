@@ -33,7 +33,7 @@ export default function MobileMenu() {
 					<Link href="/about">{menu_text("about-title")}</Link>
 				</li>
 				<li className="">
-					<Link href="/about">{menu_text("how_we_started-title")}</Link>
+					<Link href="/history">{menu_text("how_we_started-title")}</Link>
 				</li>
 				<li className="">
 					<Link href="/services">{menu_text("services-title")}</Link>

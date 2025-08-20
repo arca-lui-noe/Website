@@ -16,20 +16,6 @@ const Contact = () => {
 	const currentContact =
 		activeTab === "clinic" ? contact_clinic : contact_cabinet;
 
-	useEffect(() => {
-		async function fetchServices() {
-			try {
-				const res = await fetch("/api/services");
-				if (!res.ok) throw new Error("Failed to fetch");
-				const data = await res.json();
-				setServices(data);
-			} catch (err) {
-				console.error("Error loading services:", err);
-			}
-		}
-		fetchServices();
-	}, []);
-
 	return (
 		<>
 			<section className="contact_section section_space_lg pb-0">

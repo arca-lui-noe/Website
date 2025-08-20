@@ -34,7 +34,9 @@ export default function Header1({
 		"/": "#ffffff", // home (example keeps white)
 		"/about": "#1C103B", // example page
 		"/services": "#1C103B", // example page
+		"/history": "#1C103B", // example page
 		"/contact": "#1C103B", // example page
+		"/blog": "#1C103B", // example page
 		// Add more: "/your-path": "#hexColor"
 	};
 
@@ -272,7 +274,7 @@ export default function Header1({
 										</span> */}
 										<span
 											className={`ms-2`}
-											style={{ color: "#000", fontWeight: "bold" }}>
+											style={{ color: hamburgerColor, fontWeight: "bold" }}>
 											{locale === "hu" ? "Hu" : "Ro"}
 										</span>
 									</button>
@@ -352,7 +354,7 @@ export default function Header1({
 									<DynamicLogo
 										locale={locale}
 										scroll={false}
-										isHomePage={isHomePage}
+										isHomePage={false}
 									/>
 								</Link>
 							</div>
@@ -404,7 +406,7 @@ export default function Header1({
 										</span>
 										<span
 											className="ms-2"
-											style={{ color: "#000", fontWeight: "bold" }}>
+											style={{ color: hamburgerStyle, fontWeight: "bold" }}>
 											{locale === "hu" ? "Hu" : "Ro"}
 										</span>
 									</button>
