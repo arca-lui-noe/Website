@@ -44,8 +44,8 @@ const BlogPost = () => {
 			Number(parts[1]) - 1,
 			Number(parts[2])
 		);
-		const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
-		return Date.now() - d.getTime() <= oneWeekMs;
+		const oneMonthMs = 31 * 24 * 60 * 60 * 1000;
+		return Date.now() - d.getTime() <= oneMonthMs;
 	};
 
 	return (

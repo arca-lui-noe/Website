@@ -84,6 +84,7 @@ const ServiceDetailsSec1 = ({ pageDescription, gallery }) => {
 							<div className="services_image_carousel zoom-gallery">
 								<Swiper {...swiperOptions} className="common_carousel_3col">
 									{gallery &&
+										gallery.length > 0 &&
 										gallery.map((item, index) => (
 											<SwiperSlide className="carousel_item" key={index}>
 												<Link

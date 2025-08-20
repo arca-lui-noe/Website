@@ -110,9 +110,9 @@ const NewsGrid = () => {
 																Number(parts[1]) - 1,
 																Number(parts[2])
 															);
-															const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
+															const oneMonthMs = 31 * 24 * 60 * 60 * 1000;
 															const isRecent =
-																Date.now() - created.getTime() <= oneWeekMs;
+																Date.now() - created.getTime() <= oneMonthMs;
 															if (!isRecent) return null;
 															return (
 																<Link className="badge badge_sale" href="#!">

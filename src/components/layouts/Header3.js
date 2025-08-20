@@ -115,6 +115,31 @@ export default function Header1({
 		}
 	}, [handleMobileMenu]);
 
+	// Auto-collapse mobile side menu on route (pathname) change
+	useEffect(() => {
+		// Close any open language dropdown as well
+		setLangMenuOpen(false);
+
+		// If the body has the visibility class, remove it to collapse the menu
+		const body = document.body;
+		if (
+			body.classList.contains("mobile-menu-visible") ||
+			body.classList.contains("moblie-menu-visible") // legacy/typo support
+		) {
+			body.classList.remove("mobile-menu-visible", "moblie-menu-visible");
+			const mobileMenu = document.querySelector(".mobile-menu");
+			if (mobileMenu) mobileMenu.classList.remove("mobile-menu-visible");
+
+			// If a close button exists, trigger its click for any additional side-effects
+			const closeBtn = document.querySelector(
+				".mobile-menu .close-btn, .sticky-header .mobile-menu .close-btn"
+			);
+			if (closeBtn) {
+				closeBtn.dispatchEvent(new Event("click", { bubbles: true }));
+			}
+		}
+	}, [pathname]);
+
 	return (
 		<>
 			<header

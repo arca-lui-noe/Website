@@ -25,7 +25,7 @@ const ServiceDetails = ({ params }) => {
 				);
 				const data = await res.json();
 				setService(data);
-				console.log("Fetched service:", data);
+				// console.log("Fetched service:", data);
 
 				// Fetch gallery after service is loaded
 				if (data && data.service_id) {
@@ -35,7 +35,7 @@ const ServiceDetails = ({ params }) => {
 						);
 						const galleryData = await galleryRes.json();
 						setGallery(galleryData);
-						console.log("Fetched service gallery:", galleryData);
+						// console.log("Fetched service gallery:", galleryData);
 					} catch (galleryErr) {
 						console.error("Failed to load service gallery", galleryErr);
 					}
@@ -67,9 +67,9 @@ const ServiceDetails = ({ params }) => {
 			<ServiceDetailsSec3
 				pageDescription={service ? service.description2 : "Loading..."}
 				petImage={
-					service
+					service?.pet_image
 						? `${apiUrl}/uploads/service/${service.pet_image}`
-						: "public\\images\\logo\\logo.svg"
+						: "/images/banner/dogs_img_4.png"
 				}
 				videoUrl={service ? service.video : null}
 			/>

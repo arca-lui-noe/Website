@@ -19,8 +19,12 @@ const Service = ({
 			try {
 				const res = await fetch(`/api/services?locale=${locale}`);
 				const data = await res.json();
-				setServices(data);
-				console.log("Fetched services:", data);
+				if (limit) {
+					setServices(data.slice(0, limit));
+				} else {
+					setServices(data);
+				}
+				// console.log("Fetched services:", data);
 			} catch (err) {
 				console.error("Failed to load services", err);
 			}

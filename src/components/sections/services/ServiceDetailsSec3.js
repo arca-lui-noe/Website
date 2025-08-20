@@ -5,7 +5,6 @@ import React, { useEffect, useRef } from "react";
 const ServiceDetailsSec3 = ({ pageDescription, petImage, videoUrl }) => {
 	const descriptionRef = useRef(null);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-	console.log("Pet Image URL:", petImage);
 	useEffect(() => {
 		if (descriptionRef.current && pageDescription) {
 			// Set the HTML content
@@ -39,6 +38,12 @@ const ServiceDetailsSec3 = ({ pageDescription, petImage, videoUrl }) => {
 									<Image
 										width={640}
 										height={640}
+										style={{
+											objectFit: "contain",
+											height: "640px",
+											width: "640px",
+											borderRadius: "20px",
+										}}
 										src={petImage}
 										alt="Pet Doctor"
 									/>

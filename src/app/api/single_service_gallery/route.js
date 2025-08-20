@@ -9,13 +9,17 @@ export async function GET(request) {
 		);
 
 		if (!backendRes.ok) {
-			return new Response(
-				JSON.stringify({ error: "Failed to fetch single service gallery" }),
-				{
-					status: backendRes.status,
-					headers: { "Content-Type": "application/json" },
-				}
-			);
+			// return new Response(
+			// 	JSON.stringify({ error: "Failed to fetch single service gallery" }),
+			// 	{
+			// 		status: backendRes.status,
+			// 		headers: { "Content-Type": "application/json" },
+			// 	}
+			// );
+			return new Response(JSON.stringify([]), {
+				status: 200,
+				headers: { "Content-Type": "application/json" },
+			});
 		}
 
 		const gallery = await backendRes.json();

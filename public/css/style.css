@@ -6657,12 +6657,13 @@ body.loading-active {
 
 
 .timeline-wrapper {
-  min-height: 100vh;
+  /* min-height: 90vh; */
+  padding-top: 2em;
+  padding-bottom: 4em;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-
+  /* position: relative; */
 }
 
 .timeline-container {
