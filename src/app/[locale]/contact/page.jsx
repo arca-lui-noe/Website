@@ -1,6 +1,12 @@
 import Contact from "@/components/sections/contact/Contact";
 import PageTitle from "@/components/sections/PageTitle";
 import React from "react";
+import { generatePageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }) {
+	const { locale } = await params;
+	return await generatePageMetadata("contact", locale);
+}
 
 const ContactPage = () => {
 	return (

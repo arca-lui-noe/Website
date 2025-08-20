@@ -1,88 +1,43 @@
-"use client";
-import Service from "@/components/sections/home/Service";
-import PageTitle from "@/components/sections/PageTitle";
-import ServiceDetailsSec1 from "@/components/sections/services/ServiceDetailsSec1";
-import ServiceDetailsSec2 from "@/components/sections/services/ServiceDetailsSec2";
-import ServiceDetailsSec3 from "@/components/sections/services/ServiceDetailsSec3";
-import ServiceDetailsSec5 from "@/components/sections/services/ServiceDetailsSec5";
-import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
+import { generateDynamicMetadata } from "@/lib/metadata";
+import ServiceDetailsClient from "./ServiceDetailsClient";
 
-import React from "react";
+// Server-side metadata generation
+export async function generateMetadata({ params }) {
+	const { locale, slug } = await params;
 
-const ServiceDetails = ({ params }) => {
-	const { slug } = React.use(params);
-	const locale = useLocale();
-	const [service, setService] = useState(null);
-	const [gallery, setGallery] = useState(null);
-	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-	useEffect(() => {
-		const fetchServices = async () => {
-			try {
-				const res = await fetch(
-					`/api/single_service?slug=${slug}&locale=${locale}`
-				);
-				const data = await res.json();
-				setService(data);
-				// console.log("Fetched service:", data);
-
-				// Fetch gallery after service is loaded
-				if (data && data.service_id) {
-					try {
-						const galleryRes = await fetch(
-							`/api/single_service_gallery?id=${data.service_id}`
-						);
-						const galleryData = await galleryRes.json();
-						setGallery(galleryData);
-						// console.log("Fetched service gallery:", galleryData);
-					} catch (galleryErr) {
-						console.error("Failed to load service gallery", galleryErr);
-					}
-				}
-			} catch (err) {
-				console.error("Failed to load service", err);
+	try {
+		// Use the full URL for server-side fetch
+		const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+		const response = await fetch(
+			`${baseUrl}/admin/events/get_single_service.php?slug=${slug}&locale=${locale}`,
+			{
+				// Add cache control for server-side fetching
+				cache: "no-store",
 			}
-		};
+		);
 
-		if (slug) {
-			fetchServices();
+		if (!response.ok) {
+			// Fallback metadata if service not found
+			return {
+				title: `Service | ${locale === "hu" ? "Noé Bárkája" : "Arca lui Noe"}`,
+				description: "Service not found",
+			};
 		}
-	}, [slug, locale]);
 
-	return (
-		<>
-			<PageTitle
-				customClass="servicedetails-style"
-				pageName={service ? service.name : "Loading..."}
-				pageDescription={service ? service.short_description : "Loading..."}
-				floatImage="/images/breadcrumb/breadcrumb_img_3.png"
-				pageText="Blandit cursus risus at ultrices. Enim sit amet venenatis urna cursus eget nunc scelerisque"
-			/>
-			<ServiceDetailsSec1
-				pageDescription={service ? service.description1 : "Loading..."}
-				gallery={gallery}
-			/>
-			{/* <ServiceDetailsSec2 /> */}
-			<ServiceDetailsSec3
-				pageDescription={service ? service.description2 : "Loading..."}
-				petImage={
-					service?.pet_image
-						? `${apiUrl}/uploads/service/${service.pet_image}`
-						: "/images/banner/dogs_img_4.png"
-				}
-				videoUrl={service ? service.video : null}
-			/>
-			{/* <ServiceDetailsSec4 /> */}
-			{/* <ServiceDetailsSec5 /> */}
-			<Service
-				noPaddingBottom={true}
-				showButton={true}
-				limit={3}
-				locale={locale}
-			/>
-		</>
-	);
+		const serviceData = await response.json();
+		return await generateDynamicMetadata(serviceData, locale);
+	} catch (error) {
+		console.error("Error generating service metadata:", error);
+		return {
+			title: `Service | ${locale === "hu" ? "Noé Bárkája" : "Arca lui Noe"}`,
+			description: "Error loading service",
+		};
+	}
+}
+
+// Server component that renders the client component
+const ServiceDetails = ({ params }) => {
+	return <ServiceDetailsClient params={params} />;
 };
 
 export default ServiceDetails;

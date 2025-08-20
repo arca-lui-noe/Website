@@ -6,9 +6,13 @@ import Faq from "@/components/sections/home/Faq";
 import Service from "@/components/sections/home/Service";
 import Subscription from "@/components/sections/home/Subscription";
 import { generateOrganizationSchema } from "@/lib/schema";
+import { generatePageMetadata } from "@/lib/metadata";
 import Script from "next/script";
 
-export async function generateMetadata({ params }) {}
+export async function generateMetadata({ params }) {
+	const { locale } = await params;
+	return await generatePageMetadata("home", locale);
+}
 
 export default async function HomePage({ params }) {
 	const { locale } = await params;

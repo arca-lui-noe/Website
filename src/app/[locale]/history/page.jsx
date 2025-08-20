@@ -5,6 +5,13 @@ import Faq from "@/components/sections/home/Faq";
 import PageTitle from "@/components/sections/PageTitle";
 import StoryTimeline from "@/components/StoryTimeline/StoryTimeline";
 import { getTranslations } from "next-intl/server";
+import { generatePageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }) {
+	const { locale } = await params;
+	return await generatePageMetadata("history", locale);
+}
+
 const History = async () => {
 	const history_text = await getTranslations("History");
 	return (

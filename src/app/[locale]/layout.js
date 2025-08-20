@@ -11,11 +11,16 @@ import "/public/css/contact-tabs.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { notFound } from "next/navigation";
+import { generatePageMetadata } from "@/lib/metadata";
+
 export async function generateStaticParams() {
 	return [{ locale: "hu" }, { locale: "ro" }];
 }
 
-export async function generateMetadata({ params }) {}
+export async function generateMetadata({ params: { locale } }) {
+	// Generate metadata for home page
+	return await generatePageMetadata("home", locale);
+}
 
 export default async function LocaleLayout({ children, params }) {
 	// Ensure that the incoming `locale` is valid

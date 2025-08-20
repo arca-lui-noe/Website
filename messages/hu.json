@@ -102,5 +102,37 @@
     "lead": "A Noé Bárkája állatorvosi klinika története több mint 25 évvel ezelőtt kezdődött, amikor egy szenvedélyes állatorvos úgy döntött, hogy megosztja tudását és szeretetét a kisállatok iránt a közösséggel.",
     "text1": "A mi történetünk az állatok iránti szeretetünkből és szenvedélyünkből indult. Arról álmodtunk, hogy létrehozunk egy helyet, ahol minden kisállat nemcsak első osztályú orvosi ellátásban, hanem szeretetben és meleg légkörben is részesül. Így született meg a Noé Bárkája, egy állatklinika, ahol az állatok egészsége és jóléte a legfontosabb, és ahol családtagként kezeljük őket. Egy olyan bizalmi teret akartunk létrehozni, ahol a gazdik nyugodtan érezhetik magukat, tudván, hogy négylábú barátaik jó kezekben vannak.",
     "text2": "Az évek során folyamatosan fejlődtünk és növekedtünk, a legkorszerűbb technológiákba és csapatunk szakmai képzésébe fektetve. Ma a Noé Bárkája több mint egy egyszerű klinika: egy elkötelezett közösség, az egészség és a remény oázisa a marosvásárhelyi és környékbeli állatok számára. Büszkék vagyunk arra, amit elértünk, és örülünk minden sikernek, minden vidáman csóváló faroknak és minden hálás pillantásnak."
+  },
+  "Metadata": {
+    "home": {
+      "title": "Noé Bárkája Állatorvosi Rendelő | Marosvásárhely",
+      "description": "Tapasztalt állatorvosi csapatunk szeretettel és szakértelemmel gondoskodik kedvencéről Marosvásárhelyen. Teljes körű állatorvosi ellátás, korszerű eszközök és 25 év szakmai tapasztalat.",
+      "keywords": "állatorvos, Marosvásárhely, állatklinika, állatorvosi rendelő, kisállat, kutya, macska, állatgyógyászat, állatorvos Marosvásárhely, Noé Bárkája"
+    },
+    "about": {
+      "title": "Rólunk | Noé Bárkája Állatorvosi Rendelő",
+      "description": "Ismerje meg a Noé Bárkája csapatát és küldetését. Több mint 25 év tapasztalat az állatorvoslásban, modern eszközök és szeretetteljes gondoskodás.",
+      "keywords": "rólunk, Noé Bárkája, állatorvos csapat, tapasztalat, küldetés, Marosvásárhely"
+    },
+    "history": {
+      "title": "Hogyan kezdtük | Noé Bárkája története",
+      "description": "A Noé Bárkája állatorvosi klinika története több mint 25 évvel ezelőtt kezdődött. Olvassa el, hogyan vált kis álomból vezető állatklinikává.",
+      "keywords": "történet, alapítás, fejlődés, Noé Bárkája, állatklinika, Marosvásárhely"
+    },
+    "blog": {
+      "title": "Blog | Állatorvosi tanácsok és hírek",
+      "description": "Friss hírek, hasznos tanácsok és szakmai cikkek az állategészségüggyel kapcsolatban. Olvassa el blog bejegyzéseinket.",
+      "keywords": "blog, állatorvosi tanácsok, hírek, állategészségügy, kisállat gondozás"
+    },
+    "contact": {
+      "title": "Kapcsolat | Noé Bárkája Állatorvosi Rendelő",
+      "description": "Vegye fel velünk a kapcsolatot! Címünk, telefonszámunk és nyitvatartásunk. Időpontfoglalás és sürgős esetekben elérhető.",
+      "keywords": "kapcsolat, telefonszám, cím, időpontfoglalás, sürgősségi ellátás, Marosvásárhely"
+    },
+    "services": {
+      "title": "Szolgáltatások | Teljes körű állatorvosi ellátás",
+      "description": "Teljes körű állatorvosi szolgáltatások: konzultációk, oltások, műtétek, laborvizsgálatok, fogászat és képalkotó diagnosztika.",
+      "keywords": "szolgáltatások, oltás, műtét, laborvizsgálat, fogászat, diagnosztika, állatorvos"
+    }
   }
 }

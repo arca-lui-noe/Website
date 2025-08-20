@@ -102,5 +102,37 @@
     "lead": "Povestea clinicii veterinare Arca lui Noe a început în urmă cu peste 25 de ani, când un medic veterinar pasionat a decis să își împărtășească cunoștințele și dragostea pentru animăluțe cu comunitatea.",
     "text1": "Povestea noastră a început din dragostea și pasiunea noastră pentru animale. Am visat la un loc unde fiecare animăluț să primească nu doar îngrijiri medicale de top, ci și afecțiune și o atmosferă plină de căldură. Astfel, s-a născut Arca lui Noe, o clinică veterinară unde punem pe primul loc sănătatea și bunăstarea animalelor, tratându-le ca pe membrii ai propriei familii. Ne-am dorit să creăm un spațiu de încredere, unde proprietarii de animale să se simtă liniștiți, știind că prietenii lor necuvântători sunt pe mâini bune.",
     "text2": "De-a lungul anilor, am crescut și ne-am dezvoltat continuu, investind în tehnologii de ultimă generație și în formarea profesională a echipei noastre. Astăzi, Arca lui Noe este mai mult decât o simplă clinică: este o comunitate dedicată, o oază de sănătate și speranță pentru animalele din Târgu Mureș și împrejurimi. Suntem mândri de ceea ce am realizat și ne bucurăm de fiecare succes, de fiecare coadă care dă din nou vesel și de fiecare privire plină de recunoștință."
+  },
+  "Metadata": {
+    "home": {
+      "title": "Cabinet Veterinar Arca lui Noe | Târgu Mureș",
+      "description": "Echipa noastră de medici veterinari cu experiență se dedică sănătății animalelor dumneavoastră de companie în Târgu Mureș. Servicii veterinare complete, echipamente moderne și 25 de ani de expertiză.",
+      "keywords": "medic veterinar, Târgu Mureș, clinică veterinară, cabinet veterinar, animale de companie, câine, pisică, medicină veterinară, veterinar Târgu Mureș, Arca lui Noe"
+    },
+    "about": {
+      "title": "Despre Noi | Cabinet Veterinar Arca lui Noe",
+      "description": "Cunoașteți echipa și misiunea Arca lui Noe. Peste 25 de ani de experiență în medicina veterinară, echipamente moderne și îngrijire plină de dragoste.",
+      "keywords": "despre noi, Arca lui Noe, echipa veterinară, experiență, misiune, Târgu Mureș"
+    },
+    "history": {
+      "title": "Cum am început | Povestea Arca lui Noe",
+      "description": "Povestea clinicii veterinare Arca lui Noe a început în urmă cu peste 25 de ani. Citiți cum a evoluat dintr-un vis mic într-o clinică de top.",
+      "keywords": "poveste, înființare, dezvoltare, Arca lui Noe, clinică veterinară, Târgu Mureș"
+    },
+    "blog": {
+      "title": "Blog | Sfaturi veterinare și știri",
+      "description": "Știri proaspete, sfaturi utile și articole profesionale despre sănătatea animalelor. Citiți postările noastre de blog.",
+      "keywords": "blog, sfaturi veterinare, știri, sănătate animale, îngrijire animale de companie"
+    },
+    "contact": {
+      "title": "Contact | Cabinet Veterinar Arca lui Noe",
+      "description": "Contactați-ne! Adresa, numărul de telefon și programul nostru. Programări și disponibilitate pentru urgențe.",
+      "keywords": "contact, telefon, adresă, programări, urgențe veterinare, Târgu Mureș"
+    },
+    "services": {
+      "title": "Servicii | Servicii veterinare complete",
+      "description": "Servicii veterinare complete: consultații, vaccinări, intervenții chirurgicale, analize de laborator, stomatologie și imagistică.",
+      "keywords": "servicii, vaccinare, chirurgie, analize laborator, stomatologie, diagnosticare, veterinar"
+    }
   }
 }

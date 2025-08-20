@@ -2,6 +2,12 @@ import NewsGrid from "@/components/sections/blog/NewsGrid";
 import PageTitle from "@/components/sections/PageTitle";
 import { getTranslations } from "next-intl/server";
 import React from "react";
+import { generatePageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }) {
+	const { locale } = await params;
+	return await generatePageMetadata("blog", locale);
+}
 
 const BlogPage = async ({ params: { locale } }) => {
 	const blog_text = await getTranslations("Blog");
