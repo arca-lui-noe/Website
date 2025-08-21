@@ -18,7 +18,7 @@ export async function GET(request) {
 		}
 
 		const services = await backendRes.json();
-		console.log("Fetched services:", services);
+		// console.log("Fetched services:", services);
 
 		return new Response(JSON.stringify(services), {
 			status: 200,

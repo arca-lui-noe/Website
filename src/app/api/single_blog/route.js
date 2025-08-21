@@ -16,7 +16,7 @@ export async function GET(request) {
 		}
 
 		const blog = await backendRes.json();
-		console.log("Fetched blog:", blog);
+		// console.log("Fetched blog:", blog);
 
 		return new Response(JSON.stringify(blog), {
 			status: 200,

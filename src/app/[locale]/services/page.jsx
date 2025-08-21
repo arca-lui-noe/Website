@@ -1,7 +1,5 @@
 import PageTitle from "@/components/sections/PageTitle";
-
 import React from "react";
-import ServiceContact from "../../../components/sections/services/ServiceContact";
 import Contact from "@/components/sections/home/Contact";
 import Service from "@/components/sections/home/Service";
 import { getTranslations } from "next-intl/server";
@@ -12,8 +10,9 @@ export async function generateMetadata({ params }) {
 	return await generatePageMetadata("services", locale);
 }
 
-const Services = async ({ params: { locale } }) => {
+const Services = async ({ params }) => {
 	const t = await getTranslations("Services");
+	const { locale } = await params;
 
 	return (
 		<>

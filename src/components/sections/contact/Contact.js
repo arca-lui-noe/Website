@@ -1,7 +1,5 @@
 "use client";
-
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 const LinkClinic = "https://maps.app.goo.gl/5oHoVadU21h6L1e27";

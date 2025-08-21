@@ -9,7 +9,8 @@ export async function generateMetadata({ params }) {
 	return await generatePageMetadata("blog", locale);
 }
 
-const BlogPage = async ({ params: { locale } }) => {
+const BlogPage = async ({ params }) => {
+	const { locale } = await params;
 	const blog_text = await getTranslations("Blog");
 	return (
 		<>

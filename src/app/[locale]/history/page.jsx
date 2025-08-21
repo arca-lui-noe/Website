@@ -1,7 +1,4 @@
 import VideoSection from "@/components/layouts/VideoSection";
-import AboutUs from "@/components/sections/about/AboutUs";
-import Consulting from "@/components/sections/about/Consulting";
-import Faq from "@/components/sections/home/Faq";
 import PageTitle from "@/components/sections/PageTitle";
 import StoryTimeline from "@/components/StoryTimeline/StoryTimeline";
 import { getTranslations } from "next-intl/server";

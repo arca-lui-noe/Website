@@ -23,7 +23,7 @@ const BlogInsidePageClient = ({ params }) => {
 				);
 				const data = await res.json();
 				setBlog(data);
-				console.log("Fetched blog:", data);
+				// console.log("Fetched blog:", data);
 
 				if (data && data.blog_id) {
 					try {
@@ -32,7 +32,7 @@ const BlogInsidePageClient = ({ params }) => {
 						);
 						const recData = await recRes.json();
 						setRecommended(recData);
-						console.log("Fetched recommended blogs:", recData);
+						// console.log("Fetched recommended blogs:", recData);
 					} catch (err) {
 						console.error("Failed to load recommended blogs", err);
 					}

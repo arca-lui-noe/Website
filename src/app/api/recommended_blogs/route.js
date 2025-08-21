@@ -6,8 +6,8 @@ export async function GET(request) {
 		const locale = searchParams.get("locale");
 		const blog_id = searchParams.get("blog_id");
 		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-		console.log("Fetching recommended blogs for blog_id:", blog_id);
-		console.log("Locale:", locale);
+		// console.log("Fetching recommended blogs for blog_id:", blog_id);
+		// console.log("Locale:", locale);
 		const res = await fetch(
 			`${apiUrl}/admin/events/get_recommended_blogs.php?locale=${locale}&blog_id=${blog_id}`
 		);
@@ -17,7 +17,7 @@ export async function GET(request) {
 		}
 
 		const recommended = await res.json();
-		console.log("Fetched recommended blogs:", recommended);
+		// console.log("Fetched recommended blogs:", recommended);
 
 		return new Response(JSON.stringify(recommended), {
 			status: 200,

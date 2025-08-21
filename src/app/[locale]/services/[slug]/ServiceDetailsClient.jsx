@@ -2,9 +2,7 @@
 import Service from "@/components/sections/home/Service";
 import PageTitle from "@/components/sections/PageTitle";
 import ServiceDetailsSec1 from "@/components/sections/services/ServiceDetailsSec1";
-import ServiceDetailsSec2 from "@/components/sections/services/ServiceDetailsSec2";
 import ServiceDetailsSec3 from "@/components/sections/services/ServiceDetailsSec3";
-import ServiceDetailsSec5 from "@/components/sections/services/ServiceDetailsSec5";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import React from "react";
