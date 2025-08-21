@@ -52,9 +52,9 @@ const ServiceDetailsClient = ({ params }) => {
 			<PageTitle
 				customClass="servicedetails-style"
 				pageName={service ? service.name : "Loading..."}
-				pageDescription={service ? service.short_description : "Loading..."}
+				pageDescription=""
 				floatImage="/images/breadcrumb/breadcrumb_img_3.png"
-				pageText="Blandit cursus risus at ultrices. Enim sit amet venenatis urna cursus eget nunc scelerisque"
+				pageText={service ? service.short_description : "Loading..."}
 			/>
 			<ServiceDetailsSec1
 				pageDescription={service ? service.description1 : "Loading..."}

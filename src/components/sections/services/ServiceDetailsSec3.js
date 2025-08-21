@@ -35,12 +35,12 @@ const ServiceDetailsSec3 = ({ pageDescription, petImage, videoUrl }) => {
 							<div className="about_image_1 bg-transparent">
 								<div className="image_1 p-0">
 									<Image
-										width={640}
-										height={640}
+										width={1000}
+										height={1000}
 										style={{
 											objectFit: "contain",
-											height: "640px",
-											width: "640px",
+											height: "1000px",
+											width: "1000px",
 											borderRadius: "20px",
 										}}
 										src={petImage}

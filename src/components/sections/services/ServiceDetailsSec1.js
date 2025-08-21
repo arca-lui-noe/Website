@@ -93,6 +93,7 @@ const ServiceDetailsSec1 = ({ pageDescription, gallery }) => {
 													<Image
 														width={303}
 														height={430}
+														style={{ objectFit: "cover", height: "430px" }}
 														src={`${apiUrl}/uploads/services_gallery/${item.gallery_image}`}
 														alt="Pet Service"
 													/>
