@@ -383,7 +383,7 @@ export default function Header1({
 						{" "}
 						<div className="upper-box">
 							<div className="nav-logo d-block d-lg-none">
-								<Link href={`/${locale}`}>
+								<Link href={`/`}>
 									<DynamicLogo
 										locale={locale}
 										scroll={false}
@@ -419,7 +419,7 @@ export default function Header1({
 						<div className="main-wrapper">
 							{/*Logo*/}
 							<div className="logo">
-								<Link href={`/${locale}`}>
+								<Link href={`/`}>
 									<DynamicLogo
 										locale={locale}
 										scroll={scroll}
