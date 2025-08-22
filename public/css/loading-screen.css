@@ -1,0 +1,245 @@
+/* Loading Screen Styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.loading-screen.fade-out {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+.loading-screen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-logo {
+  animation: logoFadeInOut 2s ease-in-out infinite;
+  max-width: 100%;
+  height: auto;
+}
+
+.loading-additional-content {
+  text-align: center;
+  color: #333;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes logoFadeInOut {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .loading-logo {
+    width: 150px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-logo {
+    width: 120px;
+    height: auto;
+  }
+  
+  .loading-screen-content {
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Alternative spinner for data loading */
+.loading-spinner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 200px;
+  padding: 2rem;
+}
+
+.loading-spinner .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner p {
+  color: #666;
+  font-family: var(--font-nunito), sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Overlay for partial page loading */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Disable scrolling when loading screen is active */
+body.loading-active {
+  overflow: hidden;
+}
+
+/* Preloader specific styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.preloader .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader .loading-logo {
+  animation: logoFadeInOut 2s ease-in-out infinite;
+  max-width: 200px;
+  height: auto;
+}
+
+/* Loading Button Styles */
+.loading-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.loading-button.loading {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.loading-button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-button-text {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.loading-button.loading .loading-button-text {
+  margin-left: 0.25rem;
+}
+
+.loading-button-styled {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.loading-button-styled:hover:not(.loading):not(:disabled) {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.loading-button-styled:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+/* Small loading indicator for inline use */
+.inline-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.inline-loading .spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #666;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

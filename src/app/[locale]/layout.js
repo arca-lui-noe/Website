@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import ClientLayout from "@/components/layouts/ClientLayout";
 import "/public/css/bootstrap.min.css";
 import "/public/css/style.css";
+import "/public/css/loading-screen.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";

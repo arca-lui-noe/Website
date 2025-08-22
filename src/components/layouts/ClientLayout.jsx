@@ -4,10 +4,13 @@
 import React, { useEffect, useState } from "react";
 import Header1 from "@/components/layouts/Header3";
 import Footer1 from "@/components/layouts/Footer1";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import { LoadingProvider, useLoading } from "@/contexts/LoadingContext";
 
-export default function ClientLayout({ children, footerStyle, locale, dict }) {
+function ClientLayoutInner({ children, footerStyle, locale, dict }) {
   const [scroll, setScroll] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const { isLoading } = useLoading();
 
   // Mobile Menu
   const [isMobileMenu, setMobileMenu] = useState(false);
@@ -38,14 +41,18 @@ export default function ClientLayout({ children, footerStyle, locale, dict }) {
   }, [scroll]);
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // Initial page load animation
+    setInitialLoading(true);
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return <div className="preloader"></div>;
+  // Show loading screen for initial load or context loading
+  if (initialLoading || isLoading) {
+    return <LoadingScreen locale={locale} />;
   }
 
   return (
@@ -68,5 +75,18 @@ export default function ClientLayout({ children, footerStyle, locale, dict }) {
         {/* <BackToTop /> */}
       </div>
     </>
+  );
+}
+
+export default function ClientLayout({ children, footerStyle, locale, dict }) {
+  return (
+    <LoadingProvider>
+      <ClientLayoutInner 
+        children={children} 
+        footerStyle={footerStyle} 
+        locale={locale} 
+        dict={dict} 
+      />
+    </LoadingProvider>
   );
 }
