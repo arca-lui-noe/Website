@@ -164,7 +164,17 @@ const VideoBackground = ({ locale }) => {
 			<div className="video-background-container">
 				{/* Background Video */}
 				<video
-					className="background-video"
+					className="background-video d-none d-md-block"
+					autoPlay
+					muted
+					loop
+					playsInline
+					preload="metadata">
+					<source src="/video/herobg.mp4" type="video/mp4" />
+					Your browser does not support the video tag.
+				</video>
+				<video
+					className="background-video d-block d-md-none"
 					autoPlay
 					muted
 					loop
