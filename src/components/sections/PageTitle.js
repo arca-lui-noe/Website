@@ -13,7 +13,7 @@ const PageTitle = (props) => {
 						</li>
 						<li>{props.pageName}</li>
 					</ul>
-					<h1 className="title">{props.pageName}</h1>
+					<h1 className="title w-50">{props.pageName}</h1>
 					<p className="text">{props.pageText}</p>
 				</div>
 			</div>

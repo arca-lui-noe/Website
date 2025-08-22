@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 	return await generatePageMetadata("history", locale);
 }
 
-const History = async () => {
+const History = async ({ params: { locale } }) => {
 	const history_text = await getTranslations("History");
 	return (
 		<>
@@ -28,7 +28,7 @@ const History = async () => {
 					</div>
 				</div>
 			</div>
-			<StoryTimeline />
+			<StoryTimeline locale={locale} />
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-12">

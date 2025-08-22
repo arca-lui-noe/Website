@@ -28,62 +28,40 @@ const ServiceDetailsSec3 = ({ pageDescription, petImage, videoUrl }) => {
 	}, [pageDescription]);
 	return (
 		<>
-			<section className="about_section decoration_wrap pb-0">
+			<section className="about_section decoration_wrap pb-0 pt-0 pt-md-2">
 				<div className="container">
 					<div className="row align-items-center justify-content-lg-between">
-						<div className="col col-lg-6">
-							<div className="about_image_1 bg-transparent">
-								<div className="image_1 p-0">
-									<Image
-										width={1000}
-										height={1000}
-										style={{
-											objectFit: "contain",
-											height: "1000px",
-											width: "1000px",
-											borderRadius: "20px",
-										}}
-										src={petImage}
-										alt="Pet Doctor"
-									/>
-								</div>
-								{/* <div className="image_2">
-                  <Image
-                      width={300}
-                    height={260}
-                    src="/images/about/about_img_8.jpg"
-                    alt="Cat Image"
-                  />
-                </div>
-                <div className="image_3">
-                  <Image
-                  width={220}
-                    height={200}
-                    src="/images/about/about_img_9.jpg"
-                    alt="Dog Image"
-                  />
-                </div> */}
-								<div className="shape_img_1">
-									<Image
-										width={520}
-										height={520}
-										src="/images/shape/shape_circle_1.svg"
-										alt="Yellow Circle"
-									/>
-								</div>
-								<div className="shape_img_2">
-									<Image
-										width={300}
-										height={300}
-										src="/images/shape/shape_circle_3.svg"
-										alt="Yellow Circle"
-									/>
-								</div>
+						<div className="col-12 col-lg-6">
+							<div
+								className="position-relative d-flex justify-content-center align-items-center"
+								style={{ minHeight: "500px" }}>
+								<Image
+									width={600}
+									height={600}
+									style={{
+										objectFit: "contain",
+										maxHeight: "600px",
+										maxWidth: "100%",
+										zIndex: 4,
+									}}
+									src={petImage}
+									alt="Pet Doctor"
+								/>
+								<Image
+									width={520}
+									height={520}
+									src="/images/shape/shape_circles.svg"
+									alt="Yellow Circle"
+									className="position-absolute"
+									style={{ zIndex: 2 }}
+								/>
 							</div>
 						</div>
-						<div
-							ref={descriptionRef}
-							className="single-service-description col col-lg-5"></div>
+						<div className="col-12 col-lg-6">
+							<div
+								ref={descriptionRef}
+								className="single-service-description"></div>
+						</div>
 					</div>
 				</div>
 

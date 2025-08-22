@@ -8,7 +8,7 @@ const TARGET_IMAGE_HEIGHT = 550; // Increased visual height for the timeline (wa
 // Replace fixed duration with base; actual duration will be distance-based
 const BASE_SCROLL_DURATION = 320; // ms (faster than previous 550)
 
-const StoryTimeline = () => {
+const StoryTimeline = ({ locale }) => {
 	const scrollContainerRef = useRef(null);
 	const imageRef = useRef(null);
 	const leftBtnRef = useRef(null);
@@ -181,7 +181,11 @@ const StoryTimeline = () => {
 						<div style={{ display: "inline-block", position: "relative" }}>
 							<img
 								ref={imageRef}
-								src="/story_timeline.png"
+								src={
+									locale === "hu"
+										? "/images/Timeline_HU.png"
+										: "/images/Timeline_RO.png"
+								}
 								alt="Company history timeline"
 								style={{
 									display: "block",
@@ -195,7 +199,7 @@ const StoryTimeline = () => {
 								draggable="false"
 								onLoad={onImageLoad}
 								onError={() => {
-									console.error("Failed to load /story_timeline.png");
+									console.error("Failed to load image");
 									if (leftBtnRef.current)
 										leftBtnRef.current.style.display = "none";
 									if (rightBtnRef.current)

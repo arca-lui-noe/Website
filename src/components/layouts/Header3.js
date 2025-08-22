@@ -37,6 +37,7 @@ export default function Header1({
 		"/history": "#1C103B", // example page
 		"/contact": "#1C103B", // example page
 		"/blog": "#1C103B", // example page
+		"/services": "#1C103B", // example page
 		// Add more: "/your-path": "#hexColor"
 	};
 
@@ -45,9 +46,16 @@ export default function Header1({
 		pathname.replace(/^\/[a-zA-Z-]{2}(?=\/|$)/, "") || "/";
 
 	// Determine color only when NOT scrolled (at top). When scrolled (sticky), we keep default styling.
-	const hamburgerColor = !scroll
-		? hamburgerColorMap[localeStrippedPath]
-		: undefined;
+	// const hamburgerColor = !scroll
+	// 	? hamburgerColorMap[localeStrippedPath]
+	// 	: undefined;
+	let hamburgerColor = undefined;
+
+	if (localeStrippedPath === "/") {
+		hamburgerColor = "#ffffff";
+	} else {
+		hamburgerColor = "#1C103B";
+	}
 
 	// Helper style object
 	const hamburgerStyle = hamburgerColor ? { color: hamburgerColor } : undefined;
