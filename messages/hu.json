@@ -76,7 +76,16 @@
     "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban."
   },
   "About": {
-    "heading": "Test about heading"
+    "title": "Rólunk",
+    "lead": "Tudjon meg többet rólunk és küldetésünkről.",
+    "years": "Év tapasztalat",
+    "callout": "Hitvallásunk",
+    "about-title": "A Noé Bárkájáról",
+    "about-desc": "Klinikánkon az állatok nem csupán páciensek - hanem a család tagjai. Orvosi tapasztalatunkat modern felszereléssel ötvözzük, hogy kisállatod a lehető legjobb ellátást kapja.",
+    "about-point1": "Kiemelkedő orvosi szakértelem, odafigyeléssel és empátiával",
+    "about-point2": "Személyre szabott kezelési tervek",
+    "about-point3": "Gyors diagnózis modern technológiával",
+    "about-point4": "Hosszú távú kapcsolat bizalomra építve"
   },
   "Services": {
     "title": "Szolgáltatások",

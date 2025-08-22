@@ -95,7 +95,7 @@ const Consulting = () => {
 					</div>
 				</div>
 
-				<div className="decoration_item paw_shape_1">
+				<div className="decoration_item paw_shape_1 d-none d-md-block">
 					<Image
 						width={340}
 						height={280}
@@ -104,7 +104,7 @@ const Consulting = () => {
 					/>
 				</div>
 
-				<div className="decoration_item paw_shape_2">
+				<div className="decoration_item paw_shape_2 d-none d-md-block">
 					<Image
 						width={250}
 						height={250}

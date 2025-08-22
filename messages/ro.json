@@ -76,7 +76,16 @@
     "contact-desc": "Răspundem cu plăcere la orice întrebare. Contactează-ne telefonic sau prin e-mail și te ajutăm cu sănătatea animăluțului tău."
   },
   "About": {
-    "heading": "Test about heading"
+    "title": "Despre noi",
+    "lead": "Aflați mai multe despre noi și misiunea noastră.",
+    "callout": "Crezul nostru",
+    "years": "Ani de experiență",
+    "about-title": "Despre Arca lui Noe",
+    "about-desc": "La clinica noastră, animalele nu sunt doar pacienți - sunt membri ai familiei. Combinăm experiența medicală cu aparatură modernă pentru ca animăluțul tău să primească cea mai bună îngrijire.",
+    "about-point1": "Expertiză medicală de top, cu grijă și empatie",
+    "about-point2": "Planuri de tratament personalizate",
+    "about-point3": "Diagnostic rapid cu tehnologie modernă",
+    "about-point4": "Relație pe termen lung bazată pe încredere"
   },
   "Services": {
     "title": "Servicii",

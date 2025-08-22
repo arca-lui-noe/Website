@@ -159,7 +159,7 @@ const Faq = () => {
 									<Image
 										width={480}
 										height={480}
-										src="/images/about/about_img_1.jpg"
+										src="/images/about/faq_img1.webp"
 										alt="Pet Doctor"
 									/>
 								</div>
@@ -167,7 +167,7 @@ const Faq = () => {
 									<Image
 										width={300}
 										height={260}
-										src="/images/about/about_img_2.jpg"
+										src="/images/about/faq_img2.webp"
 										alt="Cat Image"
 									/>
 								</div>
@@ -175,7 +175,7 @@ const Faq = () => {
 									<Image
 										width={220}
 										height={200}
-										src="/images/about/about_img_3.jpg"
+										src="/images/about/faq_img3.webp"
 										alt="Dog Image"
 									/>
 								</div>

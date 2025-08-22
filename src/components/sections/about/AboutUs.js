@@ -1,7 +1,17 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
-const AboutUs = () => {
+const AboutUs = ({
+	years,
+	callout,
+	title,
+	desc,
+	point1,
+	point2,
+	point3,
+	point4,
+	locale,
+}) => {
 	return (
 		<>
 			<section className="about_section section_space_lg">
@@ -12,7 +22,7 @@ const AboutUs = () => {
 								<Image
 									width={550}
 									height={480}
-									src="/images/about/about_img_6.jpg"
+									src="/images/about/about_years_image.webp"
 									alt="Pet Care Image"
 								/>
 								<div
@@ -20,8 +30,8 @@ const AboutUs = () => {
 									style={{
 										backgroundImage: "url(/images/shape/shape_circle_1.svg)",
 									}}>
-									<strong>20+</strong>
-									<span>Years Experience</span>
+									<strong>25+</strong>
+									<span>{years}</span>
 								</div>
 							</div>
 						</div>
@@ -29,40 +39,31 @@ const AboutUs = () => {
 							<div className="about_content_2">
 								<div className="section_title">
 									<h2 className="title_text">
-										<span className="sub_title">Our Services</span> About
-										Petopia
+										<span className="sub_title">{callout}</span> {title}
 									</h2>
-									<p className="mb-0">
-										Justo eget magna fermentum iaculis eu non diam phasellus. Eu
-										lobortis elementum nibh tellus molestie nunc. Ullamcorper
-										eget nulla facilisi etiam dignissim diam. Eget felis eget
-										nunc lobortis mattis{" "}
-									</p>
+									<p className="mb-0">{desc} </p>
 								</div>
 								<ul className="icon_list unorder_list_block">
 									<li>
 										{" "}
-										<i className="fas fa-bone"></i>{" "}
-										<span>Adipiscing elit pellentesque</span>
+										<i className="fas fa-bone"></i> <span>{point1}</span>
 									</li>
 									<li>
 										{" "}
-										<i className="fas fa-bone"></i>{" "}
-										<span>Ornare euismod elementum</span>
+										<i className="fas fa-bone"></i> <span>{point2}</span>
 									</li>
 									<li>
 										{" "}
-										<i className="fas fa-bone"></i>{" "}
-										<span>Posuere ac ut consequat</span>
+										<i className="fas fa-bone"></i> <span>{point3}</span>
 									</li>
 									<li>
 										{" "}
-										<i className="fas fa-bone"></i>{" "}
-										<span>Sed turpis tinci aliquet risus</span>
+										<i className="fas fa-bone"></i> <span>{point4}</span>
 									</li>
 								</ul>
 								<Link className="btn btn_primary" href="/services">
-									<i className="fas fa-paw"></i> Our Service
+									<i className="fas fa-paw"></i>{" "}
+									{locale === "hu" ? "Szolgáltatásaink" : "Serviciile noastre"}
 								</Link>
 							</div>
 						</div>
