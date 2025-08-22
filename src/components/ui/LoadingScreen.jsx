@@ -5,10 +5,7 @@ import Image from "next/image";
 
 export default function LoadingScreen({ locale = "hu" }) {
 	// Choose logo based on locale
-	const logoSrc =
-		locale === "hu"
-			? "/images/logo/logo_hor_hu_color.png"
-			: "/images/logo/logo_hor_ro_color.png";
+	const logoSrc = "/images/logo/logo_icon.webp";
 
 	return (
 		<div className="loading-screen">
