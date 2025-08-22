@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import { LoadingOverlay } from "@/hooks/useLoadingState";
 import React from "react";
 import { useLocale } from "next-intl";
 import { useEffect, useState, useRef } from "react";
@@ -11,12 +13,15 @@ const BlogInsidePageClient = ({ params }) => {
 	const locale = useLocale();
 	const [blog, setBlog] = useState(null);
 	const [recommended, setRecommended] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
+	const [isRecommendedLoading, setIsRecommendedLoading] = useState(false);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 	const contentRef = useRef(null);
 	// REMOVED: unused pageContent state
 	// const [pageContent, setPageContent] = useState(null);
 	useEffect(() => {
 		const fetchBlogs = async () => {
+			setIsLoading(true);
 			try {
 				const res = await fetch(
 					`/api/single_blog?slug=${slug}&locale=${locale}`
@@ -26,6 +31,7 @@ const BlogInsidePageClient = ({ params }) => {
 				// console.log("Fetched blog:", data);
 
 				if (data && data.blog_id) {
+					setIsRecommendedLoading(true);
 					try {
 						const recRes = await fetch(
 							`/api/recommended_blogs?locale=${locale}&blog_id=${data.blog_id}`
@@ -35,10 +41,14 @@ const BlogInsidePageClient = ({ params }) => {
 						// console.log("Fetched recommended blogs:", recData);
 					} catch (err) {
 						console.error("Failed to load recommended blogs", err);
+					} finally {
+						setIsRecommendedLoading(false);
 					}
 				}
 			} catch (err) {
 				console.error("Failed to load blog", err);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
@@ -65,8 +75,38 @@ const BlogInsidePageClient = ({ params }) => {
 		}
 	}, [blog?.content]);
 
+	// Show loading screen while data is being fetched
+	if (isLoading) {
+		return <LoadingScreen locale={locale} />;
+	}
+
+	// Show error state if blog is not found
 	if (!blog) {
-		return <div>Loading...</div>;
+		return (
+			<section className="details_section blog_details section_space_lg pb-0">
+				<div className="container">
+					<div className="row justify-content-center">
+						<div className="col col-lg-9">
+							<div className="details_content text-center">
+								<h1 className="item_title">
+									{locale === "ro"
+										? "Blog nu a fost găsit"
+										: "Blog nem található"}
+								</h1>
+								<p>
+									{locale === "ro"
+										? "Ne pare rău, blogul pe care îl căutați nu există."
+										: "Sajnáljuk, a keresett blog nem létezik."}
+								</p>
+								<Link href="/blog" className="btn btn-primary">
+									{locale === "ro" ? "Înapoi la bloguri" : "Vissza a blogokhoz"}
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		);
 	}
 	return (
 		<>
@@ -84,7 +124,7 @@ const BlogInsidePageClient = ({ params }) => {
 								/>
 							</div>
 							<div className="details_content">
-								<h1 className="item_title">{blog.title || "Loading..."}</h1>
+								<h1 className="item_title">{blog.title}</h1>
 								<ul className="post_meta unorder_list">
 									<li>
 										<Link href="#!">
@@ -97,7 +137,7 @@ const BlogInsidePageClient = ({ params }) => {
 									<li>
 										<Link href="#!">
 											<i className="fas fa-calendar-day"></i>{" "}
-											{blog.created_date || "Loading..."}
+											{blog.created_date}
 										</Link>
 									</li>
 								</ul>
@@ -165,41 +205,45 @@ const BlogInsidePageClient = ({ params }) => {
 
 						<div className="col col-lg-3">
 							<aside className="sidebar_section">
-								<div className="sb_widget">
-									<h3 className="sb_widget_title">
-										{locale === "ro"
-											? "Bloguri Recomandate"
-											: "Ajánlott Blogok"}
-									</h3>
-									<ul className="small_post_wrap unorder_list_block">
-										{recommended &&
-											recommended.map((item, index) => (
-												<li key={index}>
-													<div className="small_blog_item">
-														<Link className="item_image" href="blog/asd">
-															<Image
-																width={80}
-																height={80}
-																src={`${apiUrl}/uploads/blog/${item.cover_image}`}
-																alt="Pet Care Services"
-															/>
-														</Link>
-														<div className="item_content">
-															<h3 className="item_title">
-																<Link href={`${item.slug}`}>
-																	{item.title || "Loading..."}
-																</Link>
-															</h3>
-															<Link className="item_admin" href="#!">
-																<i className="fas fa-user"></i> by{" "}
-																{item.author || "Unknown"}
+								<LoadingOverlay
+									isLoading={isRecommendedLoading}
+									message="Loading recommendations...">
+									<div className="sb_widget">
+										<h3 className="sb_widget_title">
+											{locale === "ro"
+												? "Bloguri Recomandate"
+												: "Ajánlott Blogok"}
+										</h3>
+										<ul className="small_post_wrap unorder_list_block">
+											{recommended &&
+												recommended.map((item, index) => (
+													<li key={index}>
+														<div className="small_blog_item">
+															<Link className="item_image" href="blog/asd">
+																<Image
+																	width={80}
+																	height={80}
+																	src={`${apiUrl}/uploads/blog/${item.cover_image}`}
+																	alt="Pet Care Services"
+																/>
 															</Link>
+															<div className="item_content">
+																<h3 className="item_title">
+																	<Link href={`${item.slug}`}>
+																		{item.title}
+																	</Link>
+																</h3>
+																<Link className="item_admin" href="#!">
+																	<i className="fas fa-user"></i> by{" "}
+																	{item.author || "Unknown"}
+																</Link>
+															</div>
 														</div>
-													</div>
-												</li>
-											))}
-									</ul>
-								</div>
+													</li>
+												))}
+										</ul>
+									</div>
+								</LoadingOverlay>
 							</aside>
 						</div>
 					</div>
@@ -216,74 +260,76 @@ const BlogInsidePageClient = ({ params }) => {
 						</h2>
 					</div>
 
-					<div className="row justify-content-center">
-						{recommended &&
-							recommended.map((item, index) => (
-								<div className="col col-lg-4" key={index}>
-									<div className="blog_item">
-										<ul className="badge_group unorder_list_right">
-											<li>
-												{(() => {
-													if (!item?.created_date) return null;
-													const parts = item.created_date.split("-");
-													if (parts.length !== 3) return null;
-													const created = new Date(
-														Number(parts[0]),
-														Number(parts[1]) - 1,
-														Number(parts[2])
-													);
-													const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
-													const isRecent =
-														Date.now() - created.getTime() <= oneWeekMs;
-													if (isRecent) {
-														return (
-															<Link className="badge badge_sale" href="#!">
-																{locale === "ro" ? "Nou" : "Új"}
-															</Link>
+					<LoadingOverlay
+						isLoading={isRecommendedLoading}
+						message="Loading more blogs...">
+						<div className="row justify-content-center">
+							{recommended &&
+								recommended.map((item, index) => (
+									<div className="col col-lg-4" key={index}>
+										<div className="blog_item">
+											<ul className="badge_group unorder_list_right">
+												<li>
+													{(() => {
+														if (!item?.created_date) return null;
+														const parts = item.created_date.split("-");
+														if (parts.length !== 3) return null;
+														const created = new Date(
+															Number(parts[0]),
+															Number(parts[1]) - 1,
+															Number(parts[2])
 														);
-													}
-													return null;
-												})()}
-											</li>
-										</ul>
-										<Link className="item_image" href={`/blog/${item.slug}`}>
-											<Image
-												style={{ objectFit: "cover", height: "300px" }}
-												width={420}
-												height={300}
-												src={`${apiUrl}/uploads/blog/${item.cover_image}`}
-												alt="Pet Care Image"
-											/>
-										</Link>
-										<div className="item_content">
-											<ul className="post_meta unorder_list">
-												<li>
-													<Link href="#!">
-														<i className="fas fa-user"></i>{" "}
-														{item.author ||
-															(locale === "ro" ? "Anonim" : "Ismeretlen")}
-													</Link>
-												</li>
-												<li>
-													<Link href="#!">
-														<i className="fas fa-calendar-day"></i>{" "}
-														{item.created_date || "Unknown Date"}
-													</Link>
+														const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
+														const isRecent =
+															Date.now() - created.getTime() <= oneWeekMs;
+														if (isRecent) {
+															return (
+																<Link className="badge badge_sale" href="#!">
+																	{locale === "ro" ? "Nou" : "Új"}
+																</Link>
+															);
+														}
+														return null;
+													})()}
 												</li>
 											</ul>
-											<h3 className="item_title">
-												<Link href={`/blog/${item.slug}`}>
-													{item.title || "Loading..."}
-												</Link>
-											</h3>
-											<p className="mb-0">
-												{item.lead || "No lead available."}
-											</p>
+											<Link className="item_image" href={`/blog/${item.slug}`}>
+												<Image
+													style={{ objectFit: "cover", height: "300px" }}
+													width={420}
+													height={300}
+													src={`${apiUrl}/uploads/blog/${item.cover_image}`}
+													alt="Pet Care Image"
+												/>
+											</Link>
+											<div className="item_content">
+												<ul className="post_meta unorder_list">
+													<li>
+														<Link href="#!">
+															<i className="fas fa-user"></i>{" "}
+															{item.author ||
+																(locale === "ro" ? "Anonim" : "Ismeretlen")}
+														</Link>
+													</li>
+													<li>
+														<Link href="#!">
+															<i className="fas fa-calendar-day"></i>{" "}
+															{item.created_date || "Unknown Date"}
+														</Link>
+													</li>
+												</ul>
+												<h3 className="item_title">
+													<Link href={`/blog/${item.slug}`}>{item.title}</Link>
+												</h3>
+												<p className="mb-0">
+													{item.lead || "No lead available."}
+												</p>
+											</div>
 										</div>
 									</div>
-								</div>
-							))}
-					</div>
+								))}
+						</div>
+					</LoadingOverlay>
 				</div>
 			</section>
 		</>
