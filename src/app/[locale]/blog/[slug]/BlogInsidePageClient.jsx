@@ -64,17 +64,23 @@ const BlogInsidePageClient = ({ params }) => {
 		}
 	}, [slug, locale]);
 
-	// UPDATED: More robust content handling with error checking
+	// Replace your current content useEffect with this:
 	useEffect(() => {
+		// Only run if we have blog content
+		if (!blog?.content) return;
+
 		console.log("Content effect running:", {
-			hasContentRef: !!contentRef.current,
 			blogContent: blog?.content,
 			contentType: typeof blog?.content,
 			contentLength: blog?.content?.length,
 		});
-		const timer = setTimeout(() => {
-			if (contentRef.current && blog?.content) {
+
+		// Use requestAnimationFrame to ensure DOM is ready
+		const processContent = () => {
+			if (contentRef.current) {
 				try {
+					console.log("Processing content...");
+
 					// Clear existing content first
 					contentRef.current.innerHTML = "";
 
@@ -100,14 +106,26 @@ const BlogInsidePageClient = ({ params }) => {
 					contentRef.current.textContent = blog.content;
 				}
 			} else {
-				console.log("Content not loaded:", {
-					hasRef: !!contentRef.current,
-					hasContent: !!blog?.content,
-					blog: blog,
-				});
+				console.log("Content ref not available, retrying...");
+				// If ref is not available, try again on next frame
+				requestAnimationFrame(processContent);
 			}
-		}, 100);
-	}, [blog, contentRef.current]);
+		};
+
+		// Start processing on next frame
+		requestAnimationFrame(processContent);
+	}, [blog?.content]); // Only depend on the actual content, not the ref
+
+	// Alternative: You can also add a separate effect to handle mounting
+	useEffect(() => {
+		// This effect runs when component mounts and ref should be available
+		if (contentRef.current && blog?.content) {
+			console.log("Ref is now available, triggering content processing");
+			// Trigger a re-render or force the content processing
+			const event = new CustomEvent("contentRefReady");
+			document.dispatchEvent(event);
+		}
+	}, []); // Empty dependency array - runs once after mount
 
 	// Show loading screen while data is being fetched
 	if (isLoading) {
