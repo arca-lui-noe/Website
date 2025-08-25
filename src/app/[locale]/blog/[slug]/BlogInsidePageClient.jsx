@@ -72,40 +72,41 @@ const BlogInsidePageClient = ({ params }) => {
 			contentType: typeof blog?.content,
 			contentLength: blog?.content?.length,
 		});
+		const timer = setTimeout(() => {
+			if (contentRef.current && blog?.content) {
+				try {
+					// Clear existing content first
+					contentRef.current.innerHTML = "";
 
-		if (contentRef.current && blog?.content) {
-			try {
-				// Clear existing content first
-				contentRef.current.innerHTML = "";
+					// Set the content
+					contentRef.current.innerHTML = blog.content;
 
-				// Set the content
-				contentRef.current.innerHTML = blog.content;
+					// Add icons to list items
+					const listItems = contentRef.current.querySelectorAll("li");
+					listItems.forEach((li) => {
+						if (!li.querySelector(".fas, .fa")) {
+							const icon = document.createElement("i");
+							icon.className = "fas fa-check-circle";
+							icon.style.color = "#cca162";
+							icon.style.marginRight = "0.5rem";
+							li.insertBefore(icon, li.firstChild);
+						}
+					});
 
-				// Add icons to list items
-				const listItems = contentRef.current.querySelectorAll("li");
-				listItems.forEach((li) => {
-					if (!li.querySelector(".fas, .fa")) {
-						const icon = document.createElement("i");
-						icon.className = "fas fa-check-circle";
-						icon.style.color = "#cca162";
-						icon.style.marginRight = "0.5rem";
-						li.insertBefore(icon, li.firstChild);
-					}
+					console.log("Content successfully loaded and processed");
+				} catch (error) {
+					console.error("Error setting content:", error);
+					// Fallback: display content as text if HTML parsing fails
+					contentRef.current.textContent = blog.content;
+				}
+			} else {
+				console.log("Content not loaded:", {
+					hasRef: !!contentRef.current,
+					hasContent: !!blog?.content,
+					blog: blog,
 				});
-
-				console.log("Content successfully loaded and processed");
-			} catch (error) {
-				console.error("Error setting content:", error);
-				// Fallback: display content as text if HTML parsing fails
-				contentRef.current.textContent = blog.content;
 			}
-		} else {
-			console.log("Content not loaded:", {
-				hasRef: !!contentRef.current,
-				hasContent: !!blog?.content,
-				blog: blog,
-			});
-		}
+		}, 100);
 	}, [blog, contentRef.current]);
 
 	// Show loading screen while data is being fetched
