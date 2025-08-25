@@ -14,7 +14,7 @@ const ContactPage = () => {
 			<PageTitle
 				customClass="contact-style"
 				pageName="Contacts"
-				floatImage="/images/breadcrumb/breadcrumb_img_10.png"
+				floatImage="/images/breadcrumb/breadcrumb_img_17.webp"
 				pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
 			/>
 			<Contact />
