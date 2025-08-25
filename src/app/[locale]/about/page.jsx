@@ -32,7 +32,19 @@ const About = async ({ params: { locale } }) => {
 				point4={about_text("about-point4")}
 				locale={locale}
 			/>
-			<Consulting />
+			<Consulting
+				callout={about_text("consult-callout")}
+				title={about_text("consult-title")}
+				lead={about_text("consult-lead")}
+				title1={about_text("consult-title1")}
+				desc1={about_text("consult-desc1")}
+				title2={about_text("consult-title2")}
+				desc2={about_text("consult-desc2")}
+				title3={about_text("consult-title3")}
+				desc3={about_text("consult-desc3")}
+				title4={about_text("consult-title4")}
+				desc4={about_text("consult-desc4")}
+			/>
 			<Faq />
 			<VideoSection />
 		</>

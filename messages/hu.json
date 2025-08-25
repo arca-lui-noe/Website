@@ -85,7 +85,18 @@
     "about-point1": "Kiemelkedő orvosi szakértelem, odafigyeléssel és empátiával",
     "about-point2": "Személyre szabott kezelési tervek",
     "about-point3": "Gyors diagnózis modern technológiával",
-    "about-point4": "Hosszú távú kapcsolat bizalomra építve"
+    "about-point4": "Hosszú távú kapcsolat bizalomra építve",
+    "consult-callout": "Konzultáció",
+    "consult-title": "Hogyan zajlik a konzultáció nálunk?",
+    "consult-lead": "A konzultáció során tapasztalt állatorvosaink alaposan megvizsgálják kedvencét, és részletesen átbeszélik Önnel az esetleges problémákat és a lehetséges megoldásokat.",
+    "consult-title1": "Kapcsolatfelvétel",
+    "consult-desc1": "Hívj minket, írj üzenetet, vagy foglalj időpontot kényelmesen online.",
+    "consult-title2": "Időpontfoglalás",
+    "consult-desc2": "Egyszerűen kiválaszthatod a számodra megfelelő időpontot az alkalmazásban is.",
+    "consult-title3": "Állatfelvétel",
+    "consult-desc3": "Kedvencedet szeretettel fogadjuk és elvégezzük a szükséges vizsgálatokat.",
+    "consult-title4": "Hazaviheted",
+    "consult-desc4": "A konzultáció után részletes tanácsokat kapsz, az alkalmazásban pedig követheted kedvenced egészségügyi adatait."
   },
   "Services": {
     "title": "Szolgáltatások",

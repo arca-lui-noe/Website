@@ -85,7 +85,18 @@
     "about-point1": "Expertiză medicală de top, cu grijă și empatie",
     "about-point2": "Planuri de tratament personalizate",
     "about-point3": "Diagnostic rapid cu tehnologie modernă",
-    "about-point4": "Relație pe termen lung bazată pe încredere"
+    "about-point4": "Relație pe termen lung bazată pe încredere",
+    "consult-callout": "Consultație",
+    "consult-title": "Cum decurge consultația la noi?",
+    "consult-lead": "În timpul consultației, medicii noștri veterinari experimentați își vor examina cu atenție animalul de companie și vor discuta în detaliu cu dumneavoastră problemele posibile și soluțiile disponibile.",
+    "consult-title1": "Contact",
+    "consult-desc1": "Ne poți suna, trimite un mesaj sau chiar face o programare online.",
+    "consult-title2": "Programare",
+    "consult-desc2": "Alegi ușor data convenabilă, inclusiv prin aplicația noastră.",
+    "consult-title3": "Primirea pacientului",
+    "consult-desc3": "Îți întâmpinăm cu drag animăluțul și efectuăm investigațiile necesare.",
+    "consult-title4": "Îl iei acasă",
+    "consult-desc4": "Primești recomandările medicului, iar în aplicație poți urmări istoricul și datele de sănătate ale prietenului tău."
   },
   "Services": {
     "title": "Servicii",

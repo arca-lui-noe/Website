@@ -1,18 +1,28 @@
 import Image from "next/image";
 
-const Consulting = () => {
+const Consulting = ({
+	callout,
+	title,
+	lead,
+	title1,
+	desc1,
+	title2,
+	desc2,
+	title3,
+	desc3,
+	title4,
+	desc4,
+}) => {
 	return (
 		<>
 			<section className="consultation_section section_space_lg decoration_wrap">
 				<div className="container">
 					<div className="section_title text-center">
 						<h2 className="title_text">
-							<span className="sub_title">Consultation</span>
-							How to Сonsult a Specialist
+							<span className="sub_title">{callout}</span>
+							{title}
 						</h2>
-						<p className="mb-0">
-							Auctor augue mauris augue neque gravida in fermentum
-						</p>
+						<p className="mb-0">{lead}</p>
 					</div>
 				</div>
 				<div
@@ -27,13 +37,12 @@ const Consulting = () => {
 										style={{
 											backgroundImage: "url(/images/shape/shape_outline.svg)",
 										}}>
-										<i className="fas fa-comment-dots"></i>
+										{/* <i className="fas fa-comment-dots"></i> */}
+										<i className="fa-solid fa-phone"></i>
 									</div>
 									<div className="item_content">
-										<h3 className="item_title">Get in touch</h3>
-										<p className="mb-0">
-											Duis aute irure dolor in reprehenderit in voluptate{" "}
-										</p>
+										<h3 className="item_title">{title1}</h3>
+										<p className="mb-0">{desc1}</p>
 									</div>
 								</div>
 							</div>
@@ -48,10 +57,8 @@ const Consulting = () => {
 										<i className="fas fa-calendar-check"></i>
 									</div>
 									<div className="item_content">
-										<h3 className="item_title">Schedule a visit</h3>
-										<p className="mb-0">
-											Duis aute irure dolor in reprehenderit in voluptate{" "}
-										</p>
+										<h3 className="item_title">{title2}</h3>
+										<p className="mb-0">{desc2}</p>
 									</div>
 								</div>
 							</div>
@@ -63,13 +70,11 @@ const Consulting = () => {
 										style={{
 											backgroundImage: "url(/images/shape/shape_outline.svg)",
 										}}>
-										<i className="fas fa-clipboard-list"></i>
+										<i className="fa-solid fa-bone-break"></i>
 									</div>
 									<div className="item_content">
-										<h3 className="item_title">Pet admission</h3>
-										<p className="mb-0">
-											Duis aute irure dolor in reprehenderit in voluptate{" "}
-										</p>
+										<h3 className="item_title">{title3}</h3>
+										<p className="mb-0">{desc3}</p>
 									</div>
 								</div>
 							</div>
@@ -81,13 +86,11 @@ const Consulting = () => {
 										style={{
 											backgroundImage: "url(/images/shape/shape_outline.svg)",
 										}}>
-										<i className="fas fa-home-lg"></i>
+										<i className="fa-solid fa-bone"></i>
 									</div>
 									<div className="item_content">
-										<h3 className="item_title">Take them home</h3>
-										<p className="mb-0">
-											Duis aute irure dolor in reprehenderit in voluptate{" "}
-										</p>
+										<h3 className="item_title">{title4}</h3>
+										<p className="mb-0">{desc4}</p>
 									</div>
 								</div>
 							</div>
