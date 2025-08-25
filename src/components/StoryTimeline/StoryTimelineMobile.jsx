@@ -21,13 +21,6 @@ const StoryTimeline = ({ locale }) => {
 	const [loaded, setLoaded] = useState(false);
 	const t = useTranslations("History");
 
-	// Drag scroll state
-	const dragRef = useRef({
-		isDragging: false,
-		startX: 0,
-		scrollLeft: 0,
-	});
-
 	// rAF animation state
 	const animRef = useRef({
 		frame: null,
@@ -93,81 +86,6 @@ const StoryTimeline = ({ locale }) => {
 		smoothScrollTo(sc.scrollLeft + step);
 	};
 
-	// Drag scroll handlers
-	const handleMouseDown = (e) => {
-		const sc = scrollContainerRef.current;
-		if (!sc || e.button !== 0) return; // Only left mouse button
-
-		cancelAnim(); // Stop any ongoing smooth scroll
-
-		dragRef.current.isDragging = true;
-		dragRef.current.startX = e.pageX - sc.offsetLeft;
-		dragRef.current.scrollLeft = sc.scrollLeft;
-
-		sc.style.cursor = "grabbing";
-		sc.style.userSelect = "none";
-
-		// Prevent default to avoid text selection
-		e.preventDefault();
-	};
-
-	const handleMouseMove = (e) => {
-		const sc = scrollContainerRef.current;
-		if (!sc || !dragRef.current.isDragging) return;
-
-		e.preventDefault();
-		const x = e.pageX - sc.offsetLeft;
-		const walk = (x - dragRef.current.startX) * 1; // Scroll speed multiplier
-		sc.scrollLeft = dragRef.current.scrollLeft - walk;
-	};
-
-	const handleMouseUp = () => {
-		const sc = scrollContainerRef.current;
-		if (!sc) return;
-
-		dragRef.current.isDragging = false;
-		sc.style.cursor = "grab";
-		sc.style.userSelect = "";
-
-		updateButtonStates();
-	};
-
-	const handleMouseLeave = () => {
-		if (dragRef.current.isDragging) {
-			handleMouseUp();
-		}
-	};
-
-	// Touch handlers for mobile drag scrolling
-	const handleTouchStart = (e) => {
-		const sc = scrollContainerRef.current;
-		if (!sc || e.touches.length !== 1) return;
-
-		cancelAnim();
-
-		dragRef.current.isDragging = true;
-		dragRef.current.startX = e.touches[0].pageX - sc.offsetLeft;
-		dragRef.current.scrollLeft = sc.scrollLeft;
-	};
-
-	const handleTouchMove = (e) => {
-		const sc = scrollContainerRef.current;
-		if (!sc || !dragRef.current.isDragging || e.touches.length !== 1) return;
-
-		e.preventDefault();
-		const x = e.touches[0].pageX - sc.offsetLeft;
-		const walk = (x - dragRef.current.startX) * 1;
-		sc.scrollLeft = dragRef.current.scrollLeft - walk;
-	};
-
-	const handleTouchEnd = () => {
-		const sc = scrollContainerRef.current;
-		if (!sc) return;
-
-		dragRef.current.isDragging = false;
-		updateButtonStates();
-	};
-
 	useEffect(() => {
 		const sc = scrollContainerRef.current;
 		if (!sc) return;
@@ -183,20 +101,21 @@ const StoryTimeline = ({ locale }) => {
 				navigate(1);
 			}
 		};
+		const handleWheel = (e) => {
+			if (!e.shiftKey && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+				e.preventDefault();
+				const sc = scrollContainerRef.current;
+				if (!sc) return;
+				const multiplier = 1.1; // slightly faster
+				smoothScrollTo(
+					sc.scrollLeft + e.deltaY * multiplier,
+					BASE_SCROLL_DURATION
+				);
+			}
+		};
 
 		sc.addEventListener("scroll", handleScroll, { passive: true });
-
-		// Add drag scroll event listeners
-		sc.addEventListener("mousedown", handleMouseDown);
-		sc.addEventListener("mousemove", handleMouseMove);
-		sc.addEventListener("mouseup", handleMouseUp);
-		sc.addEventListener("mouseleave", handleMouseLeave);
-
-		// Add touch event listeners for mobile
-		sc.addEventListener("touchstart", handleTouchStart, { passive: false });
-		sc.addEventListener("touchmove", handleTouchMove, { passive: false });
-		sc.addEventListener("touchend", handleTouchEnd);
-
+		sc.addEventListener("wheel", handleWheel, { passive: false });
 		window.addEventListener("resize", handleResize);
 		document.addEventListener("keydown", handleKeyDown);
 
@@ -204,18 +123,7 @@ const StoryTimeline = ({ locale }) => {
 
 		return () => {
 			sc.removeEventListener("scroll", handleScroll);
-
-			// Remove drag scroll event listeners
-			sc.removeEventListener("mousedown", handleMouseDown);
-			sc.removeEventListener("mousemove", handleMouseMove);
-			sc.removeEventListener("mouseup", handleMouseUp);
-			sc.removeEventListener("mouseleave", handleMouseLeave);
-
-			// Remove touch event listeners
-			sc.removeEventListener("touchstart", handleTouchStart);
-			sc.removeEventListener("touchmove", handleTouchMove);
-			sc.removeEventListener("touchend", handleTouchEnd);
-
+			sc.removeEventListener("wheel", handleWheel);
 			window.removeEventListener("resize", handleResize);
 			document.removeEventListener("keydown", handleKeyDown);
 			cancelAnim();
@@ -240,7 +148,7 @@ const StoryTimeline = ({ locale }) => {
 	};
 
 	return (
-		<section className="timeline-wrapper d-none d-md-block">
+		<section className="timeline-wrapper d-block d-md-none">
 			<div className="timeline-container">
 				<div className="container">
 					<div className="section_title">

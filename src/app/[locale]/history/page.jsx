@@ -1,6 +1,7 @@
 import VideoSection from "@/components/layouts/VideoSection";
 import PageTitle from "@/components/sections/PageTitle";
-import StoryTimeline from "@/components/StoryTimeline/StoryTimeline";
+import StoryTimeline from "@/components/StoryTimeline/StoryTimelineMobile";
+import StoryTimelineMobile from "@/components/StoryTimeline/StoryTimeline";
 import { getTranslations } from "next-intl/server";
 import { generatePageMetadata } from "@/lib/metadata";
 
@@ -29,6 +30,7 @@ const History = async ({ params: { locale } }) => {
 				</div>
 			</div>
 			<StoryTimeline locale={locale} />
+			<StoryTimelineMobile locale={locale} />
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-12">

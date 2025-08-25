@@ -17,8 +17,7 @@ const BlogInsidePageClient = ({ params }) => {
 	const [isRecommendedLoading, setIsRecommendedLoading] = useState(false);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 	const contentRef = useRef(null);
-	// REMOVED: unused pageContent state
-	// const [pageContent, setPageContent] = useState(null);
+
 	useEffect(() => {
 		const fetchBlogs = async () => {
 			setIsLoading(true);
@@ -26,9 +25,15 @@ const BlogInsidePageClient = ({ params }) => {
 				const res = await fetch(
 					`/api/single_blog?slug=${slug}&locale=${locale}`
 				);
+
+				// Check if response is ok
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+
 				const data = await res.json();
+				console.log("Fetched blog data:", data); // Debug log
 				setBlog(data);
-				// console.log("Fetched blog:", data);
 
 				if (data && data.blog_id) {
 					setIsRecommendedLoading(true);
@@ -36,9 +41,10 @@ const BlogInsidePageClient = ({ params }) => {
 						const recRes = await fetch(
 							`/api/recommended_blogs?locale=${locale}&blog_id=${data.blog_id}`
 						);
-						const recData = await recRes.json();
-						setRecommended(recData);
-						// console.log("Fetched recommended blogs:", recData);
+						if (recRes.ok) {
+							const recData = await recRes.json();
+							setRecommended(recData);
+						}
 					} catch (err) {
 						console.error("Failed to load recommended blogs", err);
 					} finally {
@@ -47,6 +53,7 @@ const BlogInsidePageClient = ({ params }) => {
 				}
 			} catch (err) {
 				console.error("Failed to load blog", err);
+				console.error("Error details:", err.message); // More detailed error logging
 			} finally {
 				setIsLoading(false);
 			}
@@ -57,23 +64,49 @@ const BlogInsidePageClient = ({ params }) => {
 		}
 	}, [slug, locale]);
 
-	// UPDATED: depend directly on blog?.content
+	// UPDATED: More robust content handling with error checking
 	useEffect(() => {
-		if (contentRef.current && blog?.content) {
-			contentRef.current.innerHTML = blog.content;
+		console.log("Content effect running:", {
+			hasContentRef: !!contentRef.current,
+			blogContent: blog?.content,
+			contentType: typeof blog?.content,
+			contentLength: blog?.content?.length,
+		});
 
-			const listItems = contentRef.current.querySelectorAll("li");
-			listItems.forEach((li) => {
-				if (!li.querySelector(".fas, .fa")) {
-					const icon = document.createElement("i");
-					icon.className = "fas fa-check-circle";
-					icon.style.color = "#cca162";
-					icon.style.marginRight = "0.5rem";
-					li.insertBefore(icon, li.firstChild);
-				}
+		if (contentRef.current && blog?.content) {
+			try {
+				// Clear existing content first
+				contentRef.current.innerHTML = "";
+
+				// Set the content
+				contentRef.current.innerHTML = blog.content;
+
+				// Add icons to list items
+				const listItems = contentRef.current.querySelectorAll("li");
+				listItems.forEach((li) => {
+					if (!li.querySelector(".fas, .fa")) {
+						const icon = document.createElement("i");
+						icon.className = "fas fa-check-circle";
+						icon.style.color = "#cca162";
+						icon.style.marginRight = "0.5rem";
+						li.insertBefore(icon, li.firstChild);
+					}
+				});
+
+				console.log("Content successfully loaded and processed");
+			} catch (error) {
+				console.error("Error setting content:", error);
+				// Fallback: display content as text if HTML parsing fails
+				contentRef.current.textContent = blog.content;
+			}
+		} else {
+			console.log("Content not loaded:", {
+				hasRef: !!contentRef.current,
+				hasContent: !!blog?.content,
+				blog: blog,
 			});
 		}
-	}, [blog?.content]);
+	}, [blog, contentRef.current]);
 
 	// Show loading screen while data is being fetched
 	if (isLoading) {
@@ -108,6 +141,7 @@ const BlogInsidePageClient = ({ params }) => {
 			</section>
 		);
 	}
+
 	return (
 		<>
 			<section className="details_section blog_details section_space_lg pb-0">
@@ -141,7 +175,17 @@ const BlogInsidePageClient = ({ params }) => {
 										</Link>
 									</li>
 								</ul>
-								<div ref={contentRef}></div>
+
+								<div ref={contentRef} className="blog-content">
+									{/* Fallback content for debugging */}
+									{!blog?.content && (
+										<p style={{ color: "red", fontStyle: "italic" }}>
+											No content available for this blog post.
+										</p>
+									)}
+								</div>
+
+								{/* Additional images */}
 								<div className="row mb-3">
 									<div className="col col-md-6">
 										<div className="details_image m-0">
@@ -170,6 +214,7 @@ const BlogInsidePageClient = ({ params }) => {
 										</div>
 									</div>
 								</div>
+
 								<hr />
 								<div className="tag_share_links">
 									<div className="share_wrap">
@@ -219,7 +264,9 @@ const BlogInsidePageClient = ({ params }) => {
 												recommended.map((item, index) => (
 													<li key={index}>
 														<div className="small_blog_item">
-															<Link className="item_image" href="blog/asd">
+															<Link
+																className="item_image"
+																href={`/blog/${item.slug}`}>
 																<Image
 																	width={80}
 																	height={80}
@@ -229,7 +276,7 @@ const BlogInsidePageClient = ({ params }) => {
 															</Link>
 															<div className="item_content">
 																<h3 className="item_title">
-																	<Link href={`${item.slug}`}>
+																	<Link href={`/blog/${item.slug}`}>
 																		{item.title}
 																	</Link>
 																</h3>
