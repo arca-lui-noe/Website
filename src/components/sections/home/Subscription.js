@@ -38,6 +38,14 @@ const Subscription = () => {
 		return () => observer.disconnect();
 	}, []);
 
+	const isIOS =
+		typeof navigator !== "undefined" &&
+		(/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+			(navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+	const buttonHref = isIOS
+		? "https://apps.apple.com/us/app/digitail-smarter-pet-care/id1473042508"
+		: "https://play.google.com/store/apps/details?id=com.digitail.digitail&hl=en&pli=1";
+
 	return (
 		<>
 			<section ref={sectionRef} className="subscribe_section section_space_md">
@@ -51,7 +59,7 @@ const Subscription = () => {
 								{home_text("application-desc")}
 							</p>
 						</div>
-						<a href="https://play.google.com/store/apps/details?id=com.digitail.digitail&hl=en&pli=1">
+						<a href={buttonHref}>
 							<button className="btn btn_warning" type="submit">
 								{home_text("application-button")}
 							</button>
@@ -70,13 +78,13 @@ const Subscription = () => {
 							/>
 						</div>
 						{/* <div className="decoration_item shape_image_2">
-              <Image  width={30}
-            height={30} src="/images/shape/shape_circle_1.svg" alt="Shape Image" />
-            </div> */}
+			  <Image  width={30}
+			height={30} src="/images/shape/shape_circle_1.svg" alt="Shape Image" />
+			</div> */}
 						{/* <div className="decoration_item pet_image_1">
-              <Image  width={30}
-            height={30} src="/images/about/about_img_4.png" alt="Pet Image" />
-            </div> */}
+			  <Image  width={30}
+			height={30} src="/images/about/about_img_4.png" alt="Pet Image" />
+			</div> */}
 						<div
 							ref={imgRef}
 							className={`decoration_item pet_image_2 rise_in ${

@@ -12,6 +12,13 @@ export default function Footer1({ locale }) {
 	const contact_text = useTranslations("Contact");
 	const clinic_text = useTranslations("Clinic");
 	const menu_text = useTranslations("Menu");
+	const isIOS =
+		typeof navigator !== "undefined" &&
+		(/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+			(navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+	const buttonHref = isIOS
+		? "https://apps.apple.com/us/app/digitail-smarter-pet-care/id1473042508"
+		: "https://play.google.com/store/apps/details?id=com.digitail.digitail&hl=en&pli=1";
 
 	return (
 		<>
@@ -115,7 +122,7 @@ export default function Footer1({ locale }) {
 									<h3 className="footer_widget_title">
 										{menu_text("app-title")}
 									</h3>
-									<a href="https://play.google.com/store/apps/details?id=com.digitail.digitail&hl=en&pli=1">
+									<a href={buttonHref}>
 										<button className="btn btn_primary">
 											{menu_text("app-button-text")}
 										</button>
