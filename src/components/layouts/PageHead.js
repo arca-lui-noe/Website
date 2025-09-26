@@ -4,7 +4,7 @@ import { generateWebsiteSchema } from "@/lib/schema";
 
 const PageHead = ({ headTitle }) => {
   const websiteSchema = generateWebsiteSchema(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app/"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://arca-lui-noe.ro/"
   );
   
   return (

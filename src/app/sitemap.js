@@ -1,6 +1,6 @@
 export default async function sitemap() {
 	const siteUrl =
-		process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app";
+		process.env.NEXT_PUBLIC_SITE_URL || "https://arca-lui-noe.ro";
 	const { locales } = await import("@/lib/i18n-config");
 
 	// Define your primary routes

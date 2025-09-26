@@ -20,7 +20,7 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
     remotePatterns: [
       new URL("http://localhost/**"),
-      new URL("https://arcaluinoe.prismasolutions.ro/**"),
+      new URL("https://admin.arca-lui-noe.ro/**"),
     ],
     domains: ['via.placeholder.com'],
     minimumCacheTTL: 60,

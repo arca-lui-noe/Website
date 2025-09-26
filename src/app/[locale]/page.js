@@ -19,9 +19,9 @@ export default async function HomePage({ params }) {
 
 	const organizationData = {
 		name: "Arca lui Noe", // Add this to translation file and replace hardcoded string
-		url: process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app",
+		url: process.env.NEXT_PUBLIC_SITE_URL || "https://arca-lui-noe.ro",
 		logo: `${
-			process.env.NEXT_PUBLIC_SITE_URL || "https://arcaluinoe.vercel.app"
+			process.env.NEXT_PUBLIC_SITE_URL || "https://arca-lui-noe.ro"
 		}/logo.png`,
 		socialLinks: [
 			"https://facebook.com/yourcompany",

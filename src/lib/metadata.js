@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 export async function generatePageMetadata(page, locale, customData = {}) {
 	const metadata = await getTranslations("Metadata");
 	const baseUrl =
-		process.env.NEXT_PUBLIC_PAGE_URL || "https://arcaluinoe.vercel.app";
+		process.env.NEXT_PUBLIC_PAGE_URL || "https://arca-lui-noe.ro";
 
 	// Get page-specific metadata or fallback to home
 	const pageMetadata = metadata.raw(page) || metadata.raw("home");
@@ -58,7 +58,7 @@ export async function generatePageMetadata(page, locale, customData = {}) {
 
 export async function generateDynamicMetadata(blogData, locale) {
 	const baseUrl =
-		process.env.NEXT_PUBLIC_PAGE_URL || "https://arcaluinoe.vercel.app";
+		process.env.NEXT_PUBLIC_PAGE_URL || "https://arca-lui-noe.ro";
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 	const title = `${blogData.title || blogData.name} | ${
