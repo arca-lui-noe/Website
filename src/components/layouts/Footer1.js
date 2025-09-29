@@ -135,9 +135,9 @@ export default function Footer1({ locale }) {
 				</div>
 				<div className="footer_bottom">
 					<div className="container">
-						<div className="row align-items-center">
+						<div className="row align-items-center copyrights_text text-start">
 							<div className="col-lg-4 mb-3 mb-lg-0">
-								<p className="copyrights_text text-start mb-0">
+								<p className=" mb-0">
 									Copyright ©{currentYear}. All Rights Reserved |{" "}
 									<span className="text-primary-footer">Arca Lui Noe</span>
 									<br />
