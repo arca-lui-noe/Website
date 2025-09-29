@@ -73,7 +73,9 @@
   "Contact": {
     "contact-title": "Kapcsolatfelvétel",
     "contact-subtitle": "Vegye fel velünk a kapcsolatot",
-    "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban."
+    "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban.",
+    "title": "Keress minket bátran",
+    "desc":"Vedd fel velünk a kapcsolatot telefonon, e-mailen vagy az applikáción keresztül – itt vagyunk, ha szükséged van ránk!"
   },
   "Terms": {
   "title1": "Adatvédelmi szabályzat",

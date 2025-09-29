@@ -73,7 +73,9 @@
   "Contact": {
     "contact-title": "Contactează-ne",
     "contact-subtitle": "Ia legătura cu noi",
-    "contact-desc": "Răspundem cu plăcere la orice întrebare. Contactează-ne telefonic sau prin e-mail și te ajutăm cu sănătatea animăluțului tău."
+    "contact-desc": "Răspundem cu plăcere la orice întrebare. Contactează-ne telefonic sau prin e-mail și te ajutăm cu sănătatea animăluțului tău.",
+     "title": "Suntem aici pentru tine",
+    "desc":"Ia legătura cu noi prin telefon, e-mail sau aplicație – suntem aici pentru tine!"
   },
   "Terms":{
     "title1":"Politica de confidențialitate",

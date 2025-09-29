@@ -11,6 +11,7 @@ import "/public/css/contact-tabs.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { generatePageMetadata } from "@/lib/metadata";
+import Script from "next/script";
 
 export async function generateStaticParams() {
 	return [{ locale: "hu" }, { locale: "ro" }];
@@ -24,6 +25,7 @@ export async function generateMetadata({ params: { locale } }) {
     },
   };
 }
+
 export default async function LocaleLayout({ children, params }) {
 	// Ensure that the incoming `locale` is valid
 	const { locale } = await params;
@@ -37,6 +39,12 @@ export default async function LocaleLayout({ children, params }) {
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
+				
+				<Script
+					src="//cdn.cookie-script.com/s/9ba8aa13f7a6a38d08930be125cd217c.js"
+					strategy="afterInteractive"
+					charSet="UTF-8"
+				/>
 			</body>
 		</html>
 	);

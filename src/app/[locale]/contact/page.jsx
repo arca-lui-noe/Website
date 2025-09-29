@@ -2,6 +2,7 @@ import Contact from "@/components/sections/contact/Contact";
 import PageTitle from "@/components/sections/PageTitle";
 import React from "react";
 import { generatePageMetadata } from "@/lib/metadata";
+import { useTranslations } from "next-intl";
 
 export async function generateMetadata({ params }) {
 	const { locale } = await params;
@@ -9,13 +10,14 @@ export async function generateMetadata({ params }) {
 }
 
 const ContactPage = () => {
+		const contact_text = useTranslations("Contact");
 	return (
 		<>
 			<PageTitle
 				customClass="contact-style"
-				pageName="Contacts"
+				pageName={contact_text("title")}
 				floatImage="/images/breadcrumb/breadcrumb_img_17.webp"
-				pageText="Tristique nulla aliquet enim tortor at auctor urna nunc. Massa enim nec dui nunc mattis enim ut tellus"
+				pageText={contact_text("desc")}
 			/>
 			<Contact />
 		</>
