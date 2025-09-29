@@ -16,11 +16,14 @@ export async function generateStaticParams() {
 	return [{ locale: "hu" }, { locale: "ro" }];
 }
 
-// export async function generateMetadata({ params: { locale } }) {
-// 	// Generate metadata for home page
-// 	return await generatePageMetadata("home", locale);
-// }
-
+export async function generateMetadata({ params: { locale } }) {
+  return {
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 export default async function LocaleLayout({ children, params }) {
 	// Ensure that the incoming `locale` is valid
 	const { locale } = await params;
