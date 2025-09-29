@@ -75,6 +75,11 @@
     "contact-subtitle": "Vegye fel velünk a kapcsolatot",
     "contact-desc": "Minden kérdésére szívesen válaszolunk. Vegye fel velünk a kapcsolatot telefonon vagy e-mailben, és segítünk kedvence egészségével kapcsolatban."
   },
+  "Terms": {
+  "title1": "Privacy Policy",
+  "title2": "Cookie Policy",
+  "title3": "Terms and Conditions"
+},
   "About": {
     "title": "Rólunk",
     "lead": "Tudjon meg többet rólunk és küldetésünkről.",

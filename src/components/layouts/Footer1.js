@@ -12,6 +12,7 @@ export default function Footer1({ locale }) {
 	const contact_text = useTranslations("Contact");
 	const clinic_text = useTranslations("Clinic");
 	const menu_text = useTranslations("Menu");
+	const terms_text = useTranslations("Terms");
 	const isIOS =
 		typeof navigator !== "undefined" &&
 		(/iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -22,7 +23,7 @@ export default function Footer1({ locale }) {
 
 	return (
 		<>
-			<footer className="footer_section">
+			<footer className="footer_section overflow-hidden">
 				<div className="footer_widget_area section_space_lg">
 					<div className="container">
 						<div className="row justify-content-lg-between">
@@ -129,63 +130,39 @@ export default function Footer1({ locale }) {
 									</a>
 								</div>
 							</div>
-							{/* <div className="col-xl-3 col-sm-6">
-								<div className="footer_widget">
-									<h3 className="footer_widget_title">
-										{footer_text("newsletter-title")}
-									</h3>
-									<form action="#">
-										<div className="footer_newslatter">
-											<p>{footer_text("newsletter-desc")}</p>
-											<div className="form_item">
-												<input
-													type="email"
-													name="newsletter-email"
-													placeholder="Email"
-													required
-												/>
-												<button type="submit">
-													<i className="far fa-arrow-right"></i>
-												</button>
-											</div>
-											<div className="form_item mt-3">
-												<label className="d-flex align-items-start">
-													<input
-														type="checkbox"
-														name="gdpr-consent"
-														required
-														className="me-2 mt-1"
-													/>
-													<span className="small">
-														I agree to the{" "}
-														<Link
-															href={`/${locale}/terms`}
-															className="text-decoration-underline">
-															Privacy Policy
-														</Link>{" "}
-														and consent to the processing of my personal data
-														for newsletter purposes.
-													</span>
-												</label>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div> */}
 						</div>
 					</div>
 				</div>
 				<div className="footer_bottom">
 					<div className="container">
-						<p className="copyrights_text text-start">
-							Copyright ©{currentYear}. All Rights Reserved |{" "}
-							<span className="text-primary-footer">Arca Lui Noe</span>
-							<br />
-							Designed & Developed by |{" "}
-							<Link href="https://www.bloomberryagency.com/en" target="_blank">
-								<span className="text-prisma">Bloomberry</span>
-							</Link>
-						</p>
+						<div className="row align-items-center">
+							<div className="col-lg-4 mb-3 mb-lg-0">
+								<p className="copyrights_text text-start mb-0">
+									Copyright ©{currentYear}. All Rights Reserved |{" "}
+									<span className="text-primary-footer">Arca Lui Noe</span>
+									<br />
+									Designed & Developed by |{" "}
+									<Link href="https://www.bloomberryagency.com/en" target="_blank">
+										<span className="text-prisma">Bloomberry</span>
+									</Link>
+								</p>
+							</div>
+							<div className="col-lg-8">
+								<div className="footer_legal_links text-start text-lg-end">
+									<Link href="/privacy-policy" style={{color:"#084466",fontWeight:"700"}}>
+										{terms_text("title1")}
+									</Link>
+									<span className="mx-2">•</span>
+									<Link href="/cookie-policy" style={{color:"#084466",fontWeight:"700"}}>
+										{terms_text("title2")}
+									</Link>
+									<span className="mx-2">•</span>
+									<Link href="/terms-conditions" style={{color:"#084466",fontWeight:"700"}}>
+										{terms_text("title3")}
+									</Link>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</footer>

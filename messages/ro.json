@@ -75,6 +75,11 @@
     "contact-subtitle": "Ia legătura cu noi",
     "contact-desc": "Răspundem cu plăcere la orice întrebare. Contactează-ne telefonic sau prin e-mail și te ajutăm cu sănătatea animăluțului tău."
   },
+  "Terms":{
+    "title1":"Politica de confidențialitate",
+    "title2":"Politica de cookie",
+    "title3":"Termeni și condiții"
+  },
   "About": {
     "title": "Despre noi",
     "lead": "Aflați mai multe despre noi și misiunea noastră.",
