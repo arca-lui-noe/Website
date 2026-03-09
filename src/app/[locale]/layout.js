@@ -18,12 +18,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { locale } }) {
-  return {
-    robots: {
-      index: false,
-      follow: false,
-    },
-  };
+	return {
+		robots: {
+			index: false,
+			follow: false,
+		},
+	};
 }
 
 export default async function LocaleLayout({ children, params }) {
@@ -39,12 +39,23 @@ export default async function LocaleLayout({ children, params }) {
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
-				
+
 				<Script
 					src="//cdn.cookie-script.com/s/9ba8aa13f7a6a38d08930be125cd217c.js"
 					strategy="afterInteractive"
 					charSet="UTF-8"
 				/>
+				<Script type="text/javascript" strategy="afterInteractive" id="tawkto">
+					{`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+					(function(){
+					var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+					s1.async=true;
+					s1.src='https://embed.tawk.to/69aaa5591ee2e61c393c1a68/1jj19bq5l';
+					s1.charset='UTF-8';
+					s1.setAttribute('crossorigin','*');
+					s0.parentNode.insertBefore(s1,s0);
+					})();`}
+				</Script>
 			</body>
 		</html>
 	);
