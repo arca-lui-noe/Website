@@ -6,29 +6,30 @@ import { routing } from "./i18n/routing";
 const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(req) {
-  // Basic Auth ellenőrzés
-  const basicAuth = req.headers.get("authorization");
+  if (process.env.PROTECT_ENABLED === "1") {
+    const basicAuth = req.headers.get("authorization");
 
-  if (basicAuth) {
-    const authValue = basicAuth.split(" ")[1];
-    const [user, pwd] = atob(authValue).split(":");
+    if (basicAuth) {
+      const authValue = basicAuth.split(" ")[1];
+      const [user, pwd] = atob(authValue).split(":");
 
-    if (
-      user === process.env.PROTECT_USER &&
-      pwd === process.env.PROTECT_PASS
-    ) {
-      // Ha helyes a jelszó, akkor fusson le az intl middleware
-      return intlMiddleware(req);
+      if (
+        user === process.env.PROTECT_USER &&
+        pwd === process.env.PROTECT_PASS
+      ) {
+        return intlMiddleware(req);
+      }
     }
+
+    return new NextResponse("Auth required", {
+      status: 401,
+      headers: {
+        "WWW-Authenticate": 'Basic realm="Secure Area"',
+      },
+    });
   }
 
-  // Ha nincs vagy rossz a jelszó → 401 válasz
-  return new NextResponse("Auth required", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Secure Area"',
-    },
-  });
+  return intlMiddleware(req);
 }
 
 export const config = {
