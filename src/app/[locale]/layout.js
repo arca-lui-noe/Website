@@ -11,6 +11,7 @@ import "/public/css/contact-tabs.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { generatePageMetadata } from "@/lib/metadata";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
@@ -40,6 +41,7 @@ export default async function LocaleLayout({ children, params }) {
 			<body className={`${nunito.variable} ${lato.variable}`}>
 				<GoogleTagManager gtmId="GTM-NVMNJR8" />
 				<Analytics />
+				<SpeedInsights />
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
