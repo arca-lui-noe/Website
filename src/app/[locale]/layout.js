@@ -40,8 +40,6 @@ export default async function LocaleLayout({ children, params }) {
 		<html lang={locale}>
 			<body className={`${nunito.variable} ${lato.variable}`}>
 				<GoogleTagManager gtmId="GTM-NVMNJR8" />
-				<Analytics />
-				<SpeedInsights />
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
@@ -61,6 +59,8 @@ export default async function LocaleLayout({ children, params }) {
 					s0.parentNode.insertBefore(s1,s0);
 					})();`}
 				</Script>
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
