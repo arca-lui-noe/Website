@@ -10,7 +10,9 @@ import "swiper/css/navigation";
 import "/public/css/contact-tabs.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
+import { Analytics } from "@vercel/analytics/next";
 import { generatePageMetadata } from "@/lib/metadata";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 
 export async function generateStaticParams() {
@@ -20,8 +22,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params: { locale } }) {
 	return {
 		robots: {
-			index: false,
-			follow: false,
+			index: true,
+			follow: true,
 		},
 	};
 }
@@ -36,10 +38,10 @@ export default async function LocaleLayout({ children, params }) {
 	return (
 		<html lang={locale}>
 			<body className={`${nunito.variable} ${lato.variable}`}>
+				<GoogleTagManager gtmId="GTM-NVMNJR8" />
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
-
 				<Script
 					src="//cdn.cookie-script.com/s/9ba8aa13f7a6a38d08930be125cd217c.js"
 					strategy="afterInteractive"
