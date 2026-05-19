@@ -67,7 +67,7 @@ const NewsGrid = () => {
 	// Slice blogs for current page
 	let paginatedBlogs = blogs.slice(
 		(currentPage - 1) * BLOGS_PER_PAGE,
-		currentPage * BLOGS_PER_PAGE
+		currentPage * BLOGS_PER_PAGE,
 	);
 	// const paginatedBlogs = [];
 
@@ -93,34 +93,42 @@ const NewsGrid = () => {
 									paginatedBlogs.map((blog) => (
 										<div className="col col-md-6" key={blog.id}>
 											<div className="blog_item">
-												<ul className="badge_group unorder_list_right">
+												<ul
+													className="badge_group unorder_list_right"
+													style={{ flexWrap: "nowrap", minHeight: "30px" }}>
 													<li>
-														<Link className="badge badge_sale" href="#!">
+														<Link
+															className="badge badge_sale"
+															href="#!"
+															style={{ whiteSpace: "nowrap" }}>
 															{blog.category_name}
 														</Link>
 													</li>
-													<li>
-														{(() => {
-															if (!blog?.created_date) return null;
-															// Expecting YYYY-MM-DD
-															const parts = blog.created_date.split("-");
-															if (parts.length !== 3) return null;
-															const created = new Date(
-																Number(parts[0]),
-																Number(parts[1]) - 1,
-																Number(parts[2])
-															);
-															const oneMonthMs = 31 * 24 * 60 * 60 * 1000;
-															const isRecent =
-																Date.now() - created.getTime() <= oneMonthMs;
-															if (!isRecent) return null;
-															return (
-																<Link className="badge badge_sale" href="#!">
+													{(() => {
+														if (!blog?.created_date) return null;
+														// Expecting YYYY-MM-DD
+														const parts = blog.created_date.split("-");
+														if (parts.length !== 3) return null;
+														const created = new Date(
+															Number(parts[0]),
+															Number(parts[1]) - 1,
+															Number(parts[2]),
+														);
+														const oneMonthMs = 31 * 24 * 60 * 60 * 1000;
+														const isRecent =
+															Date.now() - created.getTime() <= oneMonthMs;
+														if (!isRecent) return null;
+														return (
+															<li>
+																<Link
+																	className="badge badge_sale"
+																	href="#!"
+																	style={{ whiteSpace: "nowrap" }}>
 																	{locale === "ro" ? "Nou" : "Új"}
 																</Link>
-															);
-														})()}
-													</li>
+															</li>
+														);
+													})()}
 												</ul>
 												<Link
 													className="item_image"
@@ -157,7 +165,7 @@ const NewsGrid = () => {
 															<Link href="#!">
 																<i className="fas fa-calendar-day"></i>{" "}
 																{new Date(
-																	blog.created_date
+																	blog.created_date,
 																).toLocaleDateString()}
 															</Link>
 														</li>
@@ -203,7 +211,7 @@ const NewsGrid = () => {
 												{/* Page Numbers */}
 												{Array.from(
 													{ length: totalPages },
-													(_, i) => i + 1
+													(_, i) => i + 1,
 												).map((num) => (
 													<li
 														key={num}

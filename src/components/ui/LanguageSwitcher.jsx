@@ -3,19 +3,42 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { locales } from '@/lib/i18n-config';
+import { routing } from '@/i18n/routing';
+
+const { defaultLocale } = routing;
 
 export default function LanguageSwitcher({ currentLocale, label }) {
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const handleChange = useCallback((e) => {
     const newLocale = e.target.value;
-    // Eltávolítjuk a jelenlegi locale-t az útvonalból és hozzáadjuk az újat
     const segments = pathname.split('/');
-    segments[1] = newLocale;
-    router.push(segments.join('/'));
-    
-    // Opcionálisan állítsunk be egy cookie-t is a nyelvhez
+
+    // segments[1] is a locale prefix only when a non-default locale is active
+    const hasLocalePrefix = locales.includes(segments[1]);
+
+    let newSegments;
+    if (hasLocalePrefix) {
+      if (newLocale === defaultLocale) {
+        // Remove the prefix — default locale has no prefix in the URL
+        newSegments = ['', ...segments.slice(2)];
+      } else {
+        // Replace existing prefix
+        newSegments = [...segments];
+        newSegments[1] = newLocale;
+      }
+    } else {
+      if (newLocale === defaultLocale) {
+        // Already on default locale path, nothing to change
+        newSegments = [...segments];
+      } else {
+        // Insert the new locale prefix after the leading ''
+        newSegments = ['', newLocale, ...segments.slice(1)];
+      }
+    }
+
+    router.push(newSegments.join('/') || '/');
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`; // 1 év
   }, [pathname, router]);
 

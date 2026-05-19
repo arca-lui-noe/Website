@@ -90,10 +90,21 @@ export default function Header1({
 
 		// Use a timeout to allow animation to complete
 		setTimeout(() => {
-			// Get the current path without the language prefix
-			const currentPath = pathname.replace(/^\/[^\/]+/, "") || "/";
-			// Navigate to the same path with the new locale prefix
-			window.location.href = `/${newLocale}${currentPath}`;
+			// Strip the locale prefix only when one is actually present.
+			// For the default locale (ro) there is no prefix, so the first segment
+			// is part of the real path (e.g. /blog/…) — not a locale token.
+			const segments = pathname.split("/").filter(Boolean);
+			const knownLocales = ["hu", "ro"];
+			const hasLocalePrefix = knownLocales.includes(segments[0]);
+			const pathWithoutLocale = hasLocalePrefix
+				? "/" + segments.slice(1).join("/")
+				: pathname;
+
+			const defaultLocale = "ro";
+			window.location.href =
+				newLocale === defaultLocale
+					? pathWithoutLocale || "/"
+					: `/${newLocale}${pathWithoutLocale}`;
 		}, 300); // Match animation duration
 	};
 

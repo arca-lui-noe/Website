@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 	return [{ locale: "hu" }, { locale: "ro" }];
 }
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+	const { locale } = await params;
 	return {
 		robots: {
 			index: true,

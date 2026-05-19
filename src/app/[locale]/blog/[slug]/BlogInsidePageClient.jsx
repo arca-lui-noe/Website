@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import { LoadingOverlay } from "@/hooks/useLoadingState";
 import React from "react";
@@ -11,20 +11,31 @@ const BlogInsidePageClient = ({ params }) => {
 	// FIX: extract slug directly from params
 	const { slug } = React.use(params);
 	const locale = useLocale();
+	const router = useRouter();
 	const [blog, setBlog] = useState(null);
 	const [recommended, setRecommended] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isRecommendedLoading, setIsRecommendedLoading] = useState(false);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 	const contentRef = useRef(null);
+	const blogIdRef = useRef(null);
+	const prevLocaleRef = useRef(locale);
 
 	useEffect(() => {
 		const fetchBlogs = async () => {
 			setIsLoading(true);
 			try {
-				const res = await fetch(
-					`/api/single_blog?slug=${slug}&locale=${locale}`
-				);
+				const localeChanged = prevLocaleRef.current !== locale;
+				prevLocaleRef.current = locale;
+
+				// When locale just changed and we have a stored blog_id, fetch by ID to
+				// get the correct slug for the new locale instead of reusing the old slug.
+				const url =
+					localeChanged && blogIdRef.current
+						? `/api/single_blog?blog_id=${blogIdRef.current}&locale=${locale}`
+						: `/api/single_blog?slug=${slug}&locale=${locale}`;
+
+				const res = await fetch(url);
 
 				// Check if response is ok
 				if (!res.ok) {
@@ -32,7 +43,17 @@ const BlogInsidePageClient = ({ params }) => {
 				}
 
 				const data = await res.json();
-				console.log("Fetched blog data:", data); // Debug log
+
+				// If the backend returned a different slug for the current locale, navigate to it
+				if (data?.slug && data.slug !== slug) {
+					router.replace(`/blog/${data.slug}`);
+					return;
+				}
+
+				if (data?.blog_id) {
+					blogIdRef.current = data.blog_id;
+				}
+
 				setBlog(data);
 
 				if (data && data.blog_id) {
@@ -53,7 +74,7 @@ const BlogInsidePageClient = ({ params }) => {
 				}
 			} catch (err) {
 				console.error("Failed to load blog", err);
-				console.error("Error details:", err.message); // More detailed error logging
+				console.error("Error details:", err.message);
 			} finally {
 				setIsLoading(false);
 			}
