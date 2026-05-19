@@ -39,7 +39,6 @@ export default function LanguageSwitcher({ currentLocale, label }) {
     }
 
     router.push(newSegments.join('/') || '/');
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`; // 1 év
   }, [pathname, router]);
 
   // Találja meg az adott nyelv teljes nevét
