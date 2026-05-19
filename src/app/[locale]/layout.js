@@ -27,6 +27,12 @@ export async function generateMetadata({ params }) {
 			index: true,
 			follow: true,
 		},
+		icons: {
+			icon: [
+				{ url: "/dark.ico", media: "(prefers-color-scheme: light)" },
+				{ url: "/light.ico", media: "(prefers-color-scheme: dark)" },
+			],
+		},
 	};
 }
 
