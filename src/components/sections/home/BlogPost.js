@@ -15,15 +15,18 @@ const BlogPost = () => {
 		const fetchRecommended = async () => {
 			setLoading(true);
 			try {
-				const res = await fetch(`/api/recommended_blogs?locale=${locale}`);
+				const res = await fetch(`/api/blogs?locale=${locale}`);
 				if (res.ok) {
 					const data = await res.json();
-					setRecommended(Array.isArray(data) ? data : []);
+					const sorted = (Array.isArray(data) ? data : []).sort(
+						(a, b) => new Date(b.created_date) - new Date(a.created_date),
+					);
+					setRecommended(sorted);
 				} else {
 					setRecommended([]);
 				}
 			} catch (e) {
-				console.error("Failed to fetch recommended blogs", e);
+				console.error("Failed to fetch blogs", e);
 				setRecommended([]);
 			} finally {
 				setLoading(false);
@@ -32,7 +35,6 @@ const BlogPost = () => {
 		fetchRecommended();
 	}, [locale]);
 
-	// Prepare display list: up to 3 items. Fill with other blogs if recommended < 3
 	let displayBlogs = recommended.slice(0, 3);
 
 	const isRecent = (created_date) => {
@@ -42,7 +44,7 @@ const BlogPost = () => {
 		const d = new Date(
 			Number(parts[0]),
 			Number(parts[1]) - 1,
-			Number(parts[2])
+			Number(parts[2]),
 		);
 		const oneMonthMs = 31 * 24 * 60 * 60 * 1000;
 		return Date.now() - d.getTime() <= oneMonthMs;
@@ -68,21 +70,29 @@ const BlogPost = () => {
 									className="col col-lg-4 col-md-6 col-sm-6"
 									key={blog.id || idx}>
 									<div className="blog_item">
-										<ul className="badge_group unorder_list_right">
+										<ul
+											className="badge_group unorder_list_right"
+											style={{ flexWrap: "nowrap", minHeight: "30px" }}>
 											{blog.category_name && (
 												<li>
-													<Link className="badge badge_sale" href="#!">
+													<Link
+														className="badge badge_sale"
+														href="#!"
+														style={{ whiteSpace: "nowrap" }}>
 														{blog.category_name}
 													</Link>
 												</li>
 											)}
-											<li>
-												{isRecent(blog.created_date) && (
-													<Link className="badge badge_sale" href="#!">
+											{isRecent(blog.created_date) && (
+												<li>
+													<Link
+														className="badge badge_sale"
+														href="#!"
+														style={{ whiteSpace: "nowrap" }}>
 														{locale === "ro" ? "Nou" : "Új"}
 													</Link>
-												)}
-											</li>
+												</li>
+											)}
 										</ul>
 										<Link
 											className="item_image"

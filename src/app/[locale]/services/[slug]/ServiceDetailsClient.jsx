@@ -6,26 +6,46 @@ import ServiceDetailsSec3 from "@/components/sections/services/ServiceDetailsSec
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import { LoadingOverlay } from "@/hooks/useLoadingState";
 import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import React from "react";
+import { useRouter } from "@/i18n/navigation";
 
 const ServiceDetailsClient = ({ params }) => {
 	const { slug } = React.use(params);
 	const locale = useLocale();
+	const router = useRouter();
 	const [service, setService] = useState(null);
 	const [gallery, setGallery] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isGalleryLoading, setIsGalleryLoading] = useState(false);
 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+	const serviceIdRef = useRef(null);
+	const prevLocaleRef = useRef(locale);
 
 	useEffect(() => {
 		const fetchServices = async () => {
 			setIsLoading(true);
 			try {
-				const res = await fetch(
-					`/api/single_service?slug=${slug}&locale=${locale}`
-				);
+				const localeChanged = prevLocaleRef.current !== locale;
+				prevLocaleRef.current = locale;
+
+				const url =
+					localeChanged && serviceIdRef.current
+						? `/api/single_service?service_id=${serviceIdRef.current}&locale=${locale}`
+						: `/api/single_service?slug=${slug}&locale=${locale}`;
+
+				const res = await fetch(url);
 				const data = await res.json();
+
+				if (data?.slug && data.slug !== slug) {
+					router.replace(`/services/${data.slug}`);
+					return;
+				}
+
+				if (data?.service_id) {
+					serviceIdRef.current = data.service_id;
+				}
+
 				setService(data);
 				// console.log("Fetched service:", data);
 

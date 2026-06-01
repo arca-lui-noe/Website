@@ -169,7 +169,8 @@ const VideoBackground = ({ locale }) => {
 					muted
 					loop
 					playsInline
-					preload="metadata">
+					preload="none"
+					poster="/images/poster.webp">
 					<source src="/video/herobg.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
@@ -179,7 +180,8 @@ const VideoBackground = ({ locale }) => {
 					muted
 					loop
 					playsInline
-					preload="metadata">
+					preload="none"
+					poster="/images/poster.webp">
 					<source src="/video/herobg.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
