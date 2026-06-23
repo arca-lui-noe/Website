@@ -151,7 +151,7 @@ const NewsGrid = () => {
 															<li>
 																<Link href="#!">
 																	<i className="fas fa-star"></i>{" "}
-																	{locale === "ro" ? "Recommendat" : "Ajánlott"}
+																	{locale === "ro" ? "Recomandat" : "Ajánlott"}
 																</Link>
 															</li>
 														)}
