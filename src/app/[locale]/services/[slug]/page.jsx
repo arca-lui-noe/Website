@@ -1,4 +1,4 @@
-import { generateDynamicMetadata } from "@/lib/metadata";
+import { generateServiceMetadata } from "@/lib/metadata";
 import ServiceDetailsClient from "./ServiceDetailsClient";
 
 // Server-side metadata generation
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
 		}
 
 		const serviceData = await response.json();
-		return await generateDynamicMetadata(serviceData, locale);
+		return await generateServiceMetadata(serviceData, locale);
 	} catch (error) {
 		console.error("Error generating service metadata:", error);
 		return {

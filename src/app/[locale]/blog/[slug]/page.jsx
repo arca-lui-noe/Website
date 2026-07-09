@@ -1,4 +1,4 @@
-import { generateDynamicMetadata } from "@/lib/metadata";
+import { generateBlogMetadata } from "@/lib/metadata";
 import BlogInsidePageClient from "./BlogInsidePageClient";
 
 // Server-side metadata generation
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
 		}
 
 		const blogData = await response.json();
-		return await generateDynamicMetadata(blogData, locale);
+		return await generateBlogMetadata(blogData, locale);
 	} catch (error) {
 		console.error("Error generating blog metadata:", error);
 		return {
