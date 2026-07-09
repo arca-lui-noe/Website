@@ -9,7 +9,6 @@ import { LoadingProvider, useLoading } from "@/contexts/LoadingContext";
 
 function ClientLayoutInner({ children, footerStyle, locale, dict }) {
 	const [scroll, setScroll] = useState(0);
-	const [initialLoading, setInitialLoading] = useState(true);
 	const { isLoading } = useLoading();
 
 	// Mobile Menu
@@ -40,24 +39,12 @@ function ClientLayoutInner({ children, footerStyle, locale, dict }) {
 		};
 	}, [scroll]);
 
-	useEffect(() => {
-		// Initial page load animation
-		setInitialLoading(true);
-		const timer = setTimeout(() => {
-			setInitialLoading(false);
-		}, 1500);
-
-		return () => clearTimeout(timer);
-	}, []);
-
-	// Show loading screen for initial load or context loading
-	if (initialLoading || isLoading) {
-		return <LoadingScreen locale={locale} />;
-	}
-
 	return (
 		<>
-			{/* <CustomCursor /> */}
+			{/* Data-loading overlay only. `.loading-screen` is position:fixed, so this
+			    sits on top of the page instead of replacing it — the page content stays
+			    in the server-rendered HTML, which is what LCP measures. */}
+			{isLoading && <LoadingScreen locale={locale} />}
 			<div className="page-wrapper" id="top">
 				<Header1
 					scroll={scroll}

@@ -1,0 +1,87 @@
+/* Hero video background */
+.hero-media {
+	object-fit: cover;
+}
+
+/* Bootstrap 5.0.2 has no bg-opacity-* utilities, so .bg-dark would be opaque. */
+.hero-overlay {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-video {
+	opacity: 0;
+	transition: opacity 0.6s ease-in-out;
+}
+
+.hero-video.is-ready {
+	opacity: 1;
+}
+
+.hero-title {
+	font-size: 3.5rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	line-height: 1.2;
+	color: white;
+}
+
+.hero-description {
+	font-size: 1.25rem;
+	margin-bottom: 2rem;
+	opacity: 0.9;
+	line-height: 1.6;
+}
+
+.scroll-indicator {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer;
+	transition: color 0.3s ease;
+	z-index: 4;
+	padding: 10px;
+}
+
+.scroll-indicator-text {
+	font-size: 0.9rem;
+	margin-bottom: 8px;
+	opacity: 0.8;
+	font-weight: 500;
+}
+
+.scroll-indicator-arrow {
+	animation: heroScrollUpDown 2s infinite ease-in-out;
+}
+
+.scroll-indicator:hover {
+	color: #007bff;
+}
+
+@keyframes heroScrollUpDown {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@media (max-width: 768px) {
+	.hero-title {
+		font-size: 2.5rem;
+	}
+	.hero-description {
+		font-size: 1.1rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.hero-title {
+		font-size: 2rem;
+	}
+	.hero-description {
+		font-size: 1rem;
+	}
+}

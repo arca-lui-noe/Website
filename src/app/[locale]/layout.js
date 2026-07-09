@@ -2,12 +2,21 @@ import { nunito, lato } from "@/lib/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import ClientLayout from "@/components/layouts/ClientLayout";
 import "/public/css/bootstrap.min.css";
+// Formerly @import-ed from the top of style.css. Order must match the old
+// @import order so the cascade is unchanged; style.css must come last.
+import "/public/css/accordion-style.css";
+import "/public/css/custom-style.css";
+import "/public/css/fontawesome.css";
+import "/public/css/header-style.css";
+import "/public/css/modal-video.css";
+import "/public/css/slider-style.css";
 import "/public/css/style.css";
 import "/public/css/loading-screen.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "/public/css/contact-tabs.css";
+import "/public/css/hero-video.css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { Analytics } from "@vercel/analytics/next";
@@ -46,16 +55,19 @@ export default async function LocaleLayout({ children, params }) {
 	return (
 		<html lang={locale}>
 			<body className={`${nunito.variable} ${lato.variable}`}>
-				<GoogleTagManager gtmId="GTM-NVMNJR8" />
+				{/* <GoogleTagManager gtmId="GTM-NVMNJR8" /> */}
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
-				<Script
+				{/* <Script
 					src="//cdn.cookie-script.com/s/9ba8aa13f7a6a38d08930be125cd217c.js"
 					strategy="afterInteractive"
 					charSet="UTF-8"
-				/>
-				<Script type="text/javascript" strategy="afterInteractive" id="tawkto">
+				/> */}
+				{/* lazyOnload: the chat widget is a large bundle and does significant
+				    main-thread work. Loading it after the window load event keeps it
+				    out of the Total Blocking Time window. */}
+				<Script type="text/javascript" strategy="lazyOnload" id="tawkto">
 					{`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 					(function(){
 					var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
