@@ -55,7 +55,7 @@ export default async function LocaleLayout({ children, params }) {
 	return (
 		<html lang={locale}>
 			<body className={`${nunito.variable} ${lato.variable}`}>
-				<GoogleTagManager gtmId="GTM-NVMNJR8" />
+				<GoogleTagManager gtmId="GTM-5DSQW9WM" />
 				<NextIntlClientProvider>
 					<ClientLayout locale={locale}>{children}</ClientLayout>
 				</NextIntlClientProvider>
