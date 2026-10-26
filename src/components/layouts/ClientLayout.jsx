@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import Header1 from "@/components/layouts/Header3";
 import Footer1 from "@/components/layouts/Footer1";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import Image from "next/image";
+import pnrrLogos from "@/../public/images/pnrr/logo-ue-guv-pnrr.png";
 import { LoadingProvider, useLoading } from "@/contexts/LoadingContext";
 
 function ClientLayoutInner({ children, footerStyle, locale, dict }) {
@@ -46,6 +48,27 @@ function ClientLayoutInner({ children, footerStyle, locale, dict }) {
 			    in the server-rendered HTML, which is what LCP measures. */}
 			{isLoading && <LoadingScreen locale={locale} />}
 			<div className="page-wrapper" id="top">
+				{/* PNRR: mandatory EU / Gov. RO / PNRR logos, in this order, visible without scrolling.
+				    In normal flow so the absolute header sits below it. */}
+				<div style={{ background: "#fff", padding: "8px 0" }}>
+					<div className="container">
+						<Image
+							src={pnrrLogos}
+							alt="Finanțat de Uniunea Europeană NextGenerationEU, Guvernul României, Planul Național de Redresare și Reziliență"
+							priority
+							sizes="(max-width: 860px) 100vw, 820px"
+							style={{
+								width: "100%",
+								maxWidth: 820,
+								height: "auto",
+								maxHeight: "50px",
+								display: "block",
+								margin: "0 auto",
+								objectFit: "contain",
+							}}
+						/>
+					</div>
+				</div>
 				<Header1
 					scroll={scroll}
 					isMobileMenu={isMobileMenu}

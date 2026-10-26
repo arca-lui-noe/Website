@@ -163,6 +163,24 @@ export default function Footer1({ locale }) {
 								</div>
 							</div>
 						</div>
+						{/* PNRR: mandatory slogan, disclaimer and program links — Romanian in every locale */}
+						<div className="text-center mt-4 pt-3" style={{ borderTop: "1px solid rgba(0,0,0,0.1)", fontSize: 14 }}>
+							<p className="mb-1" style={{ fontWeight: 700 }}>
+								PNRR. Finanțat de Uniunea Europeană – UrmătoareaGenerațieUE
+							</p>
+							<p className="mb-2">
+								Conținutul acestui material nu reprezintă în mod obligatoriu poziția oficială a Uniunii Europene sau a Guvernului României
+							</p>
+							<p className="mb-0">
+								<a href="https://mfe.gov.ro/pnrr/" target="_blank" rel="noopener noreferrer" style={{ color: "#084466", fontWeight: 700 }}>
+									mfe.gov.ro/pnrr
+								</a>
+								<span className="mx-2">•</span>
+								<a href="https://www.facebook.com/PNRROficial" target="_blank" rel="noopener noreferrer" style={{ color: "#084466", fontWeight: 700 }}>
+									facebook.com/PNRROficial
+								</a>
+							</p>
+						</div>
 					</div>
 				</div>
 			</footer>
